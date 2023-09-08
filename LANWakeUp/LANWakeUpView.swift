@@ -23,14 +23,14 @@ struct LANWakeUpView: View {
             portField
             wakeUpButton
         }
+        .padding()
+        .background(BlurredEffect())
         .onAppear {
             computer.fetchUserDefaults()
             if let device = computer.listOfDevices.first {
                 computer.device = device
             }
         }
-        
-        .padding()
     }
     
     //MARK: List of saved devices
