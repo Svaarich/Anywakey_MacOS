@@ -28,6 +28,7 @@ class Computer: ObservableObject {
     
     func add(newDevice: WakeUp.Device) {
         listOfDevices = wakeUp.add(newDevice: newDevice, data: listOfDevices)
+        saveUserDefaults()
     }
 
 }

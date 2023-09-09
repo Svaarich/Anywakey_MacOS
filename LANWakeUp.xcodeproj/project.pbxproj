@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		7D04290E2AAA1FB400C9048C /* LANWakeUpApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04290D2AAA1FB400C9048C /* LANWakeUpApp.swift */; };
-		7D0429122AAA1FB400C9048C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D0429112AAA1FB400C9048C /* Assets.xcassets */; };
 		7D0429152AAA1FB400C9048C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D0429142AAA1FB400C9048C /* Preview Assets.xcassets */; };
 		7D04291D2AAA212800C9048C /* LANWakeUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04291C2AAA212800C9048C /* LANWakeUpView.swift */; };
 		7D04291F2AAA214900C9048C /* ButtonPressModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04291E2AAA214900C9048C /* ButtonPressModifier.swift */; };
 		7D0429212AAA219B00C9048C /* WakeUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0429202AAA219B00C9048C /* WakeUpButton.swift */; };
 		7D0429232AAA21AF00C9048C /* Computer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0429222AAA21AF00C9048C /* Computer.swift */; };
 		7D0429252AAA21E100C9048C /* WakeUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0429242AAA21E100C9048C /* WakeUp.swift */; };
+		7D2FFC632AAD051700FFF97E /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FFC622AAD051700FFF97E /* CustomAlert.swift */; };
+		7D2FFC672AAD0A6900FFF97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D2FFC662AAD0A6900FFF97E /* Assets.xcassets */; };
+		7D2FFC6B2AAD2CCC00FFF97E /* Extension + View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FFC6A2AAD2CCC00FFF97E /* Extension + View.swift */; };
+		7D2FFC6D2AAD2D0D00FFF97E /* Extension + Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FFC6C2AAD2D0D00FFF97E /* Extension + Scene.swift */; };
 		7D8B56EE2AAAA7980098467F /* BlurredEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7D04290A2AAA1FB400C9048C /* LANWakeUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LANWakeUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D04290D2AAA1FB400C9048C /* LANWakeUpApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LANWakeUpApp.swift; sourceTree = "<group>"; };
-		7D0429112AAA1FB400C9048C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D0429142AAA1FB400C9048C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7D0429162AAA1FB400C9048C /* LANWakeUp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LANWakeUp.entitlements; sourceTree = "<group>"; };
 		7D04291C2AAA212800C9048C /* LANWakeUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LANWakeUpView.swift; sourceTree = "<group>"; };
@@ -29,6 +31,10 @@
 		7D0429202AAA219B00C9048C /* WakeUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpButton.swift; sourceTree = "<group>"; };
 		7D0429222AAA21AF00C9048C /* Computer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Computer.swift; sourceTree = "<group>"; };
 		7D0429242AAA21E100C9048C /* WakeUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUp.swift; sourceTree = "<group>"; };
+		7D2FFC622AAD051700FFF97E /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
+		7D2FFC662AAD0A6900FFF97E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
+		7D2FFC6A2AAD2CCC00FFF97E /* Extension + View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + View.swift"; sourceTree = "<group>"; };
+		7D2FFC6C2AAD2D0D00FFF97E /* Extension + Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Scene.swift"; sourceTree = "<group>"; };
 		7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredEffect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,11 +72,13 @@
 				7D04291C2AAA212800C9048C /* LANWakeUpView.swift */,
 				7D0429222AAA21AF00C9048C /* Computer.swift */,
 				7D0429242AAA21E100C9048C /* WakeUp.swift */,
-				7D04291E2AAA214900C9048C /* ButtonPressModifier.swift */,
 				7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */,
+				7D2FFC622AAD051700FFF97E /* CustomAlert.swift */,
 				7D0429202AAA219B00C9048C /* WakeUpButton.swift */,
-				7D0429112AAA1FB400C9048C /* Assets.xcassets */,
+				7D04291E2AAA214900C9048C /* ButtonPressModifier.swift */,
+				7D2FFC6E2AAD2E1800FFF97E /* Extensions */,
 				7D0429162AAA1FB400C9048C /* LANWakeUp.entitlements */,
+				7D2FFC662AAD0A6900FFF97E /* Assets.xcassets */,
 				7D0429132AAA1FB400C9048C /* Preview Content */,
 			);
 			path = LANWakeUp;
@@ -82,6 +90,15 @@
 				7D0429142AAA1FB400C9048C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7D2FFC6E2AAD2E1800FFF97E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7D2FFC6A2AAD2CCC00FFF97E /* Extension + View.swift */,
+				7D2FFC6C2AAD2D0D00FFF97E /* Extension + Scene.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,8 +159,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D2FFC672AAD0A6900FFF97E /* Assets.xcassets in Resources */,
 				7D0429152AAA1FB400C9048C /* Preview Assets.xcassets in Resources */,
-				7D0429122AAA1FB400C9048C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,12 +172,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D04290E2AAA1FB400C9048C /* LANWakeUpApp.swift in Sources */,
+				7D2FFC6D2AAD2D0D00FFF97E /* Extension + Scene.swift in Sources */,
 				7D04291D2AAA212800C9048C /* LANWakeUpView.swift in Sources */,
 				7D0429232AAA21AF00C9048C /* Computer.swift in Sources */,
 				7D8B56EE2AAAA7980098467F /* BlurredEffect.swift in Sources */,
 				7D0429212AAA219B00C9048C /* WakeUpButton.swift in Sources */,
 				7D0429252AAA21E100C9048C /* WakeUp.swift in Sources */,
 				7D04291F2AAA214900C9048C /* ButtonPressModifier.swift in Sources */,
+				7D2FFC6B2AAD2CCC00FFF97E /* Extension + View.swift in Sources */,
+				7D2FFC632AAD051700FFF97E /* CustomAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
