@@ -55,18 +55,14 @@ struct LANWakeUpView: View {
             showSaveAlert.toggle()
         }
         .buttonStyle(.borderedProminent)
-        .alert("Enter device name", isPresented: $showSaveAlert) {
-            TextField("Enter device name", text: $computer.device.name)
-            Button("Cancel", role: .cancel) { }
-                .keyboardShortcut(.defaultAction)
-            Button("OK") {
-                computer.add(newDevice: computer.device)
-                computer.saveUserDefaults()
-            }
-            .keyboardShortcut(.cancelAction)
-        }
+        .newAndOldAlert(
+            isPresented: $showSaveAlert,
+            text: $computer.device.name,
+            addDevice: computer.add(newDevice:),
+            device: computer.device
+        )
     }
-    
+
     //MARK: Delete selected device button
     var deleteButton: some View {
         Button("Delete") {
@@ -149,4 +145,3 @@ struct ContentView_Previews: PreviewProvider {
         LANWakeUpView(computer: computer)
     }
 }
-
