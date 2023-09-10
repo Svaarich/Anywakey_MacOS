@@ -55,12 +55,14 @@ struct LANWakeUpView: View {
             showSaveAlert.toggle()
         }
         .buttonStyle(.borderedProminent)
-        .newAndOldAlert(
-            isPresented: $showSaveAlert,
-            text: $computer.device.name,
-            addDevice: computer.add(newDevice:),
-            device: computer.device
-        )
+        .newAndOldAlert(isPresented: $showSaveAlert, text: $computer.device.name) {
+            computer.add(newDevice: computer.device)
+        }
+//        .sheet(isPresented: $showSaveAlert) {
+//            CustomAlert(prompt: "Enter your device", value: $computer.device.name) {
+//                computer.add(newDevice: computer.device)
+//            }
+//        }
     }
 
     //MARK: Delete selected device button
