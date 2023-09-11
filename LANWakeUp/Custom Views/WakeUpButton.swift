@@ -57,7 +57,7 @@ struct WakeUpButton: View {
             Text("WAKE UP")
                 .font(Font.system(size: DrawingConstants.fontSIze))
         }
-        .padding()
+        .padding(.bottom)
     }
     
     private struct DrawingConstants {
