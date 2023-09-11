@@ -72,10 +72,7 @@
 				7D04291C2AAA212800C9048C /* LANWakeUpView.swift */,
 				7D0429222AAA21AF00C9048C /* Computer.swift */,
 				7D0429242AAA21E100C9048C /* WakeUp.swift */,
-				7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */,
-				7D2FFC622AAD051700FFF97E /* CustomAlert.swift */,
-				7D0429202AAA219B00C9048C /* WakeUpButton.swift */,
-				7D04291E2AAA214900C9048C /* ButtonPressModifier.swift */,
+				7D2FFC992AAFD0E800FFF97E /* Custom Views */,
 				7D2FFC6E2AAD2E1800FFF97E /* Extensions */,
 				7D0429162AAA1FB400C9048C /* LANWakeUp.entitlements */,
 				7D2FFC662AAD0A6900FFF97E /* Assets.xcassets */,
@@ -99,6 +96,17 @@
 				7D2FFC6C2AAD2D0D00FFF97E /* Extension + Scene.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7D2FFC992AAFD0E800FFF97E /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */,
+				7D2FFC622AAD051700FFF97E /* CustomAlert.swift */,
+				7D04291E2AAA214900C9048C /* ButtonPressModifier.swift */,
+				7D0429202AAA219B00C9048C /* WakeUpButton.swift */,
+			);
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -19,7 +19,7 @@ public class WakeUp {
         
         
         // String to UInt16 converter
-        func stringToUInt16(string: String) -> UInt16 {
+        static func stringToUInt16(string: String) -> UInt16 {
             if let newInt = UInt16(string) {
                 return newInt
             } else {
@@ -48,7 +48,7 @@ public class WakeUp {
         target.sin_addr.s_addr = bcaddr
         
         let isLittleEndian = Int(OSHostByteOrder()) == OSLittleEndian
-        target.sin_port = isLittleEndian ? _OSSwapInt16(device.stringToUInt16(string: device.Port)) : device.stringToUInt16(string: device.Port)
+        target.sin_port = isLittleEndian ? _OSSwapInt16(Device.stringToUInt16(string: device.Port)) : Device.stringToUInt16(string: device.Port)
         
         // Setup the packet socket
         sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)
