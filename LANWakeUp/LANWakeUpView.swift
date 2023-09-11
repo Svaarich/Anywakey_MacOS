@@ -21,6 +21,7 @@ struct LANWakeUpView: View {
             addressField
             macField
             portField
+            clearButton
             wakeUpButton
         }
         .padding()
@@ -58,11 +59,6 @@ struct LANWakeUpView: View {
         .newAndOldAlert(isPresented: $showSaveAlert, text: $computer.device.name) {
             computer.add(newDevice: computer.device)
         }
-//        .sheet(isPresented: $showSaveAlert) {
-//            CustomAlert(prompt: "Enter your device", value: $computer.device.name) {
-//                computer.add(newDevice: computer.device)
-//            }
-//        }
     }
 
     //MARK: Delete selected device button
@@ -133,6 +129,25 @@ struct LANWakeUpView: View {
                     }
                 })
             )
+        }
+    }
+    
+    var clearButton: some View {
+        HStack {
+            if computer.device.BroadcastAddr.isEmpty && computer.device.MAC.isEmpty && computer.device.Port.isEmpty {
+                Button("Clear All") {
+                }
+                .buttonStyle(.borderless)
+                .opacity(0.5)
+            } else {
+                Button("Clear All") {
+                    computer.device.BroadcastAddr = ""
+                    computer.device.MAC = ""
+                    computer.device.Port = ""
+                }
+                .buttonStyle(.borderless)
+            }
+            Spacer()
         }
     }
     
