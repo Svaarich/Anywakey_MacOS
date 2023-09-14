@@ -3,8 +3,9 @@ import Foundation
 class Computer: ObservableObject {
     @Published var device = WakeUp.Device(MAC: "", BroadcastAddr: "", Port: "")
     @Published var listOfDevices: Array<WakeUp.Device> = []
-    
+    @Published var onlineStatus: Ping.OnlineDevice = .Default
     private var wakeUp = WakeUp()
+    private var ping = Ping()
     
     func target(device: WakeUp.Device) -> Error? {
         wakeUp.target(device: device)
@@ -30,6 +31,9 @@ class Computer: ObservableObject {
         listOfDevices = wakeUp.add(newDevice: newDevice, data: listOfDevices)
         saveUserDefaults()
     }
-
+    func status() {
+        onlineStatus = ping.performPing(ipAddress: device.BroadcastAddr)
+    }
+    
 }
 
