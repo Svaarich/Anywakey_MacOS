@@ -104,7 +104,7 @@ struct LANWakeUpView: View {
                     computer.onlineStatus = .Default
                                     }
             }
-            .buttonStyle(.bordered)
+            .buttonStyle(.borderless)
             Circle()
                 .fill()
                 .frame(width: DrawingConstants.statusDiameter)
