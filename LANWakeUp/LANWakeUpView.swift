@@ -7,9 +7,6 @@ struct LANWakeUpView: View {
     @State private var isPressed = false
     
     var body: some View {
-        let wakeUpButton = WakeUpButton(device: computer.device, isPressed: isPressed) {
-            computer.target(device: computer.device)
-        }
         VStack {
             HStack {
                 deviceList
@@ -92,6 +89,7 @@ struct LANWakeUpView: View {
                 Spacer()
             }
             TextField("IP address: XXX.XXX.XXX.XXX", text: $computer.device.BroadcastAddr)
+                .textFieldStyle(.roundedBorder)
                 .padding(.bottom)
         }
     }
@@ -106,6 +104,7 @@ struct LANWakeUpView: View {
                 get: { computer.device.MAC.uppercased() },
                 set: { newValue in computer.device.MAC = newValue.uppercased() })
             )
+            .textFieldStyle(.roundedBorder)
             .padding(.bottom)
         }
     }
@@ -128,7 +127,10 @@ struct LANWakeUpView: View {
 
                     }
                 })
+                      
             )
+            .textFieldStyle(.roundedBorder)
+
         }
     }
     
@@ -149,6 +151,13 @@ struct LANWakeUpView: View {
             }
             Spacer()
         }
+    }
+    
+    var wakeUpButton: some View {
+        let wakeUpButton = WakeUpButton(device: computer.device, isPressed: isPressed) {
+            computer.target(device: computer.device)
+        }
+        return wakeUpButton
     }
     
     private struct DrawingConstants {
