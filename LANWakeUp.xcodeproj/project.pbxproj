@@ -18,6 +18,7 @@
 		7D2FFC672AAD0A6900FFF97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D2FFC662AAD0A6900FFF97E /* Assets.xcassets */; };
 		7D2FFC6B2AAD2CCC00FFF97E /* Extension + View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FFC6A2AAD2CCC00FFF97E /* Extension + View.swift */; };
 		7D2FFC6D2AAD2D0D00FFF97E /* Extension + Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FFC6C2AAD2D0D00FFF97E /* Extension + Scene.swift */; };
+		7D41E9EF2AB31927001357CE /* Ping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D41E9EE2AB31927001357CE /* Ping.swift */; };
 		7D8B56EE2AAAA7980098467F /* BlurredEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		7D2FFC662AAD0A6900FFF97E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
 		7D2FFC6A2AAD2CCC00FFF97E /* Extension + View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + View.swift"; sourceTree = "<group>"; };
 		7D2FFC6C2AAD2D0D00FFF97E /* Extension + Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Scene.swift"; sourceTree = "<group>"; };
+		7D41E9EE2AB31927001357CE /* Ping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ping.swift; sourceTree = "<group>"; };
 		7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredEffect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 				7D04291C2AAA212800C9048C /* LANWakeUpView.swift */,
 				7D0429222AAA21AF00C9048C /* Computer.swift */,
 				7D0429242AAA21E100C9048C /* WakeUp.swift */,
+				7D41E9EE2AB31927001357CE /* Ping.swift */,
 				7D2FFC992AAFD0E800FFF97E /* Custom Views */,
 				7D2FFC6E2AAD2E1800FFF97E /* Extensions */,
 				7D0429162AAA1FB400C9048C /* LANWakeUp.entitlements */,
@@ -125,6 +128,8 @@
 			dependencies = (
 			);
 			name = LANWakeUp;
+			packageProductDependencies = (
+			);
 			productName = LANWakeUp;
 			productReference = 7D04290A2AAA1FB400C9048C /* LANWakeUp.app */;
 			productType = "com.apple.product-type.application";
@@ -153,6 +158,8 @@
 				Base,
 			);
 			mainGroup = 7D0429012AAA1FB300C9048C;
+			packageReferences = (
+			);
 			productRefGroup = 7D04290B2AAA1FB400C9048C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -183,6 +190,7 @@
 				7D2FFC6D2AAD2D0D00FFF97E /* Extension + Scene.swift in Sources */,
 				7D04291D2AAA212800C9048C /* LANWakeUpView.swift in Sources */,
 				7D0429232AAA21AF00C9048C /* Computer.swift in Sources */,
+				7D41E9EF2AB31927001357CE /* Ping.swift in Sources */,
 				7D8B56EE2AAAA7980098467F /* BlurredEffect.swift in Sources */,
 				7D0429212AAA219B00C9048C /* WakeUpButton.swift in Sources */,
 				7D0429252AAA21E100C9048C /* WakeUp.swift in Sources */,
@@ -329,7 +337,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 0.72;
+				MARKETING_VERSION = 0.74;
 				PRODUCT_BUNDLE_IDENTIFIER = svarich.LANWakeUp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -358,7 +366,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 0.72;
+				MARKETING_VERSION = 0.74;
 				PRODUCT_BUNDLE_IDENTIFIER = svarich.LANWakeUp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

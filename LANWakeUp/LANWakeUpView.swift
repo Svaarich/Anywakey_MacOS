@@ -7,9 +7,6 @@ struct LANWakeUpView: View {
     @State private var isPressed = false
     
     var body: some View {
-        let wakeUpButton = WakeUpButton(device: computer.device, isPressed: isPressed) {
-            computer.target(device: computer.device)
-        }
         VStack {
             HStack {
                 deviceList
@@ -90,9 +87,29 @@ struct LANWakeUpView: View {
             HStack {
                 Text("IP / Broadcast Address:")
                 Spacer()
+                status
             }
+            
             TextField("IP address: XXX.XXX.XXX.XXX", text: $computer.device.BroadcastAddr)
+                .textFieldStyle(.roundedBorder)
                 .padding(.bottom)
+        }
+    }
+    
+    var status: some View {
+        HStack {
+            Button("Get status:") {
+                computer.status()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    computer.onlineStatus = .Default
+                                    }
+            }
+            .buttonStyle(.borderless)
+            Circle()
+                .fill()
+                .frame(width: DrawingConstants.statusDiameter)
+                .padding(.trailing, 5)
+                .foregroundColor(getStatusColor())
         }
     }
 
@@ -106,6 +123,7 @@ struct LANWakeUpView: View {
                 get: { computer.device.MAC.uppercased() },
                 set: { newValue in computer.device.MAC = newValue.uppercased() })
             )
+            .textFieldStyle(.roundedBorder)
             .padding(.bottom)
         }
     }
@@ -128,7 +146,10 @@ struct LANWakeUpView: View {
 
                     }
                 })
+                      
             )
+            .textFieldStyle(.roundedBorder)
+
         }
     }
     
@@ -138,7 +159,7 @@ struct LANWakeUpView: View {
                 Button("Clear All") {
                 }
                 .buttonStyle(.borderless)
-                .opacity(0.5)
+                .opacity(DrawingConstants.clearButtonOpacity)
             } else {
                 Button("Clear All") {
                     computer.device.BroadcastAddr = ""
@@ -151,8 +172,32 @@ struct LANWakeUpView: View {
         }
     }
     
+    var wakeUpButton: some View {
+        let wakeUpButton = WakeUpButton(device: computer.device, isPressed: isPressed) {
+            computer.target(device: computer.device)
+        }
+        return wakeUpButton
+    }
+    
+    private func getStatusColor() -> Color {
+        switch computer.onlineStatus {
+        case .Online:
+            return DrawingConstants.statusColorOnline
+        case .Offline:
+            return DrawingConstants.statusColorOffline
+        case .Default:
+            return DrawingConstants.statusColorDefault
+        }
+    }
+    
     private struct DrawingConstants {
+        
+        static let statusDiameter: CGFloat = 12
         static let deviceListWidth: CGFloat = 20
+        static let clearButtonOpacity: CGFloat = 0.5
+        static let statusColorOnline: Color = .green
+        static let statusColorOffline: Color = .red
+        static let statusColorDefault: Color = .gray.opacity(0.3)
     }
 }
 

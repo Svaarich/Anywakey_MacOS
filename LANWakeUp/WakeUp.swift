@@ -10,7 +10,6 @@ public class WakeUp {
             self.BroadcastAddr = BroadcastAddr
             self.Port = Port
         }
-        
         var name: String
         var MAC: String
         var BroadcastAddr: String
