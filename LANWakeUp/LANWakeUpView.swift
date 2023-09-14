@@ -87,10 +87,29 @@ struct LANWakeUpView: View {
             HStack {
                 Text("IP / Broadcast Address:")
                 Spacer()
+                status
             }
+            
             TextField("IP address: XXX.XXX.XXX.XXX", text: $computer.device.BroadcastAddr)
                 .textFieldStyle(.roundedBorder)
                 .padding(.bottom)
+        }
+    }
+    
+    var status: some View {
+        HStack {
+            Button("Get status:") {
+                computer.status()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    computer.onlineStatus = .Default
+                                    }
+            }
+            .buttonStyle(.bordered)
+            Circle()
+                .fill()
+                .frame(width: DrawingConstants.statusDiameter)
+                .padding(.trailing, 5)
+                .foregroundColor(getStatusColor())
         }
     }
 
@@ -140,7 +159,7 @@ struct LANWakeUpView: View {
                 Button("Clear All") {
                 }
                 .buttonStyle(.borderless)
-                .opacity(0.5)
+                .opacity(DrawingConstants.clearButtonOpacity)
             } else {
                 Button("Clear All") {
                     computer.device.BroadcastAddr = ""
@@ -160,8 +179,25 @@ struct LANWakeUpView: View {
         return wakeUpButton
     }
     
+    private func getStatusColor() -> Color {
+        switch computer.onlineStatus {
+        case .Online:
+            return DrawingConstants.statusColorOnline
+        case .Offline:
+            return DrawingConstants.statusColorOffline
+        case .Default:
+            return DrawingConstants.statusColorDefault
+        }
+    }
+    
     private struct DrawingConstants {
+        
+        static let statusDiameter: CGFloat = 12
         static let deviceListWidth: CGFloat = 20
+        static let clearButtonOpacity: CGFloat = 0.5
+        static let statusColorOnline: Color = .green
+        static let statusColorOffline: Color = .red
+        static let statusColorDefault: Color = .gray.opacity(0.3)
     }
 }
 
