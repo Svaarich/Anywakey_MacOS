@@ -21,6 +21,11 @@ struct LANWakeUpView: View {
             clearButton
             wakeUpButton
         }
+        .onChange(of: computer.device.BroadcastAddr) { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                computer.status()
+            }
+        }
         .padding()
         .background(BlurredEffect())
         .onAppear {
@@ -57,7 +62,7 @@ struct LANWakeUpView: View {
             computer.add(newDevice: computer.device)
         }
     }
-
+    
     //MARK: Delete selected device button
     var deleteButton: some View {
         Button("Delete") {
@@ -70,7 +75,7 @@ struct LANWakeUpView: View {
         .buttonStyle(.bordered)
         .alert("Delete device?", isPresented: $showDeleteAlert) {
             Button("Cancel", role: .cancel) { }
-            .keyboardShortcut(.cancelAction)
+                .keyboardShortcut(.cancelAction)
             Button("OK") {
                 computer.delete(oldDevice: computer.device)
                 computer.device.BroadcastAddr = ""
@@ -85,7 +90,7 @@ struct LANWakeUpView: View {
     var addressField: some View {
         VStack {
             HStack {
-                Text("IP / Broadcast Address:")
+                Text(" IP / Broadcast Address:")
                 Spacer()
                 status
             }
@@ -98,13 +103,9 @@ struct LANWakeUpView: View {
     
     var status: some View {
         HStack {
-            Button("Get status:") {
-                computer.status()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    computer.onlineStatus = .Default
-                                    }
-            }
-            .buttonStyle(.borderless)
+            Text("Status:")
+                .foregroundColor(.gray)
+                .opacity(0.6)
             Circle()
                 .fill()
                 .frame(width: DrawingConstants.statusDiameter)
@@ -116,7 +117,7 @@ struct LANWakeUpView: View {
     var macField: some View {
         VStack {
             HStack {
-                Text("MAC Address:")
+                Text(" MAC Address:")
                 Spacer()
             }
             TextField("MAC address: XX:XX:XX:XX:XX:XX", text: Binding(
@@ -131,7 +132,7 @@ struct LANWakeUpView: View {
     var portField: some View {
         VStack {
             HStack{
-                Text("Port:")
+                Text(" Port:")
                 Spacer()
             }
             TextField("Port: XXXXX (9 - Default)", text: Binding(
@@ -149,19 +150,18 @@ struct LANWakeUpView: View {
                       
             )
             .textFieldStyle(.roundedBorder)
-
         }
     }
     
     var clearButton: some View {
         HStack {
             if computer.device.BroadcastAddr.isEmpty && computer.device.MAC.isEmpty && computer.device.Port.isEmpty {
-                Button("Clear All") {
+                Button(" Clear All") {
                 }
                 .buttonStyle(.borderless)
                 .opacity(DrawingConstants.clearButtonOpacity)
             } else {
-                Button("Clear All") {
+                Button(" Clear All") {
                     computer.device.BroadcastAddr = ""
                     computer.device.MAC = ""
                     computer.device.Port = ""
@@ -197,7 +197,7 @@ struct LANWakeUpView: View {
         static let clearButtonOpacity: CGFloat = 0.5
         static let statusColorOnline: Color = .green
         static let statusColorOffline: Color = .red
-        static let statusColorDefault: Color = .gray.opacity(0.3)
+        static let statusColorDefault: Color = .gray.opacity(0.5)
     }
 }
 

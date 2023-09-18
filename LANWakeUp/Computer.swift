@@ -31,9 +31,11 @@ class Computer: ObservableObject {
         listOfDevices = wakeUp.add(newDevice: newDevice, data: listOfDevices)
         saveUserDefaults()
     }
-    func status() {
-        onlineStatus = ping.performPing(ipAddress: device.BroadcastAddr)
-    }
     
+    @MainActor func status() {
+        Task {
+            onlineStatus = await ping.performPing(ipAddress: device.BroadcastAddr)
+        }
+    }
 }
 
