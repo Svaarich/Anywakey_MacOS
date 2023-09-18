@@ -9,22 +9,27 @@ class Ping {
         case Default
     }
     
-    func performPing(ipAddress: String) -> OnlineDevice {
-                let task = Process()
-                task.launchPath = "/sbin/ping"
-                task.arguments = ["-c", "1", "-W", "0.5", ipAddress]
-
-                let pipe = Pipe()
-                task.standardOutput = pipe
-
-                task.launch()
-                task.waitUntilExit()
-
-                if task.terminationStatus == 0 {
-                    return .Online
-                } else {
-                    print("Ping failed with error code \(task.terminationStatus)")
-                    return .Offline
-                }
+    func performPing(ipAddress: String) async -> OnlineDevice {
+        
+        if ipAddress.contains(".") {
+            let task = Process()
+            task.launchPath = "/sbin/ping"
+            task.arguments = ["-c", "1", "-W", "0.5", ipAddress]
+            
+            let pipe = Pipe()
+            task.standardOutput = pipe
+            
+            task.launch()
+            task.waitUntilExit()
+            
+            if task.terminationStatus == 0 {
+                return .Online
+            } else {
+                print("Ping failed with error code \(task.terminationStatus)")
+                return .Offline
             }
+        }
+        
+        return .Default
+    }
 }
