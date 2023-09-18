@@ -21,6 +21,11 @@ struct LANWakeUpView: View {
             clearButton
             wakeUpButton
         }
+        .onChange(of: computer.device.BroadcastAddr) { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                computer.status()
+            }
+        }
         .padding()
         .background(BlurredEffect())
         .onAppear {
