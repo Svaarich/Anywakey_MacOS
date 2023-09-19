@@ -176,6 +176,7 @@ struct LANWakeUpView: View {
         let wakeUpButton = WakeUpButton(device: computer.device, isPressed: isPressed) {
             computer.target(device: computer.device)
         }
+            .padding(.bottom)
         return wakeUpButton
     }
     
