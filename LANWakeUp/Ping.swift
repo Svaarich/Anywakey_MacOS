@@ -1,16 +1,15 @@
 
 import Foundation
 
+public enum OnlineDevice: Codable {
+    case Online
+    case Offline
+    case Default
+}
+
 class Ping {
     
-    public enum OnlineDevice {
-        case Online
-        case Offline
-        case Default
-    }
-    
     func performPing(ipAddress: String) async -> OnlineDevice {
-        
         if ipAddress.contains(".") {
             let task = Process()
             task.launchPath = "/sbin/ping"
@@ -31,5 +30,13 @@ class Ping {
         }
         
         return .Default
+    }
+    
+    func updateStatusList(devices: [WakeUp.Device]) async -> [WakeUp.Device] {
+        var updatedStatusList = devices
+        for index in 0..<devices.count {
+            updatedStatusList[index].status = await performPing(ipAddress: devices[index].BroadcastAddr)
+        }
+        return updatedStatusList
     }
 }
