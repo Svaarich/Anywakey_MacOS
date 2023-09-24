@@ -3,7 +3,7 @@ import Foundation
 class Computer: ObservableObject {
     @Published var device = WakeUp.Device(MAC: "", BroadcastAddr: "", Port: "")
     @Published var listOfDevices: Array<WakeUp.Device> = []
-    @Published var onlineStatus: Ping.OnlineDevice = .Default
+    @Published var onlineStatus: OnlineDevice = .Default
     private var wakeUp = WakeUp()
     private var ping = Ping()
     
@@ -32,9 +32,15 @@ class Computer: ObservableObject {
         saveUserDefaults()
     }
     
-    @MainActor func status() {
+    @MainActor func currentDeviceStatus() {
         Task {
             onlineStatus = await ping.performPing(ipAddress: device.BroadcastAddr)
+        }
+    }
+    @MainActor func updateStatusList() {
+        Task {
+            listOfDevices = await ping.updateStatusList(devices: listOfDevices)
+            print(listOfDevices)
         }
     }
 }
