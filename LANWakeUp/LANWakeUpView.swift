@@ -21,9 +21,15 @@ struct LANWakeUpView: View {
             clearButton
             wakeUpButton
         }
+        .onChange(of: computer.listOfDevices) { _ in
+            computer.updateStatusList()
+        }
         .onChange(of: computer.device.BroadcastAddr) { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                computer.status()
+            withAnimation {
+                computer.onlineStatus = .Default
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    computer.currentDeviceStatus()
+                }
             }
         }
         .padding()
@@ -33,6 +39,7 @@ struct LANWakeUpView: View {
             if let device = computer.listOfDevices.first {
                 computer.device = device
             }
+            computer.updateStatusList()
         }
     }
     
@@ -43,7 +50,13 @@ struct LANWakeUpView: View {
             Text("My devices")
             Picker("", selection: $computer.device) {
                 ForEach(computer.listOfDevices) { pc in
-                    Text(pc.name)
+                    if pc.status == .Online {
+                        Text(pc.name) + Text(" online").foregroundColor(DrawingConstants.pickerColorOnline)
+                    } else if pc.status == .Offline {
+                        Text(pc.name) + Text(" offline").foregroundColor(DrawingConstants.pickerColorOffline)
+                    } else {
+                        Text(pc.name) + Text(" unknown").foregroundColor(DrawingConstants.pickerColorDefault)
+                    }
                 }
             }
             .labelsHidden()
@@ -55,6 +68,7 @@ struct LANWakeUpView: View {
     var addButton: some View {
         Button("Add") {
             computer.device.name = "New Device"
+            computer.device.status = .Default
             showSaveAlert.toggle()
         }
         .buttonStyle(.borderedProminent)
@@ -176,6 +190,7 @@ struct LANWakeUpView: View {
         let wakeUpButton = WakeUpButton(device: computer.device, isPressed: isPressed) {
             computer.target(device: computer.device)
         }
+            .padding(.bottom)
         return wakeUpButton
     }
     
@@ -198,6 +213,9 @@ struct LANWakeUpView: View {
         static let statusColorOnline: Color = .green
         static let statusColorOffline: Color = .red
         static let statusColorDefault: Color = .gray.opacity(0.5)
+        static let pickerColorOnline: Color = .green
+        static let pickerColorOffline: Color = .secondary
+        static let pickerColorDefault: Color = .pink
     }
 }
 

@@ -12,37 +12,32 @@ struct WakeUpButton: View {
     }
     
     var body: some View {
-        HStack {
-            Spacer()
-            VStack {
-                // Inactive button if 1 of TextFields is empty
-                if device.BroadcastAddr.isEmpty || device.MAC.count != 17 || device.Port.isEmpty {
-                    button
-                        .opacity(DrawingConstants.opacityInactiveButton)
-                        .foregroundColor(DrawingConstants.colorInactiveButton)
-                    
-                } else {
-                    // Active button
-                    button
-                        .foregroundColor(DrawingConstants.colorActiveButton)
-                        .opacity(isPressed ? DrawingConstants.opacityPressedButton : DrawingConstants.opacityActiveButton)
-                        .scaleEffect(isPressed ? DrawingConstants.scaleEffectPressedButton : DrawingConstants.scaleEffectDefauld)
-                        .onTapGesture {
-                            _ = action()
-                        }
-                    // Custom pressEvent modifier -> ButtonPressModifier
-                        .pressEvents {
-                            withAnimation(.easeInOut(duration: DrawingConstants.animationDuration)) {
-                                isPressed = true
-                            }
-                        } onRelease: {
-                            isPressed = false
-                        }
-                }
+        VStack {
+            // Inactive button if 1 of TextFields is empty
+            if device.BroadcastAddr.isEmpty || device.MAC.count != 17 || device.Port.isEmpty {
+                button
+                    .opacity(DrawingConstants.opacityInactiveButton)
+                    .foregroundColor(DrawingConstants.colorInactiveButton)
                 
+            } else {
+                // Active button
+                button
+                    .foregroundColor(DrawingConstants.colorActiveButton)
+                    .opacity(isPressed ? DrawingConstants.opacityPressedButton : DrawingConstants.opacityActiveButton)
+                    .scaleEffect(isPressed ? DrawingConstants.scaleEffectPressedButton : DrawingConstants.scaleEffectDefauld)
+                    .onTapGesture {
+                        _ = action()
+                    }
+                // Custom pressEvent modifier -> ButtonPressModifier
+                    .pressEvents {
+                        withAnimation(.easeInOut(duration: DrawingConstants.animationDuration)) {
+                            isPressed = true
+                        }
+                    } onRelease: {
+                        isPressed = false
+                    }
             }
             
-            Spacer()
         }
     }
     
@@ -57,7 +52,6 @@ struct WakeUpButton: View {
             Text("WAKE UP")
                 .font(Font.system(size: DrawingConstants.fontSIze))
         }
-        .padding(.bottom)
     }
     
     private struct DrawingConstants {

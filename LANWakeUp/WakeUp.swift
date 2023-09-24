@@ -10,6 +10,7 @@ public class WakeUp {
             self.BroadcastAddr = BroadcastAddr
             self.Port = Port
         }
+        var status: OnlineDevice = .Default
         var name: String
         var MAC: String
         var BroadcastAddr: String
@@ -109,9 +110,9 @@ public class WakeUp {
             do {
                 let decoder = JSONDecoder()
                 let savedDevices = try decoder.decode([WakeUp.Device].self, from: data)
-                return savedDevices
+                return resetStatus(devices: savedDevices)
             } catch {
-                print("Unable to Decode Notes (\(error))")
+                print("Unable to Decode devices (\(error))")
             }
         }
         return []
@@ -126,7 +127,7 @@ public class WakeUp {
             let savedDevices = try encoder.encode(savedDevices)
             defaults.set(savedDevices, forKey: "devices")
         } catch {
-            print("Unable to Encode Array of Notes (\(error))")
+            print("Unable to Encode Array of devices (\(error))")
         }
     }
     
@@ -160,11 +161,21 @@ public class WakeUp {
             } else {
                 savedDevices.append(newDevice)
                 saveUserDefaults(data: savedDevices)
-                print("added")
             }
         }
         
         return savedDevices
+    }
+    
+    private func resetStatus(devices: [WakeUp.Device]) -> [WakeUp.Device] {
+        if !devices.isEmpty {
+            var newResetStatus = devices
+            for index in 0..<newResetStatus.count {
+                newResetStatus[index].status = .Default
+            }
+            return newResetStatus
+        }
+        return []
     }
 }
 
