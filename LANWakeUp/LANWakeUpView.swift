@@ -43,6 +43,17 @@ struct LANWakeUpView: View {
         }
     }
     
+    private func getStatusColor() -> Color {
+        switch computer.onlineStatus {
+        case .Online:
+            return DrawingConstants.statusColorOnline
+        case .Offline:
+            return DrawingConstants.statusColorOffline
+        case .Default:
+            return DrawingConstants.statusColorDefault
+        }
+    }
+    
     //MARK: List of saved devices
     var deviceList: some View {
         HStack {
@@ -114,19 +125,6 @@ struct LANWakeUpView: View {
                 .padding(.bottom)
         }
     }
-    
-    var status: some View {
-        HStack {
-            Text("Status:")
-                .foregroundColor(.gray)
-                .opacity(0.6)
-            Circle()
-                .fill()
-                .frame(width: DrawingConstants.statusDiameter)
-                .padding(.trailing, 5)
-                .foregroundColor(getStatusColor())
-        }
-    }
 
     var macField: some View {
         VStack {
@@ -167,6 +165,21 @@ struct LANWakeUpView: View {
         }
     }
     
+    //MARK: Status indicator
+    var status: some View {
+        HStack {
+            Text("Status:")
+                .foregroundColor(.gray)
+                .opacity(0.6)
+            Circle()
+                .fill()
+                .frame(width: DrawingConstants.statusDiameter)
+                .padding(.trailing, 5)
+                .foregroundColor(getStatusColor())
+        }
+    }
+    
+    //MARK: Clear button
     var clearButton: some View {
         HStack {
             if computer.device.BroadcastAddr.isEmpty && computer.device.MAC.isEmpty && computer.device.Port.isEmpty {
@@ -186,6 +199,7 @@ struct LANWakeUpView: View {
         }
     }
     
+    //MARK: WakeUp button
     var wakeUpButton: some View {
         let wakeUpButton = WakeUpButton(device: computer.device, isPressed: isPressed) {
             computer.target(device: computer.device)
@@ -194,17 +208,7 @@ struct LANWakeUpView: View {
         return wakeUpButton
     }
     
-    private func getStatusColor() -> Color {
-        switch computer.onlineStatus {
-        case .Online:
-            return DrawingConstants.statusColorOnline
-        case .Offline:
-            return DrawingConstants.statusColorOffline
-        case .Default:
-            return DrawingConstants.statusColorDefault
-        }
-    }
-    
+    //MARK: DrawingConstants
     private struct DrawingConstants {
         
         static let statusDiameter: CGFloat = 12
