@@ -147,7 +147,7 @@ struct LANWakeUpView: View {
                 Text(" Port:")
                 Spacer()
             }
-            TextField("Port: XXXXX (9 - Default)", text: Binding(
+            TextField("Enter port...", text: Binding(
                 get: {
                     computer.device.Port
                 },
