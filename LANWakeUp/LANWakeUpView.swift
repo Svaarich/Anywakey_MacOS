@@ -5,9 +5,12 @@ struct LANWakeUpView: View {
     @State private var showSaveAlert = false
     @State private var showDeleteAlert = false
     @State private var isPressed = false
+    @State var isHoverCloseButton = false
     
     var body: some View {
         VStack {
+            dismissButton
+                .padding(.bottom, 12)
             HStack {
                 deviceList
                 Spacer()
@@ -21,6 +24,12 @@ struct LANWakeUpView: View {
             clearButton
             wakeUpButton
         }
+        
+        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification), perform: { _ in
+            NSApp.mainWindow?.standardWindowButton(.zoomButton)?.isHidden = true
+            NSApp.mainWindow?.standardWindowButton(.closeButton)?.isHidden = true
+            NSApp.mainWindow?.standardWindowButton(.miniaturizeButton)?.isHidden = true
+        })
         .onChange(of: computer.listOfDevices) { _ in
             computer.updateStatusList()
         }
@@ -54,24 +63,51 @@ struct LANWakeUpView: View {
         }
     }
     
-    //MARK: List of saved devices
-    var deviceList: some View {
+    //MARK: Dismiss Button
+    
+    var dismissButton: some View {
         HStack {
-            Image(systemName: "desktopcomputer")
-            Text("My devices")
-            Picker("", selection: $computer.device) {
-                ForEach(computer.listOfDevices) { pc in
-                    if pc.status == .Online {
-                        Text(pc.name) + Text(" online").foregroundColor(DrawingConstants.pickerColorOnline)
-                    } else if pc.status == .Offline {
-                        Text(pc.name) + Text(" offline").foregroundColor(DrawingConstants.pickerColorOffline)
-                    } else {
-                        Text(pc.name) + Text(" unknown").foregroundColor(DrawingConstants.pickerColorDefault)
-                    }
+            Button {
+                NSApp.terminate(nil)
+            } label: {
+                Image(systemName: "xmark.circle")
+            }
+            .font(.title2)
+            .buttonStyle(.borderless)
+            .opacity(isHoverCloseButton ? 1 : 0.6)
+            .scaleEffect(isHoverCloseButton ? 1.15 : 1)
+            .onHover { hover in
+                withAnimation {
+                    isHoverCloseButton = hover
                 }
             }
-            .labelsHidden()
-            .frame(width: DrawingConstants.deviceListWidth)
+            Spacer()
+        }
+    }
+    
+    //MARK: List of saved devices
+    var deviceList: some View {
+        ZStack {
+            background
+                .frame(width: 140, height: 30)
+            HStack {
+                Image(systemName: "desktopcomputer")
+                Text("My devices")
+                Picker("", selection: $computer.device) {
+                    ForEach(computer.listOfDevices) { pc in
+                        if pc.status == .Online {
+                            Text(pc.name) + Text(" online").foregroundColor(DrawingConstants.pickerColorOnline)
+                        } else if pc.status == .Offline {
+                            Text(pc.name) + Text(" offline").foregroundColor(DrawingConstants.pickerColorOffline)
+                        } else {
+                            Text(pc.name) + Text(" unknown").foregroundColor(DrawingConstants.pickerColorDefault)
+                        }
+                    }
+                }
+                .labelsHidden()
+                .frame(width: DrawingConstants.deviceListWidth)
+                
+            }
         }
     }
     
