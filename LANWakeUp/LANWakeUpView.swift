@@ -132,12 +132,19 @@ struct LANWakeUpView: View {
                 Text(" MAC Address:")
                 Spacer()
             }
-            TextField("MAC address: XX:XX:XX:XX:XX:XX", text: Binding(
+            TextField("Enter MAC address...", text: Binding(
                 get: { computer.device.MAC.uppercased() },
                 set: { newValue in computer.device.MAC = newValue.uppercased() })
             )
             .textFieldStyle(.roundedBorder)
-            .padding(.bottom)
+            HStack {
+                Text(" (e.g. 00:11:22:AA:BB:CC)")
+                    .font(Font.system(size: DrawingConstants.instructionTextSize))
+                    .foregroundStyle(.secondary)
+                    .opacity(DrawingConstants.instructionTextOpasity)
+                Spacer()
+            }
+            .padding(.bottom, 8)
         }
     }
 
