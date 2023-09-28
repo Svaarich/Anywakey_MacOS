@@ -156,12 +156,19 @@ struct LANWakeUpView: View {
                         computer.device.Port = String(newUInt16)
                     } else if newValue.isEmpty {
                         computer.device.Port = newValue
-
                     }
                 })
                       
             )
             .textFieldStyle(.roundedBorder)
+            HStack {
+                Text(" Typically sent to port 7 or 9")
+                    .font(Font.system(size: DrawingConstants.instructionTextSize))
+                    .foregroundStyle(.secondary)
+                    .opacity(DrawingConstants.instructionTextOpasity)
+                Spacer()
+                clearButton
+            }
         }
     }
     
