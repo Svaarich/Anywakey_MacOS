@@ -17,13 +17,15 @@ struct LANWakeUpView: View {
                 addButton
                 deleteButton
             }
-            .padding(.vertical)
+            .padding(.bottom)
             addressField
             macField
             portField
-            clearButton
             wakeUpButton
         }
+        .padding()
+        .background(BlurredEffect())
+        .ignoresSafeArea()
         
         .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification), perform: { _ in
             NSApp.mainWindow?.standardWindowButton(.zoomButton)?.isHidden = true
@@ -41,8 +43,6 @@ struct LANWakeUpView: View {
                 }
             }
         }
-        .padding()
-        .background(BlurredEffect())
         .onAppear {
             computer.fetchUserDefaults()
             if let device = computer.listOfDevices.first {
