@@ -183,20 +183,19 @@ struct LANWakeUpView: View {
     var clearButton: some View {
         HStack {
             if computer.device.BroadcastAddr.isEmpty && computer.device.MAC.isEmpty && computer.device.Port.isEmpty {
-                Button(" Clear All") {
+                Button("Clear All") {
                 }
-                .buttonStyle(.borderless)
                 .opacity(DrawingConstants.clearButtonOpacity)
             } else {
-                Button(" Clear All") {
+                Button("Clear All") {
                     computer.device.BroadcastAddr = ""
                     computer.device.MAC = ""
                     computer.device.Port = ""
                 }
-                .buttonStyle(.borderless)
             }
-            Spacer()
         }
+        .buttonStyle(.borderless)
+        .padding(.trailing, 2)
     }
     
     //MARK: WakeUp button
