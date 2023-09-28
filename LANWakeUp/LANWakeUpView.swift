@@ -113,19 +113,27 @@ struct LANWakeUpView: View {
     
     //MARK: Textfields
     var addressField: some View {
-        VStack {
-            HStack {
-                Text(" IP / Broadcast Address:")
-                Spacer()
-                status
+        ZStack {
+            VStack {
+                HStack {
+                    Text(" IP / Broadcast Address:")
+                    Spacer()
+                    status
+                }
+                TextField("Enter IP / Broadcast Address...", text: $computer.device.BroadcastAddr)
+                    .textFieldStyle(.roundedBorder)
+                HStack {
+                    Text(" IPv4(e.g. 192.168.0.123) or DNS name for the host.")
+                        .font(Font.system(size: DrawingConstants.instructionTextSize))
+                        .foregroundStyle(.secondary)
+                        .opacity(DrawingConstants.instructionTextOpasity)
+                    Spacer()
+                }
+                .padding(.bottom, 8)
             }
-            
-            TextField("IP address: XXX.XXX.XXX.XXX", text: $computer.device.BroadcastAddr)
-                .textFieldStyle(.roundedBorder)
-                .padding(.bottom)
         }
     }
-
+    
     var macField: some View {
         VStack {
             HStack {
@@ -147,7 +155,7 @@ struct LANWakeUpView: View {
             .padding(.bottom, 8)
         }
     }
-
+    
     var portField: some View {
         VStack {
             HStack{
