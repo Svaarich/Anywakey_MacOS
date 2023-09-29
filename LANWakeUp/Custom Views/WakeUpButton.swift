@@ -34,8 +34,9 @@ struct WakeUpButton: View {
                             isPressed = true
                         }
                     } onRelease: {
+                        withAnimation {
                         isPressed = false
-                    }
+                        }
             }
             
         }
