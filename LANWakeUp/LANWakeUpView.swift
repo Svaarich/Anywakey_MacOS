@@ -250,20 +250,24 @@ struct LANWakeUpView: View {
     //MARK: DrawingConstants
     private struct DrawingConstants {
         
-        static let statusDiameter: CGFloat = 12
         static let deviceListWidth: CGFloat = 20
         static let clearButtonOpacity: CGFloat = 0.5
         
+        static let statusDiameter: CGFloat = 12
         static let statusColorOnline: Color = .green
         static let statusColorOffline: Color = .red
-        static let statusColorDefault: Color = .gray.opacity(0.5)
+        static let statusColorDefault: Color = .white.opacity(0.5)
+        
+        static let statusTextOpacity: CGFloat = 0.6
+        static let statusTextColor: Color = .white
         
         static let pickerColorOnline: Color = .green
         static let pickerColorOffline: Color = .secondary
         static let pickerColorDefault: Color = .pink
         
         static let instructionTextSize: CGFloat = 11
-        static let instructionTextOpasity: CGFloat = 0.5
+        static let instructionTextOpasity: CGFloat = 0.6
+        static let instructionTextColor: Color = .white
     }
 }
 
