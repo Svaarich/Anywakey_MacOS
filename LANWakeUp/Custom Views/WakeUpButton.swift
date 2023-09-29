@@ -2,6 +2,7 @@ import SwiftUI
 
 struct WakeUpButton: View {
     @State private var isPressed: Bool
+    @State private var isHover = false
     private var device: WakeUp.Device
     private var action: () -> Error?
     
@@ -17,28 +18,30 @@ struct WakeUpButton: View {
             if device.BroadcastAddr.isEmpty || device.MAC.count != 17 || device.Port.isEmpty {
                 button
                     .opacity(DrawingConstants.opacityInactiveButton)
-                    .foregroundColor(DrawingConstants.colorInactiveButton)
-                
             } else {
                 // Active button
                 button
-                    .foregroundColor(DrawingConstants.colorActiveButton)
-                    .opacity(isPressed ? DrawingConstants.opacityPressedButton : DrawingConstants.opacityActiveButton)
-                    .scaleEffect(isPressed ? DrawingConstants.scaleEffectPressedButton : DrawingConstants.scaleEffectDefauld)
+                    .scaleEffect(isHover ? 1.05 : 1)
+                    .scaleEffect(isPressed ? DrawingConstants.scaleEffectPressedButton : DrawingConstants.scaleEffectDefault)
+                    .onHover { hover in
+                        withAnimation {
+                            isHover = hover
+                        }
+                    }
                     .onTapGesture {
                         _ = action()
                     }
-                // Custom pressEvent modifier -> ButtonPressModifier
-                    .pressEvents {
+                    .pressEvents { // Custom pressEvent modifier -> ButtonPressModifier
                         withAnimation(.easeInOut(duration: DrawingConstants.animationDuration)) {
                             isPressed = true
                         }
                     } onRelease: {
                         withAnimation {
-                        isPressed = false
+                            isPressed = false
                         }
+                            
+                    }
             }
-            
         }
     }
     
@@ -46,12 +49,14 @@ struct WakeUpButton: View {
         ZStack {
             RoundedRectangle(cornerRadius: DrawingConstants.buttonCornerRadius)
                 .frame(width: DrawingConstants.buttonWidth, height: DrawingConstants.buttonHeigh)
-                .opacity(DrawingConstants.buttonBackgroundOpacity)
+                .opacity(isHover ? 0.2 : 0.1)
             RoundedRectangle(cornerRadius: DrawingConstants.buttonCornerRadius)
                 .stroke(lineWidth: DrawingConstants.buttonStrokeWidth)
                 .frame(width: DrawingConstants.buttonWidth, height: DrawingConstants.buttonHeigh)
+                .opacity(isHover ? 0.8 : 0.6)
             Text("WAKE UP")
                 .font(Font.system(size: DrawingConstants.fontSIze))
+                .opacity(isHover ? DrawingConstants.opacityActiveButton : 0.8)
         }
     }
     
@@ -61,24 +66,24 @@ struct WakeUpButton: View {
         static let fontSIze: CGFloat = 25
         
         // Wake Up Button settings
-        static let buttonCornerRadius: CGFloat = 20
+        static let buttonCornerRadius: CGFloat = 15
         static let buttonHeigh: CGFloat = 60
         static let buttonWidth: CGFloat = 150
-        static let buttonStrokeWidth: CGFloat = 2
+        static let buttonStrokeWidth: CGFloat = 1.5
         
         // Scale effects
-        static let scaleEffectPressedButton: CGFloat = 1.15
-        static let scaleEffectDefauld: CGFloat = 1.0
+        static let scaleEffectPressedButton: CGFloat = 0.9
+        static let scaleEffectDefault: CGFloat = 1.0
         
         // Opasities
-        static let buttonBackgroundOpacity: CGFloat = 0.001
-        static let opacityPressedButton: CGFloat = 0.5
+        static let buttonBackgroundOpacity: CGFloat = 0.2
+        
         static let opacityInactiveButton: CGFloat = 0.5
-        static let opacityActiveButton: CGFloat = 1.0
+        static let opacityActiveButton: CGFloat = 1
         
         // Color settings
         static let colorInactiveButton: Color = .gray
-        static let colorActiveButton: Color = .mint
+        static let colorActiveButton: Color = .white
         
         // Animation
         static let animationDuration: CGFloat = 0.2
