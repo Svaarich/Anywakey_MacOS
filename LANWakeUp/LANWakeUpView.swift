@@ -5,12 +5,9 @@ struct LANWakeUpView: View {
     @State private var showSaveAlert = false
     @State private var showDeleteAlert = false
     @State private var isPressed = false
-    @State var isHoverCloseButton = false
     
     var body: some View {
         VStack {
-            dismissButton
-                .padding(.bottom, 12)
             HStack {
                 deviceList
                 Spacer()
@@ -24,14 +21,8 @@ struct LANWakeUpView: View {
             wakeUpButton
         }
         .padding()
-        .background(BlurredEffect())
-        .ignoresSafeArea()
+        .background(BlurredEffect().ignoresSafeArea())
         
-        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification), perform: { _ in
-            NSApp.mainWindow?.standardWindowButton(.zoomButton)?.isHidden = true
-            NSApp.mainWindow?.standardWindowButton(.closeButton)?.isHidden = true
-            NSApp.mainWindow?.standardWindowButton(.miniaturizeButton)?.isHidden = true
-        })
         .onChange(of: computer.listOfDevices) { _ in
             computer.updateStatusList()
         }
@@ -60,28 +51,6 @@ struct LANWakeUpView: View {
             return DrawingConstants.statusColorOffline
         case .Default:
             return DrawingConstants.statusColorDefault
-        }
-    }
-    
-    //MARK: Dismiss Button
-    
-    var dismissButton: some View {
-        HStack {
-            Button {
-                NSApp.terminate(nil)
-            } label: {
-                Image(systemName: "xmark.circle")
-            }
-            .font(.title2)
-            .buttonStyle(.borderless)
-            .opacity(isHoverCloseButton ? 1 : 0.6)
-            .scaleEffect(isHoverCloseButton ? 1.15 : 1)
-            .onHover { hover in
-                withAnimation {
-                    isHoverCloseButton = hover
-                }
-            }
-            Spacer()
         }
     }
     
