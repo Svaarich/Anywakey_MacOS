@@ -131,7 +131,7 @@ struct LANWakeUpView: View {
                     Text(" IPv4(e.g. 192.168.0.123) or DNS name for the host.")
                         .font(Font.system(size: DrawingConstants.instructionTextSize))
                         .foregroundStyle(DrawingConstants.instructionTextColor)
-                        .opacity(DrawingConstants.instructionTextOpasity)
+                        .opacity(DrawingConstants.instructionTextOpacity)
                     Spacer()
                 }
                 .padding(.bottom, 8)
@@ -154,7 +154,7 @@ struct LANWakeUpView: View {
                 Text(" (e.g. 00:11:22:AA:BB:CC)")
                     .font(Font.system(size: DrawingConstants.instructionTextSize))
                     .foregroundStyle(DrawingConstants.instructionTextColor)
-                    .opacity(DrawingConstants.instructionTextOpasity)
+                    .opacity(DrawingConstants.instructionTextOpacity)
                 Spacer()
             }
             .padding(.bottom, 8)
@@ -185,7 +185,7 @@ struct LANWakeUpView: View {
                 Text(" Typically sent to port 7 or 9")
                     .font(Font.system(size: DrawingConstants.instructionTextSize))
                     .foregroundStyle(DrawingConstants.instructionTextColor)
-                    .opacity(DrawingConstants.instructionTextOpasity)
+                    .opacity(DrawingConstants.instructionTextOpacity)
                 Spacer()
                 clearButton
             }
