@@ -75,7 +75,7 @@ struct WakeUpButton: View {
         static let scaleEffectPressedButton: CGFloat = 0.9
         static let scaleEffectDefault: CGFloat = 1.0
         
-        // Opasities
+        // Opacities
         static let buttonBackgroundOpacity: CGFloat = 0.2
         
         static let opacityInactiveButton: CGFloat = 0.5

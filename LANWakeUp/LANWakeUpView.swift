@@ -266,7 +266,7 @@ struct LANWakeUpView: View {
         static let pickerColorDefault: Color = .pink
         
         static let instructionTextSize: CGFloat = 11
-        static let instructionTextOpasity: CGFloat = 0.6
+        static let instructionTextOpacity: CGFloat = 0.5
         static let instructionTextColor: Color = .white
     }
 }
