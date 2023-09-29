@@ -130,7 +130,7 @@ struct LANWakeUpView: View {
                 HStack {
                     Text(" IPv4(e.g. 192.168.0.123) or DNS name for the host.")
                         .font(Font.system(size: DrawingConstants.instructionTextSize))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(DrawingConstants.instructionTextColor)
                         .opacity(DrawingConstants.instructionTextOpasity)
                     Spacer()
                 }
@@ -153,7 +153,7 @@ struct LANWakeUpView: View {
             HStack {
                 Text(" (e.g. 00:11:22:AA:BB:CC)")
                     .font(Font.system(size: DrawingConstants.instructionTextSize))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(DrawingConstants.instructionTextColor)
                     .opacity(DrawingConstants.instructionTextOpasity)
                 Spacer()
             }
@@ -184,7 +184,7 @@ struct LANWakeUpView: View {
             HStack {
                 Text(" Typically sent to port 7 or 9")
                     .font(Font.system(size: DrawingConstants.instructionTextSize))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(DrawingConstants.instructionTextColor)
                     .opacity(DrawingConstants.instructionTextOpasity)
                 Spacer()
                 clearButton
@@ -196,8 +196,8 @@ struct LANWakeUpView: View {
     var status: some View {
         HStack {
             Text("Status:")
-                .foregroundColor(.gray)
-                .opacity(0.6)
+                .foregroundColor(DrawingConstants.statusTextColor)
+                .opacity(DrawingConstants.statusTextOpacity)
             Circle()
                 .fill()
                 .frame(width: DrawingConstants.statusDiameter)
