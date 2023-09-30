@@ -5,14 +5,18 @@ struct LANWakeUpView: View {
     @State private var showSaveAlert = false
     @State private var showDeleteAlert = false
     @State private var isPressed = false
+    @State private var isHoverAddButton = false
+    @State private var isHoverDeleteButton = false
+    @State private var isHoverMenu = false
+    
+    @State var test = false
     
     var body: some View {
         VStack {
             HStack {
                 deviceList
                 Spacer()
-                addButton
-                deleteButton
+                menuAddDelete
             }
             .padding(.bottom)
             addressField
@@ -157,6 +161,13 @@ struct LANWakeUpView: View {
                 computer.device.Port = ""
             }
             .keyboardShortcut(.defaultAction)
+        }
+        .opacity(isHoverDeleteButton ? DrawingConstants.hoverAddDeleteButtonOpacity : DrawingConstants.defaultAddDeleteButtonOpacity)
+        .buttonStyle(.borderless)
+        .onHover { hover in
+            withAnimation {
+                isHoverDeleteButton = hover
+            }
         }
     }
     
