@@ -9,8 +9,6 @@ struct LANWakeUpView: View {
     @State private var isHoverDeleteButton = false
     @State private var isHoverMenu = false
     
-    @State var test = false
-    
     var body: some View {
         VStack {
             HStack {
