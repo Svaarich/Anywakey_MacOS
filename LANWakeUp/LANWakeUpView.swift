@@ -80,29 +80,73 @@ struct LANWakeUpView: View {
         }
     }
     
+    //MARK: Add and Delete menu
+    var menuAddDelete: some View {
+        ZStack {
+            ZStack {
+                RoundedRectangle(cornerRadius: DrawingConstants.menuAddDeteleCornerRadius)
+                    .stroke(lineWidth: 1)
+                    .opacity(isHoverMenu ? 0.6 : 0.5)
+                RoundedRectangle(cornerRadius: DrawingConstants.menuAddDeteleCornerRadius)
+                    .fill()
+                    .opacity(isHoverMenu ? 0.3 : 0.1)
+            }
+            .foregroundColor(.secondary)
+            .frame(width: DrawingConstants.menuAddDeteleWidth)
+            HStack {
+                addButton
+                deleteButton
+            }
+        }
+        .scaleEffect(isHoverMenu ? 1.1 : 1.0)
+        .onHover { hover in
+            withAnimation {
+                isHoverMenu = hover
+            }
+        }
+        .padding(.trailing, 2)
+    }
+    
     //MARK: Add device button
     var addButton: some View {
-        Button("Add") {
+        Button {
             computer.device.name = "New Device"
             computer.device.status = .Default
             showSaveAlert.toggle()
+        } label: {
+            Image(systemName: isHoverAddButton ? "plus.rectangle.fill" : "plus.rectangle")
+                .resizable()
+                .scaledToFit()
+                .frame(width: DrawingConstants.addDeleteButtonWidth)
+                .foregroundColor(.white)
         }
-        .buttonStyle(.borderedProminent)
         .newAndOldAlert(isPresented: $showSaveAlert, text: $computer.device.name) {
             computer.add(newDevice: computer.device)
+        }
+        .buttonStyle(.borderless)
+        .opacity(isHoverAddButton ? DrawingConstants.hoverAddDeleteButtonOpacity : DrawingConstants.defaultAddDeleteButtonOpacity)
+        .onHover { hover in
+            withAnimation {
+                isHoverAddButton = hover
+            }
         }
     }
     
     //MARK: Delete selected device button
     var deleteButton: some View {
-        Button("Delete") {
+        Button {
             for pc in computer.listOfDevices {
                 if computer.device == pc {
                     showDeleteAlert.toggle()
                 }
             }
+        } label: {
+            Image(systemName: isHoverDeleteButton ? "minus.rectangle.fill" : "minus.rectangle")
+                .resizable()
+                .scaledToFit()
+                .frame(width: DrawingConstants.addDeleteButtonWidth)
+                .foregroundColor(.white)
         }
-        .buttonStyle(.bordered)
         .alert("Delete device?", isPresented: $showDeleteAlert) {
             Button("Cancel", role: .cancel) { }
                 .keyboardShortcut(.cancelAction)
