@@ -268,6 +268,13 @@ struct LANWakeUpView: View {
         static let instructionTextSize: CGFloat = 11
         static let instructionTextOpacity: CGFloat = 0.5
         static let instructionTextColor: Color = .white
+        
+        static let addDeleteButtonWidth: CGFloat = 20
+        static let hoverAddDeleteButtonOpacity: CGFloat = 0.8
+        static let defaultAddDeleteButtonOpacity: CGFloat = 0.6
+        
+        static let menuAddDeteleWidth: CGFloat = 65
+        static let menuAddDeteleCornerRadius: CGFloat = 7
     }
 }
 
@@ -275,5 +282,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let computer = Computer()
         LANWakeUpView(computer: computer)
+            .frame(width: 380)
     }
 }
