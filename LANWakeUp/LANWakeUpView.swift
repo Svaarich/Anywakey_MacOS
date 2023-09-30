@@ -20,9 +20,9 @@ struct LANWakeUpView: View {
             portField
             wakeUpButton
         }
-        .padding()
+        .padding([.horizontal, .bottom])
+        .padding(.top, 8)
         .background(BlurredEffect().ignoresSafeArea())
-        
         .onChange(of: computer.listOfDevices) { _ in
             computer.updateStatusList()
         }
