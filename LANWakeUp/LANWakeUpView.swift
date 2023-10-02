@@ -278,11 +278,17 @@ struct LANWakeUpView: View {
             Text("Status:")
                 .foregroundColor(DrawingConstants.statusTextColor)
                 .opacity(DrawingConstants.statusTextOpacity)
-            Circle()
-                .fill()
-                .frame(width: DrawingConstants.statusDiameter)
-                .padding(.trailing, 5)
-                .foregroundColor(getStatusColor())
+            ZStack {
+                Circle()
+                    .strokeBorder(lineWidth: 1)
+                    .foregroundColor(getStatusColor())
+                Circle()
+                    .fill()
+                    .foregroundColor(getStatusColor())
+                    .opacity(0.1)
+            }
+            .frame(width: DrawingConstants.statusDiameter)
+            .padding(.trailing, 5)
         }
     }
     
