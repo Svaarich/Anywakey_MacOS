@@ -131,34 +131,27 @@ struct LANWakeUpView: View {
                             computer.device = pc
                             isPresentedPopOver = false
                         }
-    
-    //MARK: Add and Delete menu
-    var menuAddDelete: some View {
-        ZStack {
-            ZStack {
-                RoundedRectangle(cornerRadius: DrawingConstants.menuAddDeteleCornerRadius)
-                    .stroke(lineWidth: 1)
-                    .opacity(isHoverMenu ? 0.6 : 0.5)
-                RoundedRectangle(cornerRadius: DrawingConstants.menuAddDeteleCornerRadius)
-                    .fill()
-                    .opacity(isHoverMenu ? 0.3 : 0.1)
+                    }
+                }
+                Divider()
+                HStack {
+//                    Spacer()
+                    deleteButton
+                        .onTapGesture {
+//                            isPresentedPopOver = false
+                        }
+                }
+                
             }
-            .foregroundColor(.secondary)
-            .frame(width: DrawingConstants.menuAddDeteleWidth)
-            HStack {
-                addButton
-                deleteButton
-            }
-        }
-        .scaleEffect(isHoverMenu ? 1.1 : 1.0)
-        .onHover { hover in
-            withAnimation {
-                isHoverMenu = hover
+            .frame(width: 140)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 8)
+            .onAppear {
+                hoverDevice = computer.device
             }
         }
-        .padding(.trailing, 2)
     }
-    
+
     //MARK: Add device button
     var addButton: some View {
         Button {
