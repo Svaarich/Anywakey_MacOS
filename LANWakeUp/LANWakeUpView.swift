@@ -23,7 +23,7 @@ struct LANWakeUpView: View {
             HStack {
                 deviceListButton
                 Spacer()
-                addButton
+                addNewDeviceButton
             }
             .padding(.bottom)
             addressField
@@ -152,8 +152,8 @@ struct LANWakeUpView: View {
     }
 
     //MARK: Add Button
-    var addButton: some View {
-        AddButton(isHoverAddButton: isHoverAddButton,
+    var addNewDeviceButton: some View {
+        AddDeviceView(isHoverAddButton: isHoverAddButton,
                   showSaveAlert: showSaveAlert,
                   newDeviceName: newDeviceName,
                   device: computer.device) { device in

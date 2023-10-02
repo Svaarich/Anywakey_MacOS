@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct AddButton: View {
+struct AddDeviceView: View {
     
     @State private var isHoverAddButton: Bool
     @State private var showSaveAlert: Bool
