@@ -24,7 +24,7 @@ class Ping {
             if task.terminationStatus == 0 {
                 return .Online
             } else {
-                print("Ping failed with error code \(task.terminationStatus)")
+//                print("Ping failed with error code \(task.terminationStatus)")
                 return .Offline
             }
         }
