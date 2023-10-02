@@ -161,38 +161,43 @@ struct LANWakeUpView: View {
         }
     }
     
-    //MARK: Delete selected device button
+    //MARK: Delete Button
     var deleteButton: some View {
-        Button {
-            for pc in computer.listOfDevices {
-                if computer.device == pc {
-                    showDeleteAlert.toggle()
+        ZStack {
+            ZStack {
+                RoundedRectangle(cornerRadius: 5)
+                    .fill()
+                    .foregroundColor(isHoverDeleteButton ? .pink : .white)
+                    .opacity(isHoverDeleteButton ? 0.3 : 0.1)
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(lineWidth: 1)
+                    .foregroundColor(isHoverDeleteButton ? .pink : .white)
+                    .opacity(isHoverDeleteButton ? 0.6 : 0.5)
+            }
+            //                        .frame(width: 60)
+            Button {
+                for pc in computer.listOfDevices {
+                    if computer.device.BroadcastAddr == pc.BroadcastAddr
+                        && computer.device.MAC == pc.MAC
+                        && computer.device.Port == pc.Port
+                        && computer.device.name == pc.name
+                    {
+                        computer.delete(oldDevice: computer.device)
+                        if let device = computer.listOfDevices.first {
+                            computer.device = device
+                        }
+                        isPresentedPopOver.toggle()
+                    }
                 }
+            } label: {
+                Text("Delete ")
+                    .foregroundColor(.white)
             }
-        } label: {
-            Image(systemName: isHoverDeleteButton ? "minus.rectangle.fill" : "minus.rectangle")
-                .resizable()
-                .scaledToFit()
-                .frame(width: DrawingConstants.addDeleteButtonWidth)
-                .foregroundColor(.white)
+            .buttonStyle(.borderless)
+            .padding(.vertical, 4)
         }
-        .alert("Delete device?", isPresented: $showDeleteAlert) {
-            Button("Cancel", role: .cancel) { }
-                .keyboardShortcut(.cancelAction)
-            Button("OK") {
-                computer.delete(oldDevice: computer.device)
-                computer.device.BroadcastAddr = ""
-                computer.device.MAC = ""
-                computer.device.Port = ""
-            }
-            .keyboardShortcut(.defaultAction)
-        }
-        .opacity(isHoverDeleteButton ? DrawingConstants.hoverAddDeleteButtonOpacity : DrawingConstants.defaultAddDeleteButtonOpacity)
-        .buttonStyle(.borderless)
         .onHover { hover in
-            withAnimation {
-                isHoverDeleteButton = hover
-            }
+            isHoverDeleteButton.toggle()
         }
     }
     
