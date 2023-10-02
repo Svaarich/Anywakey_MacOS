@@ -13,7 +13,6 @@ struct LANWakeUpView: View {
     
     @State private var isHoverAddButton = false
     @State private var isHoverDeleteButton = false
-    @State private var isHoverMenu = false
     @State private var isHoverMyDevices = false
     @State private var hoverDevice = WakeUp.Device(MAC: "",
                                                    BroadcastAddr: "",
