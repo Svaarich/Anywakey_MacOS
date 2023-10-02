@@ -75,22 +75,62 @@ struct LANWakeUpView: View {
                 Image(systemName: "desktopcomputer")
                 Text("My devices")
             }
-                    ForEach(computer.listOfDevices) { pc in
-                        if pc.status == .Online {
-                            Text(pc.name) + Text(" online").foregroundColor(DrawingConstants.pickerColorOnline)
-                        } else if pc.status == .Offline {
-                            Text(pc.name) + Text(" offline").foregroundColor(DrawingConstants.pickerColorOffline)
-                        } else {
-                            Text(pc.name) + Text(" unknown").foregroundColor(DrawingConstants.pickerColorDefault)
-                        }
-                    }
-                }
-                .labelsHidden()
-                .frame(width: DrawingConstants.deviceListWidth)
-                
+        }
+        .scaleEffect(isPresentedPopOver ? 1.1 : 1)
+        .onHover { hover in
+            withAnimation {
+                isHoverMyDevices = hover
+                isPresentedPopOver = true
             }
         }
-    }
+        .popover(isPresented: $isPresentedPopOver,
+                 attachmentAnchor: .point(.bottom),
+                 arrowEdge: .bottom) {
+            VStack {
+                ForEach(computer.listOfDevices) { pc in
+                    var isHover: Bool {
+                        pc == hoverDevice
+                    }
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill()
+                            .foregroundColor(.white)
+                            .opacity(isHover ? 0.2 : 0.1)
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(lineWidth: 1)
+                            .foregroundColor(.white)
+                            .opacity(isHover ? 0.5 : 0.3)
+                        HStack {
+                            if pc == computer.device {
+                                Image(systemName: "checkmark")
+                            }
+                            if pc.status == .Online {
+                                HStack {
+                                    Text(pc.name)
+                                    Spacer()
+                                    Text("online")
+                                        .foregroundColor(DrawingConstants.onlineColor)
+                                }
+                            } else {
+                                HStack {
+                                    Text(pc.name)
+                                    Spacer()
+                                    Text("offline")
+                                        .foregroundColor(DrawingConstants.offlineColor)
+                                }
+                            }
+                        }
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 6)
+                    }
+                    .onHover { _ in
+                        hoverDevice = pc
+                    }
+                    .onTapGesture {
+                        withAnimation {
+                            computer.device = pc
+                            isPresentedPopOver = false
+                        }
     
     //MARK: Add and Delete menu
     var menuAddDelete: some View {
