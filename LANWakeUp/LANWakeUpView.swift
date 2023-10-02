@@ -2,12 +2,22 @@ import SwiftUI
 
 struct LANWakeUpView: View {
     @ObservedObject var computer: Computer
+    
+    @State private var newDeviceName = "New device"
+    
     @State private var showSaveAlert = false
     @State private var showDeleteAlert = false
+    
     @State private var isPressed = false
+    @State private var isPresentedPopOver = false
+    
     @State private var isHoverAddButton = false
     @State private var isHoverDeleteButton = false
     @State private var isHoverMenu = false
+    @State private var isHoverMyDevices = false
+    @State private var hoverDevice = WakeUp.Device(MAC: "",
+                                                   BroadcastAddr: "",
+                                                   Port: "")
     
     var body: some View {
         VStack {
