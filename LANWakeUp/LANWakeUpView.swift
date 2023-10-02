@@ -12,9 +12,9 @@ struct LANWakeUpView: View {
     var body: some View {
         VStack {
             HStack {
-                deviceList
+                deviceListButton
                 Spacer()
-                menuAddDelete
+                addButton
             }
             .padding(.bottom)
             addressField
