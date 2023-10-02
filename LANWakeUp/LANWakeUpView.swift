@@ -67,14 +67,14 @@ struct LANWakeUpView: View {
     }
     
     //MARK: List of saved devices
-    var deviceList: some View {
+    var deviceListButton: some View {
         ZStack {
-            background
-                .frame(width: 140, height: 30)
+            deviceListBackground
+                .frame(width: 115, height: 30)
             HStack {
                 Image(systemName: "desktopcomputer")
                 Text("My devices")
-                Picker("", selection: $computer.device) {
+            }
                     ForEach(computer.listOfDevices) { pc in
                         if pc.status == .Online {
                             Text(pc.name) + Text(" online").foregroundColor(DrawingConstants.pickerColorOnline)
