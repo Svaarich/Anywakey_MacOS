@@ -287,17 +287,16 @@ struct LANWakeUpView: View {
         return wakeUpButton
     }
     
-    var background: some View {
+    var deviceListBackground: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 7)
                 .stroke(lineWidth: 1)
-                .foregroundColor(.secondary)
-                .opacity(0.5)
+                .opacity(isPresentedPopOver ? 0.6 : 0.5)
             RoundedRectangle(cornerRadius: 7)
                 .fill()
-                .foregroundColor(.secondary)
-                .opacity(0.1)
+                .opacity(isPresentedPopOver ? 0.3 : 0.1)
         }
+        .foregroundColor(.secondary)
     }
     
     //MARK: DrawingConstants
