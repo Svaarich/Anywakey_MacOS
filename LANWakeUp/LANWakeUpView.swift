@@ -334,7 +334,7 @@ struct LANWakeUpView: View {
         
         static let statusDiameter: CGFloat = 12
         static let statusColorOnline: Color = .green
-        static let statusColorOffline: Color = .red
+        static let statusColorOffline: Color = .pink
         static let statusColorDefault: Color = .white.opacity(0.5)
         
         static let statusTextOpacity: CGFloat = 0.6
