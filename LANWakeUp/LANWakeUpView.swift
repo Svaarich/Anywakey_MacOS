@@ -152,28 +152,13 @@ struct LANWakeUpView: View {
         }
     }
 
-    //MARK: Add device button
+    //MARK: Add Button
     var addButton: some View {
-        Button {
-            computer.device.name = "New Device"
-            computer.device.status = .Default
-            showSaveAlert.toggle()
-        } label: {
-            Image(systemName: isHoverAddButton ? "plus.rectangle.fill" : "plus.rectangle")
-                .resizable()
-                .scaledToFit()
-                .frame(width: DrawingConstants.addDeleteButtonWidth)
-                .foregroundColor(.white)
-        }
-        .newAndOldAlert(isPresented: $showSaveAlert, text: $computer.device.name) {
-            computer.add(newDevice: computer.device)
-        }
-        .buttonStyle(.borderless)
-        .opacity(isHoverAddButton ? DrawingConstants.hoverAddDeleteButtonOpacity : DrawingConstants.defaultAddDeleteButtonOpacity)
-        .onHover { hover in
-            withAnimation {
-                isHoverAddButton = hover
-            }
+        AddButton(isHoverAddButton: isHoverAddButton,
+                  showSaveAlert: showSaveAlert,
+                  newDeviceName: newDeviceName,
+                  device: computer.device) { device in
+            computer.add(newDevice: device)
         }
     }
     
