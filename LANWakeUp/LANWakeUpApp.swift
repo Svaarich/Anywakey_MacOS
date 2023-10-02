@@ -6,8 +6,11 @@ struct LANWakeUpApp: App {
     var body: some Scene {
         WindowGroup {
             LANWakeUpView(computer: computer)
-                .frame(width: 400)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(width: 380)
+                .preferredColorScheme(.dark)
         }
+        .windowStyle(.hiddenTitleBar)
         .windowResizabilityContentSize()
     }
 }

@@ -40,7 +40,6 @@ class Computer: ObservableObject {
     @MainActor func updateStatusList() {
         Task {
             listOfDevices = await ping.updateStatusList(devices: listOfDevices)
-            print(listOfDevices)
         }
     }
 }
