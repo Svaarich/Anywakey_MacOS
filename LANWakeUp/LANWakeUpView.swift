@@ -314,17 +314,15 @@ struct LANWakeUpView: View {
         static let statusTextOpacity: CGFloat = 0.6
         static let statusTextColor: Color = .white
         
-        static let pickerColorOnline: Color = .green
-        static let pickerColorOffline: Color = .secondary
-        static let pickerColorDefault: Color = .pink
+        static let onlineColor: Color = .green
+        static let offlineColor: Color = .secondary
         
         static let instructionTextSize: CGFloat = 11
         static let instructionTextOpacity: CGFloat = 0.5
         static let instructionTextColor: Color = .white
         
-        static let addDeleteButtonWidth: CGFloat = 20
-        static let hoverAddDeleteButtonOpacity: CGFloat = 0.8
-        static let defaultAddDeleteButtonOpacity: CGFloat = 0.6
+        static let addButtonColor: Color = .secondary
+        static let addButtonSize: CGFloat = 18
         
         static let menuAddDeteleWidth: CGFloat = 65
         static let menuAddDeteleCornerRadius: CGFloat = 7
