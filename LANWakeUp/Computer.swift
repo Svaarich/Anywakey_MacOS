@@ -11,10 +11,6 @@ class Computer: ObservableObject {
         wakeUp.target(device: device)
     }
     
-    func getComputer() -> WakeUp.Device {
-        return device
-    }
-    
     func fetchUserDefaults() {
         listOfDevices = wakeUp.fetchUserDefaults()
     }
@@ -29,7 +25,6 @@ class Computer: ObservableObject {
     
     func add(newDevice: WakeUp.Device) {
         listOfDevices = wakeUp.add(newDevice: newDevice, data: listOfDevices)
-        saveUserDefaults()
     }
     
     @MainActor func currentDeviceStatus() {
