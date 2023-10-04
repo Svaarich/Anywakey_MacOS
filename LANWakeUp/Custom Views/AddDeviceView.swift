@@ -42,10 +42,13 @@ struct AddDeviceView: View {
                             .foregroundColor(.white)
                             .font(Font.system(size: DrawingConstants.addButtonSize))
                             .onTapGesture {
-                                addAction(WakeUp.Device(name: newDeviceName,
-                                                        MAC: device.Port,
-                                                        BroadcastAddr: device.BroadcastAddr,
-                                                        Port: device.Port))
+                                let newDevice = WakeUp.Device(
+                                    name: newDeviceName,
+                                    MAC: device.MAC,
+                                    BroadcastAddr: device.BroadcastAddr,
+                                    Port: device.Port
+                                )
+                                addAction(newDevice)
                                 withAnimation {
                                     showSaveAlert.toggle()
                                     newDeviceName = "New device"
