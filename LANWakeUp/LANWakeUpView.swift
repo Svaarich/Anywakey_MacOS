@@ -84,62 +84,67 @@ struct LANWakeUpView: View {
         .popover(isPresented: $isPresentedListOfDevices,
                  attachmentAnchor: .point(.bottom),
                  arrowEdge: .bottom) {
-            VStack {
-                ForEach(computer.listOfDevices) { pc in
-                    var isHover: Bool {
-                        pc == currentHoverDevice
-                    }
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill()
-                            .foregroundColor(.white)
-                            .opacity(isHover ? 0.2 : 0.1)
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(lineWidth: 1)
-                            .foregroundColor(.white)
-                            .opacity(isHover ? 0.5 : 0.3)
-                        HStack {
-                            Image(systemName: "checkmark")
-                                .opacity(pc == computer.device ? 1 : 0)
-                            if pc.status == .Online {
-                                HStack {
-                                    Text(pc.name)
-                                    Spacer()
-                                    Text("online")
-                                        .foregroundColor(DrawingConstants.onlineColor)
-                                }
-                            } else {
-                                HStack {
-                                    Text(pc.name)
-                                    Spacer()
-                                    Text("offline")
-                                        .foregroundColor(DrawingConstants.offlineColor)
+            if computer.listOfDevices.isEmpty {
+                Text("Empty!")
+                    .padding()
+            } else {
+                VStack {
+                    ForEach(computer.listOfDevices) { pc in
+                        var isHover: Bool {
+                            pc == currentHoverDevice
+                        }
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill()
+                                .foregroundColor(.white)
+                                .opacity(isHover ? 0.2 : 0.1)
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(lineWidth: 1)
+                                .foregroundColor(.white)
+                                .opacity(isHover ? 0.5 : 0.3)
+                            HStack {
+                                Image(systemName: "checkmark")
+                                    .opacity(pc == computer.device ? 1 : 0)
+                                if pc.status == .Online {
+                                    HStack {
+                                        Text(pc.name)
+                                        Spacer()
+                                        Text("online")
+                                            .foregroundColor(DrawingConstants.onlineColor)
+                                    }
+                                } else {
+                                    HStack {
+                                        Text(pc.name)
+                                        Spacer()
+                                        Text("offline")
+                                            .foregroundColor(DrawingConstants.offlineColor)
+                                    }
                                 }
                             }
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 6)
                         }
+                        .onHover { _ in
+                            currentHoverDevice = pc
+                        }
+                        .onTapGesture {
+                            withAnimation {
+                                computer.device = pc
+                                isPresentedListOfDevices = false
+                            }
+                        }
+                    }
+                    Divider()
                         .padding(.vertical, 4)
-                        .padding(.horizontal, 6)
-                    }
-                    .onHover { _ in
-                        currentHoverDevice = pc
-                    }
-                    .onTapGesture {
-                        withAnimation {
-                            computer.device = pc
-                            isPresentedListOfDevices = false
-                        }
-                    }
+                    deleteButton
+                    
                 }
-                Divider()
-                    .padding(.vertical, 4)
-                deleteButton
-                
-            }
-            .frame(width: 140)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 8)
-            .onAppear {
-                currentHoverDevice = computer.device
+                .frame(width: 140)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 8)
+                .onAppear {
+                    currentHoverDevice = computer.device
+                }
             }
         }
     }
