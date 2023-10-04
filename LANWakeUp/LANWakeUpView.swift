@@ -132,13 +132,8 @@ struct LANWakeUpView: View {
                     }
                 }
                 Divider()
-                HStack {
-//                    Spacer()
-                    deleteButton
-                        .onTapGesture {
-//                            isPresentedPopOver = false
-                        }
-                }
+                    .padding(.vertical, 4)
+                deleteButton
                 
             }
             .frame(width: 140)
