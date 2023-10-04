@@ -168,19 +168,11 @@ struct LANWakeUpView: View {
                     .opacity(isHoverDeleteButton ? 0.6 : 0.5)
             }
             Button {
-                for pc in computer.listOfDevices {
-                    if computer.device.BroadcastAddr == pc.BroadcastAddr
-                        && computer.device.MAC == pc.MAC
-                        && computer.device.Port == pc.Port
-                        && computer.device.name == pc.name
-                    {
-                        computer.delete(oldDevice: computer.device)
-                        if let device = computer.listOfDevices.first {
-                            computer.device = device
-                        }
-                        isPresentedListOfDevices.toggle()
-                    }
+                computer.delete(oldDevice: computer.device)
+                if let device = computer.listOfDevices.first {
+                    computer.device = device
                 }
+                isPresentedListOfDevices.toggle()
             } label: {
                 Text("Delete ")
                     .foregroundColor(.white)
