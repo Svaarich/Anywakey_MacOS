@@ -30,6 +30,7 @@ class Computer: ObservableObject {
     @MainActor func currentDeviceStatus() {
         Task {
             onlineStatus = await ping.performPing(ipAddress: device.BroadcastAddr)
+            device.status = onlineStatus
         }
     }
     @MainActor func updateStatusList() {
