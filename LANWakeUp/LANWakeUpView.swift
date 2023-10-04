@@ -100,9 +100,8 @@ struct LANWakeUpView: View {
                             .foregroundColor(.white)
                             .opacity(isHover ? 0.5 : 0.3)
                         HStack {
-                            if pc == computer.device {
-                                Image(systemName: "checkmark")
-                            }
+                            Image(systemName: "checkmark")
+                                .opacity(pc == computer.device ? 1 : 0)
                             if pc.status == .Online {
                                 HStack {
                                     Text(pc.name)
