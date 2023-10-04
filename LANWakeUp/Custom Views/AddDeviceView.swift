@@ -59,6 +59,7 @@ struct AddDeviceView: View {
                             .onTapGesture {
                                 withAnimation {
                                     showSaveAlert.toggle()
+                                    focusedTextField.toggle()
                                     newDeviceName = "New device"
                                 }
                             }
@@ -84,7 +85,7 @@ struct AddDeviceView: View {
         .onTapGesture {
             withAnimation {
                 showSaveAlert.toggle()
-                focusedTextField = false
+                focusedTextField = true
             }
         }
     }
