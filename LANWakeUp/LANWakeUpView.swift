@@ -174,7 +174,6 @@ struct LANWakeUpView: View {
                     .foregroundColor(isHoverDeleteButton ? .pink : .white)
                     .opacity(isHoverDeleteButton ? 0.6 : 0.5)
             }
-            //                        .frame(width: 60)
             Button {
                 for pc in computer.listOfDevices {
                     if computer.device.BroadcastAddr == pc.BroadcastAddr
