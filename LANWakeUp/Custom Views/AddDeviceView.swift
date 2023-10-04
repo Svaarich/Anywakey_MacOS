@@ -46,7 +46,6 @@ struct AddDeviceView: View {
                                                         MAC: device.Port,
                                                         BroadcastAddr: device.BroadcastAddr,
                                                         Port: device.Port))
-                                print("im new button and i add: \(device)")
                                 withAnimation {
                                     showSaveAlert.toggle()
                                     newDeviceName = "New device"
