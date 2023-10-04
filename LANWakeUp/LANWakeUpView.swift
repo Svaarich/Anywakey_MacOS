@@ -47,10 +47,10 @@ struct LANWakeUpView: View {
         }
         .onAppear {
             computer.fetchUserDefaults()
+            computer.updateStatusList()
             if let device = computer.listOfDevices.first {
                 computer.device = device
             }
-            computer.updateStatusList()
         }
     }
     
@@ -144,13 +144,13 @@ struct LANWakeUpView: View {
             }
         }
     }
-
+    
     //MARK: Add Button
     var addNewDeviceButton: some View {
         AddDeviceView(isHoverAddButton: isHoverAddButton,
-                  showSaveAlert: showSaveAlert,
-                  newDeviceName: newDeviceName,
-                  device: computer.device) { device in
+                      showSaveAlert: showSaveAlert,
+                      newDeviceName: newDeviceName,
+                      device: computer.device) { device in
             computer.add(newDevice: device)
         }
     }
