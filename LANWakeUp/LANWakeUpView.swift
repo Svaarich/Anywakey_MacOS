@@ -6,15 +6,14 @@ struct LANWakeUpView: View {
     @State private var newDeviceName = "New device"
     
     @State private var showSaveAlert = false
-    @State private var showDeleteAlert = false
     
-    @State private var isPressed = false
-    @State private var isPresentedPopOver = false
+    @State private var isPresentedAddMenu = false
+    @State private var isPresentedListOfDevices = false
     
-    @State private var isHoverAddButton = false
+    @State private var isHoverAddMenu = false
     @State private var isHoverDeleteButton = false
-    @State private var isHoverMyDevices = false
-    @State private var hoverDevice = WakeUp.Device(MAC: "",
+    @State private var isHoverListOfDevices = false
+    @State private var currentHoverDevice = WakeUp.Device(MAC: "",
                                                    BroadcastAddr: "",
                                                    Port: "")
     
@@ -75,20 +74,20 @@ struct LANWakeUpView: View {
                 Text("My devices")
             }
         }
-        .scaleEffect(isPresentedPopOver ? 1.1 : 1)
+        .scaleEffect(isPresentedListOfDevices ? 1.1 : 1)
         .onHover { hover in
             withAnimation {
-                isHoverMyDevices = hover
-                isPresentedPopOver = true
+                isHoverListOfDevices = hover
+                isPresentedListOfDevices = true
             }
         }
-        .popover(isPresented: $isPresentedPopOver,
+        .popover(isPresented: $isPresentedListOfDevices,
                  attachmentAnchor: .point(.bottom),
                  arrowEdge: .bottom) {
             VStack {
                 ForEach(computer.listOfDevices) { pc in
                     var isHover: Bool {
-                        pc == hoverDevice
+                        pc == currentHoverDevice
                     }
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
@@ -122,12 +121,12 @@ struct LANWakeUpView: View {
                         .padding(.horizontal, 6)
                     }
                     .onHover { _ in
-                        hoverDevice = pc
+                        currentHoverDevice = pc
                     }
                     .onTapGesture {
                         withAnimation {
                             computer.device = pc
-                            isPresentedPopOver = false
+                            isPresentedListOfDevices = false
                         }
                     }
                 }
@@ -140,14 +139,14 @@ struct LANWakeUpView: View {
             .padding(.horizontal, 8)
             .padding(.vertical, 8)
             .onAppear {
-                hoverDevice = computer.device
+                currentHoverDevice = computer.device
             }
         }
     }
     
     //MARK: Add Button
     var addNewDeviceButton: some View {
-        AddDeviceView(isHoverAddButton: isHoverAddButton,
+        AddDeviceView(isHoverAddButton: isHoverAddMenu,
                       showSaveAlert: showSaveAlert,
                       newDeviceName: newDeviceName,
                       device: computer.device) { device in
@@ -179,7 +178,7 @@ struct LANWakeUpView: View {
                         if let device = computer.listOfDevices.first {
                             computer.device = device
                         }
-                        isPresentedPopOver.toggle()
+                        isPresentedListOfDevices.toggle()
                     }
                 }
             } label: {
@@ -311,7 +310,7 @@ struct LANWakeUpView: View {
     
     //MARK: WakeUp button
     var wakeUpButton: some View {
-        let wakeUpButton = WakeUpButton(device: computer.device, isPressed: isPressed) {
+        let wakeUpButton = WakeUpButton(device: computer.device, isPressed: isPresentedAddMenu) {
             computer.target(device: computer.device)
         }
             .padding(.vertical, 8)
@@ -322,10 +321,10 @@ struct LANWakeUpView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 7)
                 .stroke(lineWidth: 1)
-                .opacity(isPresentedPopOver ? 0.6 : 0.5)
+                .opacity(isPresentedListOfDevices ? 0.6 : 0.5)
             RoundedRectangle(cornerRadius: 7)
                 .fill()
-                .opacity(isPresentedPopOver ? 0.3 : 0.1)
+                .opacity(isPresentedListOfDevices ? 0.3 : 0.1)
         }
         .foregroundColor(.secondary)
     }
