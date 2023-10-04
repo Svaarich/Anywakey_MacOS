@@ -39,7 +39,7 @@ struct LANWakeUpView: View {
         }
         .onChange(of: computer.device.BroadcastAddr) { _ in
             withAnimation {
-                computer.onlineStatus = .Default
+                computer.device.status = .Default
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     computer.currentDeviceStatus()
                 }
@@ -55,7 +55,7 @@ struct LANWakeUpView: View {
     }
     
     private func getStatusColor() -> Color {
-        switch computer.onlineStatus {
+        switch computer.device.status {
         case .Online:
             return DrawingConstants.statusColorOnline
         case .Offline:
