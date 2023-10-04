@@ -149,19 +149,8 @@ public class WakeUp {
         if data.isEmpty {
             return [newDevice]
         } else {
-            var isMatched = false
-            for pc in savedDevices {
-                if newDevice.name == pc.name {
-                    isMatched = true
-                }
-            }
-            
-            if isMatched {
-                return savedDevices
-            } else {
-                savedDevices.append(newDevice)
-                saveUserDefaults(data: savedDevices)
-            }
+            savedDevices.append(newDevice)
+            saveUserDefaults(data: savedDevices)
         }
         
         return savedDevices
