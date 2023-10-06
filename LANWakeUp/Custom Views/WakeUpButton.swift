@@ -1,14 +1,13 @@
 import SwiftUI
 
 struct WakeUpButton: View {
-    @State private var isPressed: Bool
-    @State private var isHover = false
+    @State private var isPressed: Bool = false
+    @State private var isHover:Bool = false
     private var device: WakeUp.Device
     private var action: () -> Error?
     
-    init(device: WakeUp.Device, isPressed: Bool, action: @escaping () -> Error?) {
+    init(device: WakeUp.Device, action: @escaping () -> Error?) {
         self.device = device
-        self.isPressed = isPressed
         self.action = action
     }
     

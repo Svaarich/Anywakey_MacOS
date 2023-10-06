@@ -3,14 +3,8 @@ import SwiftUI
 struct LANWakeUpView: View {
     @ObservedObject var computer: Computer
     
-    @State private var newDeviceName = "New device"
-    
-    @State private var showSaveAlert = false
-    
-    @State private var isPresentedAddMenu = false
+    @State private var isPressedWakeUP = false
     @State private var isPresentedListOfDevices = false
-    
-    @State private var isHoverAddMenu = false
     @State private var isHoverDeleteButton = false
     @State private var isHoverListOfDevices = false
     @State private var currentHoverDevice = WakeUp.Device(MAC: "",
@@ -151,10 +145,7 @@ struct LANWakeUpView: View {
     
     //MARK: Add Button
     var addNewDeviceButton: some View {
-        AddDeviceView(isHoverAddButton: isHoverAddMenu,
-                      showSaveAlert: showSaveAlert,
-                      newDeviceName: newDeviceName,
-                      device: computer.device) { device in
+        AddDeviceView(device: computer.device) { device in
             computer.add(newDevice: device)
         }
     }
@@ -307,7 +298,7 @@ struct LANWakeUpView: View {
     
     //MARK: WakeUp button
     var wakeUpButton: some View {
-        let wakeUpButton = WakeUpButton(device: computer.device, isPressed: isPresentedAddMenu) {
+        let wakeUpButton = WakeUpButton(device: computer.device) {
             computer.target(device: computer.device)
         }
             .padding(.vertical, 8)

@@ -1,18 +1,18 @@
 import SwiftUI
 
 struct AddDeviceView: View {
-    
-    @State private var isHoverAddButton: Bool
-    @State private var showSaveAlert: Bool
-    @State private var newDeviceName: String
     @FocusState private var focusedTextField: Bool
+    
+    @State private var isHoverCancel: Bool = false
+    @State private var isHoverConfirm: Bool = false
+    @State private var isHoverAddButton: Bool = false
+    @State private var showSaveAlert: Bool = false
+    @State private var newDeviceName: String = "New Device"
+    
     private var device: WakeUp.Device
     private var addAction: (WakeUp.Device) -> Void
     
-    init(isHoverAddButton: Bool, showSaveAlert: Bool, newDeviceName: String, device: WakeUp.Device, addAction: @escaping (WakeUp.Device) -> Void) {
-        self.isHoverAddButton = isHoverAddButton
-        self.showSaveAlert = showSaveAlert
-        self.newDeviceName = newDeviceName
+    init(device: WakeUp.Device, addAction: @escaping (WakeUp.Device) -> Void) {
         self.device = device
         self.addAction = addAction
     }
@@ -39,6 +39,7 @@ struct AddDeviceView: View {
                 if showSaveAlert {
                     HStack {
                         Image(systemName: "checkmark.square")
+                            .opacity(isHoverConfirm ? 1 : 0.6)
                             .foregroundColor(.white)
                             .font(Font.system(size: DrawingConstants.addButtonSize))
                             .onTapGesture {
@@ -54,8 +55,14 @@ struct AddDeviceView: View {
                                     newDeviceName = "New device"
                                 }
                             }
+                            .onHover { hover in
+                                withAnimation {
+                                    isHoverConfirm = hover
+                                }
+                            }
                         
                         Image(systemName: "xmark.square")
+                            .opacity(isHoverCancel ? 1 : 0.6)
                             .foregroundColor(.white)
                             .font(Font.system(size: DrawingConstants.addButtonSize))
                             .onTapGesture {
@@ -63,6 +70,11 @@ struct AddDeviceView: View {
                                     showSaveAlert.toggle()
                                     focusedTextField.toggle()
                                     newDeviceName = "New device"
+                                }
+                            }
+                            .onHover { hover in
+                                withAnimation {
+                                    isHoverCancel = hover
                                 }
                             }
                     }
