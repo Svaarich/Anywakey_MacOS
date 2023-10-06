@@ -86,7 +86,7 @@ struct AddDeviceView: View {
         }
         .onTapGesture {
             withAnimation {
-                showSaveAlert.toggle()
+                showSaveAlert = true
                 focusedTextField = true
             }
         }
