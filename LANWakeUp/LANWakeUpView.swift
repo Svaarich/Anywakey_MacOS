@@ -3,18 +3,13 @@ import SwiftUI
 struct LANWakeUpView: View {
     @ObservedObject var computer: Computer
     
-    @State private var isPressedWakeUP = false
     @State private var isPresentedListOfDevices = false
     @State private var isHoverDeleteButton = false
-    @State private var isHoverListOfDevices = false
-    @State private var currentHoverDevice = WakeUp.Device(MAC: "",
-                                                   BroadcastAddr: "",
-                                                   Port: "")
     
     var body: some View {
         VStack {
             HStack {
-                deviceListButton
+                deviceListView
                 Spacer()
                 addNewDeviceButton
             }
@@ -59,125 +54,16 @@ struct LANWakeUpView: View {
     }
     
     //MARK: List of saved devices
-    var deviceListButton: some View {
-        ZStack {
-            deviceListBackground
-                .frame(width: 115, height: 30)
-            HStack {
-                Image(systemName: "desktopcomputer")
-                Text("My devices")
-            }
-        }
-        .scaleEffect(isPresentedListOfDevices ? 1.1 : 1)
-        .onHover { hover in
-            withAnimation {
-                isHoverListOfDevices = hover
-                isPresentedListOfDevices = true
-            }
-        }
-        .popover(isPresented: $isPresentedListOfDevices,
-                 attachmentAnchor: .point(.bottom),
-                 arrowEdge: .bottom) {
-            if computer.listOfDevices.isEmpty {
-                Text("Empty!")
-                    .padding()
-            } else {
-                VStack {
-                    ForEach(computer.listOfDevices) { pc in
-                        var isHover: Bool {
-                            pc == currentHoverDevice
-                        }
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill()
-                                .foregroundColor(.white)
-                                .opacity(isHover ? 0.2 : 0.1)
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(lineWidth: 1)
-                                .foregroundColor(.white)
-                                .opacity(isHover ? 0.5 : 0.3)
-                            HStack {
-                                Image(systemName: "checkmark")
-                                    .opacity(pc == computer.device ? 1 : 0)
-                                if pc.status == .Online {
-                                    HStack {
-                                        Text(pc.name)
-                                        Spacer()
-                                        Text("online")
-                                            .foregroundColor(DrawingConstants.onlineColor)
-                                    }
-                                } else {
-                                    HStack {
-                                        Text(pc.name)
-                                        Spacer()
-                                        Text("offline")
-                                            .foregroundColor(DrawingConstants.offlineColor)
-                                    }
-                                }
-                            }
-                            .padding(.vertical, 4)
-                            .padding(.horizontal, 6)
-                        }
-                        .onHover { _ in
-                            currentHoverDevice = pc
-                        }
-                        .onTapGesture {
-                            withAnimation {
-                                computer.device = pc
-                                isPresentedListOfDevices = false
-                            }
-                        }
-                    }
-                    Divider()
-                        .padding(.vertical, 4)
-                    deleteButton
-                    
-                }
-                .frame(width: 140)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 8)
-                .onAppear {
-                    currentHoverDevice = computer.device
-                }
-            }
-        }
+    var deviceListView: some View {
+            DeviceList(listOfDevices: computer.listOfDevices,
+                       currentDevice: computer.device,
+                       computer: computer)
     }
     
     //MARK: Add Button
     var addNewDeviceButton: some View {
         AddDeviceView(device: computer.device) { device in
             computer.add(newDevice: device)
-        }
-    }
-    
-    //MARK: Delete Button
-    var deleteButton: some View {
-        ZStack {
-            ZStack {
-                RoundedRectangle(cornerRadius: 5)
-                    .fill()
-                    .foregroundColor(isHoverDeleteButton ? .pink : .white)
-                    .opacity(isHoverDeleteButton ? 0.3 : 0.1)
-                RoundedRectangle(cornerRadius: 5)
-                    .stroke(lineWidth: 1)
-                    .foregroundColor(isHoverDeleteButton ? .pink : .white)
-                    .opacity(isHoverDeleteButton ? 0.6 : 0.5)
-            }
-            Button {
-                computer.delete(oldDevice: computer.device)
-                if let device = computer.listOfDevices.first {
-                    computer.device = device
-                }
-                isPresentedListOfDevices.toggle()
-            } label: {
-                Text("Delete ")
-                    .foregroundColor(.white)
-            }
-            .buttonStyle(.borderless)
-            .padding(.vertical, 4)
-        }
-        .onHover { hover in
-            isHoverDeleteButton.toggle()
         }
     }
     
