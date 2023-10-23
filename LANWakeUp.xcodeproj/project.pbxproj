@@ -20,6 +20,7 @@
 		7D2FFC6D2AAD2D0D00FFF97E /* Extension + Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FFC6C2AAD2D0D00FFF97E /* Extension + Scene.swift */; };
 		7D41E9EF2AB31927001357CE /* Ping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D41E9EE2AB31927001357CE /* Ping.swift */; };
 		7D8B56EE2AAAA7980098467F /* BlurredEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */; };
+		7DC26D712AE6EB6E00B52D02 /* DeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D702AE6EB6E00B52D02 /* DeviceList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		7D2FFC6C2AAD2D0D00FFF97E /* Extension + Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Scene.swift"; sourceTree = "<group>"; };
 		7D41E9EE2AB31927001357CE /* Ping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ping.swift; sourceTree = "<group>"; };
 		7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredEffect.swift; sourceTree = "<group>"; };
+		7DC26D702AE6EB6E00B52D02 /* DeviceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				7D25E1352ACAF7AE0024D971 /* AddDeviceView.swift */,
+				7DC26D702AE6EB6E00B52D02 /* DeviceList.swift */,
 				7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */,
 				7D04291E2AAA214900C9048C /* ButtonPressModifier.swift */,
 				7D0429202AAA219B00C9048C /* WakeUpButton.swift */,
@@ -189,6 +192,7 @@
 				7D04290E2AAA1FB400C9048C /* LANWakeUpApp.swift in Sources */,
 				7D2FFC6D2AAD2D0D00FFF97E /* Extension + Scene.swift in Sources */,
 				7D04291D2AAA212800C9048C /* LANWakeUpView.swift in Sources */,
+				7DC26D712AE6EB6E00B52D02 /* DeviceList.swift in Sources */,
 				7D25E1362ACAF7AE0024D971 /* AddDeviceView.swift in Sources */,
 				7D0429232AAA21AF00C9048C /* Computer.swift in Sources */,
 				7D41E9EF2AB31927001357CE /* Ping.swift in Sources */,

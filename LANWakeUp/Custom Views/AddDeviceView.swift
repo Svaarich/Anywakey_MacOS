@@ -51,6 +51,7 @@ struct AddDeviceView: View {
                                 )
                                 addAction(newDevice)
                                 withAnimation {
+                                    isHoverAddButton.toggle()
                                     showSaveAlert.toggle()
                                     newDeviceName = "New device"
                                 }
