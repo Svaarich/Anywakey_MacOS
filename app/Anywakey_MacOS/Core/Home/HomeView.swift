@@ -6,6 +6,10 @@ struct HomeView: View {
     @State private var isPresentedListOfDevices = false
     @State private var isHoverDeleteButton = false
     
+    @State private var currentDevice: Device = Device(
+        name: "", MAC: "",
+        BroadcastAddr: "", Port: "")
+    
     var body: some View {
         VStack {
             HStack {
@@ -22,48 +26,48 @@ struct HomeView: View {
         .padding([.horizontal, .bottom])
         .padding(.top, 8)
         .background(BlurredEffect().ignoresSafeArea())
-        .onChange(of: computer.listOfDevices) { _ in
-            computer.updateStatusList()
-        }
-        .onChange(of: computer.device.BroadcastAddr) { _ in
-            withAnimation {
-                computer.device.status = .Default
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    computer.currentDeviceStatus()
-                }
-            }
-        }
-        .onAppear {
-            computer.fetchUserDefaults()
-            computer.updateStatusList()
-            if let device = computer.listOfDevices.first {
-                computer.device = device
-            }
-        }
+//        .onChange(of: dataService.listOfDevices) { _ in
+//            dataService.updateStatusList()
+//        }
+//        .onChange(of: dataService.device.BroadcastAddr) { _ in
+//            withAnimation {
+//                dataService.device.status = .Default
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                    dataService.currentDeviceStatus()
+//                }
+//            }
+//        }
+//        .onAppear {
+//            dataService.fetchUserDefaults()
+//            dataService.updateStatusList()
+//            if let device = dataService.listOfDevices.first {
+//                dataService.device = device
+//            }
+//        }
     }
     
-    private func getStatusColor() -> Color {
-        switch computer.device.status {
-        case .Online:
-            return DrawingConstants.statusColorOnline
-        case .Offline:
-            return DrawingConstants.statusColorOffline
-        case .Default:
-            return DrawingConstants.statusColorDefault
-        }
-    }
+//    private func getStatusColor() -> Color {
+//        switch dataService.device.status {
+//        case .Online:
+//            return DrawingConstants.statusColorOnline
+//        case .Offline:
+//            return DrawingConstants.statusColorOffline
+//        case .Default:
+//            return DrawingConstants.statusColorDefault
+//        }
+//    }
     
     //MARK: List of saved devices
     var deviceListView: some View {
-            DeviceList(listOfDevices: computer.listOfDevices,
-                       currentDevice: computer.device,
-                       computer: computer)
+        DeviceList(listOfDevices: $dataService.listOfDevices,
+                   currentDevice: $dataService.device,
+                       computer: dataService)
     }
     
     //MARK: Add Button
     var addNewDeviceButton: some View {
-        AddDeviceView(device: computer.device) { device in
-            computer.add(newDevice: device)
+        AddDeviceView(device: $dataService.device) { device in
+            $dataService.add(newDevice: device)
         }
     }
     
@@ -76,7 +80,7 @@ struct HomeView: View {
                     Spacer()
                     status
                 }
-                TextField("Enter IP / Broadcast Address...", text: $computer.device.BroadcastAddr)
+                TextField("Enter IP / Broadcast Address...", text: $dataService.device.BroadcastAddr)
                     .textFieldStyle(.roundedBorder)
                 HStack {
                     Text(" IPv4(e.g. 192.168.0.123) or DNS name for the host.")
@@ -96,10 +100,7 @@ struct HomeView: View {
                 Text(" MAC Address:")
                 Spacer()
             }
-            TextField("Enter MAC address...", text: Binding(
-                get: { computer.device.MAC.uppercased() },
-                set: { newValue in computer.device.MAC = newValue.uppercased() })
-            )
+            TextField("Enter MAC address...", text: $dataService.device)
             .textFieldStyle(.roundedBorder)
             HStack {
                 Text(" (e.g. 00:11:22:AA:BB:CC)")
