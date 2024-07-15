@@ -120,19 +120,7 @@ struct HomeView: View {
                 Text(" Port:")
                 Spacer()
             }
-            TextField("Enter port...", text: Binding(
-                get: {
-                    computer.device.Port
-                },
-                set: { newValue in
-                    if let newUInt16 = UInt16(newValue) {
-                        computer.device.Port = String(newUInt16)
-                    } else if newValue.isEmpty {
-                        computer.device.Port = newValue
-                    }
-                })
-                      
-            )
+            TextField("Enter port...", text: $port)
             .textFieldStyle(.roundedBorder)
             HStack {
                 Text(" Typically sent to port 7 or 9")
