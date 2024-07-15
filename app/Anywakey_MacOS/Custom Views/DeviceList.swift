@@ -49,22 +49,8 @@ struct DeviceList: View {
                                 .opacity(isHover ? 0.5 : 0.3)
                             HStack {
                                 Image(systemName: "checkmark")
-                                    .opacity(pc == currentDevice ? 1 : 0)
-                                if pc.status == .Online {
-                                    HStack {
-                                        Text(pc.name)
-                                        Spacer()
-                                        Text("online")
-                                            .foregroundColor(Color.green)
-                                    }
-                                } else {
-                                    HStack {
-                                        Text(pc.name)
-                                        Spacer()
-                                        Text("offline")
-                                            .foregroundColor(Color.pink)
-                                    }
-                                }
+                                    .opacity(device == dataService.displayedDevice ? 1 : 0)
+                                Text(device.name)
                             }
                             .padding(.vertical, 4)
                             .padding(.horizontal, 6)
