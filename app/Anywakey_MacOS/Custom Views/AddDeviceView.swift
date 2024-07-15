@@ -10,15 +10,8 @@ struct AddDeviceView: View {
     @State private var isHoverConfirm: Bool = false
     @State private var isHoverAddButton: Bool = false
     @State private var showSaveAlert: Bool = false
+    
     @State private var newDeviceName: String = "New Device"
-    
-    private var device: WakeUp.Device
-    private var addAction: (WakeUp.Device) -> Void
-    
-    init(device: WakeUp.Device, addAction: @escaping (WakeUp.Device) -> Void) {
-        self.device = device
-        self.addAction = addAction
-    }
 
     var body: some View {
         ZStack {
