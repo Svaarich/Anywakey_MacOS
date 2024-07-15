@@ -6,14 +6,13 @@ struct WakeUpButton: View {
     
     @State private var isPressed: Bool = false
     @State private var isHover:Bool = false
-    private var device: WakeUp.Device
     
     private var wol = WakeOnLAN()
     
     var body: some View {
         VStack {
             // Inactive button if 1 of TextFields is empty
-            if device.BroadcastAddr.isEmpty || device.MAC.count != 17 || device.Port.isEmpty {
+            if dataService.displayedDevice.BroadcastAddr.isEmpty || dataService.displayedDevice.MAC.count != 17 || dataService.displayedDevice.Port.isEmpty {
                 button
                     .opacity(DrawingConstants.opacityInactiveButton)
             } else {
