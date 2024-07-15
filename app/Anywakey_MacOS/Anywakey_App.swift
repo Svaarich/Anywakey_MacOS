@@ -2,7 +2,7 @@ import SwiftUI
 
 @main
 struct Anywakey_App: App {
-    private let dataService = DeviceDataService()
+    @StateObject private var dataService = DeviceDataService()
     var body: some Scene {
         WindowGroup {
             HomeView(dataService: dataService)
@@ -12,5 +12,6 @@ struct Anywakey_App: App {
         }
         .windowStyle(.hiddenTitleBar)
         .windowResizabilityContentSize()
+        .environmentObject(dataService)
     }
 }
