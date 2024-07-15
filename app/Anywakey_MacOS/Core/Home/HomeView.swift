@@ -134,24 +134,24 @@ struct HomeView: View {
     }
     
     //MARK: Status indicator
-    var status: some View {
-        HStack {
-            Text("Status:")
-                .foregroundColor(DrawingConstants.statusTextColor)
-                .opacity(DrawingConstants.statusTextOpacity)
-            ZStack {
-                Circle()
-                    .strokeBorder(lineWidth: 1)
-                    .foregroundColor(getStatusColor())
-                Circle()
-                    .fill()
-                    .foregroundColor(getStatusColor())
-                    .opacity(0.1)
-            }
-            .frame(width: DrawingConstants.statusDiameter)
-            .padding(.trailing, 5)
-        }
-    }
+//    var status: some View {
+//        HStack {
+//            Text("Status:")
+//                .foregroundColor(DrawingConstants.statusTextColor)
+//                .opacity(DrawingConstants.statusTextOpacity)
+//            ZStack {
+//                Circle()
+//                    .strokeBorder(lineWidth: 1)
+//                    .foregroundColor(getStatusColor())
+//                Circle()
+//                    .fill()
+//                    .foregroundColor(getStatusColor())
+//                    .opacity(0.1)
+//            }
+//            .frame(width: DrawingConstants.statusDiameter)
+//            .padding(.trailing, 5)
+//        }
+//    }
     
     //MARK: Clear button
     var clearButton: some View {
