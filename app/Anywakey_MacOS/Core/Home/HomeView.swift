@@ -20,7 +20,7 @@ struct HomeView: View {
             HStack {
                 deviceListView
                 Spacer()
-                addNewDeviceButton
+                addDeviceButton
             }
             .padding(.bottom)
             addressField
@@ -83,9 +83,9 @@ struct HomeView: View {
                 HStack {
                     Text(" IP / Broadcast Address:")
                     Spacer()
-                    status
+//                    status
                 }
-                TextField("Enter IP / Broadcast Address...", text: $dataService.device.BroadcastAddr)
+                TextField("Enter IP / Broadcast Address...", text: $address)
                     .textFieldStyle(.roundedBorder)
                 HStack {
                     Text(" IPv4(e.g. 192.168.0.123) or DNS name for the host.")
@@ -105,7 +105,7 @@ struct HomeView: View {
                 Text(" MAC Address:")
                 Spacer()
             }
-            TextField("Enter MAC address...", text: $dataService.device)
+            TextField("Enter MAC address...", text: $mac)
             .textFieldStyle(.roundedBorder)
             HStack {
                 Text(" (e.g. 00:11:22:AA:BB:CC)")
@@ -172,15 +172,13 @@ struct HomeView: View {
     //MARK: Clear button
     var clearButton: some View {
         HStack {
-            if computer.device.BroadcastAddr.isEmpty && computer.device.MAC.isEmpty && computer.device.Port.isEmpty {
+            if dataService.displayedDevice.BroadcastAddr.isEmpty && dataService.displayedDevice.MAC.isEmpty && dataService.displayedDevice.Port.isEmpty {
                 Button("Clear All") {
                 }
                 .opacity(DrawingConstants.clearButtonOpacity)
             } else {
                 Button("Clear All") {
-                    computer.device.BroadcastAddr = ""
-                    computer.device.MAC = ""
-                    computer.device.Port = ""
+                    dataService.displayedDevice = Device(name: "", MAC: "", BroadcastAddr: "", Port: "")
                 }
             }
         }
