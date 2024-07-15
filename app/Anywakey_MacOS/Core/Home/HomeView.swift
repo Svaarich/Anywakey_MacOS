@@ -216,11 +216,3 @@ struct HomeView: View {
         static let menuAddDeteleCornerRadius: CGFloat = 7
     }
 }
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        let computer = Computer()
-        HomeView(computer: computer)
-            .frame(width: 380)
-    }
-}
