@@ -6,6 +6,11 @@ struct HomeView: View {
     @State private var isPresentedListOfDevices = false
     @State private var isHoverDeleteButton = false
     
+    @State private var name: String = ""
+    @State private var mac: String = ""
+    @State private var address: String = ""
+    @State private var port: String = ""
+    
     @State private var currentDevice: Device = Device(
         name: "", MAC: "",
         BroadcastAddr: "", Port: "")
