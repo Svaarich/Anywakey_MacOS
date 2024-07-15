@@ -1,8 +1,10 @@
 import Foundation
 
-class Computer: ObservableObject {
+class DeviceDataService: ObservableObject {
+    
     @Published var device = WakeUp.Device(MAC: "", BroadcastAddr: "", Port: "")
     @Published var listOfDevices: Array<WakeUp.Device> = []
+    
     private var wakeUp = WakeUp()
     private var ping = Ping()
     

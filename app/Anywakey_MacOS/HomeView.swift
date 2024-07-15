@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct LANWakeUpView: View {
-    @ObservedObject var computer: Computer
+struct HomeView: View {
+    @ObservedObject var dataService: DeviceDataService
     
     @State private var isPresentedListOfDevices = false
     @State private var isHoverDeleteButton = false
@@ -235,7 +235,7 @@ struct LANWakeUpView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let computer = Computer()
-        LANWakeUpView(computer: computer)
+        HomeView(computer: computer)
             .frame(width: 380)
     }
 }

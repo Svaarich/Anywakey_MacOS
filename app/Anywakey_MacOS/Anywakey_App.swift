@@ -1,11 +1,11 @@
 import SwiftUI
 
 @main
-struct LANWakeUpApp: App {
-    private let computer = Computer()
+struct Anywakey_App: App {
+    private let dataService = DeviceDataService()
     var body: some Scene {
         WindowGroup {
-            LANWakeUpView(computer: computer)
+            HomeView(computer: dataService)
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(width: 380)
                 .preferredColorScheme(.dark)
