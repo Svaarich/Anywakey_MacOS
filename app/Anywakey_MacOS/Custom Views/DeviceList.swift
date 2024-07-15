@@ -2,22 +2,13 @@ import SwiftUI
 
 struct DeviceList: View {
     
-    var computer: Computer
-    var listOfDevices: Array<WakeUp.Device>
+    @EnvironmentObject var dataService: DeviceDataService
     
-    @State var isPresentedListOfDevices = false
-    @State var isHoverListOfDevices = false
-    @State var isHoverDeleteButton = false
-    @State var currentDevice: WakeUp.Device
-    @State private var currentHoverDevice = WakeUp.Device(MAC: "",
-                                                          BroadcastAddr: "",
-                                                          Port: "")
+    @State private var isPresentedListOfDevices = false
+    @State private var isHoverList = false
+    @State private var isHoverDeleteButton = false
     
-    init(listOfDevices: [WakeUp.Device], currentDevice: WakeUp.Device, computer: Computer) {
-        self.listOfDevices = listOfDevices
-        self.currentDevice = currentDevice
-        self.computer = computer
-    }
+    @State private var currentHoverDevice: Device?
     
     var body: some View {
         ZStack {
@@ -31,21 +22,21 @@ struct DeviceList: View {
         .scaleEffect(isPresentedListOfDevices ? 1.1 : 1)
         .onHover { hover in
             withAnimation {
-                isHoverListOfDevices = hover
+                isHoverList = hover
                 isPresentedListOfDevices = true
             }
         }
         .popover(isPresented: $isPresentedListOfDevices,
                  attachmentAnchor: .point(.bottom),
                  arrowEdge: .bottom) {
-            if listOfDevices.isEmpty {
+            if dataService.allDevices.isEmpty {
                 Text("Empty!")
                     .padding()
             } else {
                 VStack {
-                    ForEach(listOfDevices) { pc in
+                    ForEach(dataService.allDevices) { device in
                         var isHover: Bool {
-                            pc == currentHoverDevice
+                            device == currentHoverDevice
                         }
                         ZStack {
                             RoundedRectangle(cornerRadius: 5)
@@ -79,12 +70,11 @@ struct DeviceList: View {
                             .padding(.horizontal, 6)
                         }
                         .onHover { _ in
-                            currentHoverDevice = pc
+                            currentHoverDevice = device
                         }
                         .onTapGesture {
                             withAnimation {
-                                currentDevice = pc
-                                computer.device = pc
+                                dataService.displayedDevice = device
                                 isPresentedListOfDevices = false
                             }
                         }
@@ -97,7 +87,7 @@ struct DeviceList: View {
                 .padding(.horizontal, 8)
                 .padding(.vertical, 8)
                 .onAppear {
-                    currentHoverDevice = currentDevice
+                    currentHoverDevice = dataService.displayedDevice
                 }
             }
         }
@@ -119,9 +109,9 @@ struct DeviceList: View {
                 .padding(.vertical, 4)
         }
         .onTapGesture {
-            computer.delete(oldDevice: computer.device)
-            if let device = computer.listOfDevices.first {
-                computer.device = device
+            dataService.delete(device: dataService.displayedDevice)
+            if let device = dataService.allDevices.first {
+                dataService.displayedDevice = device
             }
             isPresentedListOfDevices.toggle()
         }
