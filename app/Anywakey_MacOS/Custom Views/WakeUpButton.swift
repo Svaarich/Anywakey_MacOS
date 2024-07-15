@@ -8,9 +8,7 @@ struct WakeUpButton: View {
     @State private var isHover:Bool = false
     private var device: WakeUp.Device
     
-    init(device: WakeUp.Device, action: @escaping () -> Error?) {
-        self.device = device
-    }
+    private var wol = WakeOnLAN()
     
     var body: some View {
         VStack {
