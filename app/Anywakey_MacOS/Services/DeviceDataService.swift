@@ -3,6 +3,8 @@ import Foundation
 
 public class DeviceDataService: ObservableObject {
     
+    @Published var displayedDevice: Device = Device(name: "", MAC: "", BroadcastAddr: "", Port: "")
+    
     @Published var allDevices: [Device] = [] {
         didSet {
             saveUserDefaults()
@@ -12,6 +14,9 @@ public class DeviceDataService: ObservableObject {
     
     init() {
         fetchUserDefaults()
+        if let device = allDevices.first {
+            displayedDevice = device
+        }
     }
     
     // Get list of saved devices from UserDefaults
