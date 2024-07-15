@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct AddDeviceView: View {
+
+    @EnvironmentObject var dataService: DeviceDataService
+        
     @FocusState private var focusedTextField: Bool
     
     @State private var isHoverCancel: Bool = false
