@@ -64,16 +64,12 @@ struct HomeView: View {
     
     //MARK: List of saved devices
     var deviceListView: some View {
-        DeviceList(listOfDevices: $dataService.listOfDevices,
-                   currentDevice: $dataService.device,
-                       computer: dataService)
+        DeviceList()
     }
     
     //MARK: Add Button
-    var addNewDeviceButton: some View {
-        AddDeviceView(device: $dataService.device) { device in
-            $dataService.add(newDevice: device)
-        }
+    var addDeviceButton: some View {
+        AddDeviceView()
     }
     
     //MARK: Textfields
