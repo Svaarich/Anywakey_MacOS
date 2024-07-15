@@ -24,7 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7D04290A2AAA1FB400C9048C /* LANWakeUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LANWakeUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D04290A2AAA1FB400C9048C /* Anywakey_MacOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anywakey_MacOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D04290D2AAA1FB400C9048C /* LANWakeUpApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LANWakeUpApp.swift; sourceTree = "<group>"; };
 		7D0429142AAA1FB400C9048C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7D0429162AAA1FB400C9048C /* LANWakeUp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LANWakeUp.entitlements; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		7D04290B2AAA1FB400C9048C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7D04290A2AAA1FB400C9048C /* LANWakeUp.app */,
+				7D04290A2AAA1FB400C9048C /* Anywakey_MacOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,9 +118,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7D0429092AAA1FB400C9048C /* LANWakeUp */ = {
+		7D0429092AAA1FB400C9048C /* Anywakey_MacOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7D0429192AAA1FB400C9048C /* Build configuration list for PBXNativeTarget "LANWakeUp" */;
+			buildConfigurationList = 7D0429192AAA1FB400C9048C /* Build configuration list for PBXNativeTarget "Anywakey_MacOS" */;
 			buildPhases = (
 				7D0429062AAA1FB400C9048C /* Sources */,
 				7D0429072AAA1FB400C9048C /* Frameworks */,
@@ -130,11 +130,11 @@
 			);
 			dependencies = (
 			);
-			name = LANWakeUp;
+			name = Anywakey_MacOS;
 			packageProductDependencies = (
 			);
 			productName = LANWakeUp;
-			productReference = 7D04290A2AAA1FB400C9048C /* LANWakeUp.app */;
+			productReference = 7D04290A2AAA1FB400C9048C /* Anywakey_MacOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -145,14 +145,14 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					7D0429092AAA1FB400C9048C = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
 				};
 			};
-			buildConfigurationList = 7D0429052AAA1FB400C9048C /* Build configuration list for PBXProject "LANWakeUp" */;
+			buildConfigurationList = 7D0429052AAA1FB400C9048C /* Build configuration list for PBXProject "Anywakey_MacOS" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -167,7 +167,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7D0429092AAA1FB400C9048C /* LANWakeUp */,
+				7D0429092AAA1FB400C9048C /* Anywakey_MacOS */,
 			);
 		};
 /* End PBXProject section */
@@ -211,6 +211,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -273,6 +274,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -387,7 +389,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7D0429052AAA1FB400C9048C /* Build configuration list for PBXProject "LANWakeUp" */ = {
+		7D0429052AAA1FB400C9048C /* Build configuration list for PBXProject "Anywakey_MacOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7D0429172AAA1FB400C9048C /* Debug */,
@@ -396,7 +398,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7D0429192AAA1FB400C9048C /* Build configuration list for PBXNativeTarget "LANWakeUp" */ = {
+		7D0429192AAA1FB400C9048C /* Build configuration list for PBXNativeTarget "Anywakey_MacOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7D04291A2AAA1FB400C9048C /* Debug */,
