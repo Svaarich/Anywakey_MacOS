@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		376C038D2C454DA10031FBE5 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C038C2C454DA10031FBE5 /* Device.swift */; };
 		7D04290E2AAA1FB400C9048C /* Anywakey_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04290D2AAA1FB400C9048C /* Anywakey_App.swift */; };
 		7D0429152AAA1FB400C9048C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D0429142AAA1FB400C9048C /* Preview Assets.xcassets */; };
 		7D04291D2AAA212800C9048C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04291C2AAA212800C9048C /* HomeView.swift */; };
 		7D04291F2AAA214900C9048C /* ButtonPressModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04291E2AAA214900C9048C /* ButtonPressModifier.swift */; };
 		7D0429212AAA219B00C9048C /* WakeUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0429202AAA219B00C9048C /* WakeUpButton.swift */; };
-		7D0429232AAA21AF00C9048C /* Computer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0429222AAA21AF00C9048C /* Computer.swift */; };
-		7D0429252AAA21E100C9048C /* WakeUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0429242AAA21E100C9048C /* WakeUp.swift */; };
+		7D0429232AAA21AF00C9048C /* DeviceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0429222AAA21AF00C9048C /* DeviceDataService.swift */; };
+		7D0429252AAA21E100C9048C /* WakeOnLan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0429242AAA21E100C9048C /* WakeOnLan.swift */; };
 		7D25E1362ACAF7AE0024D971 /* AddDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25E1352ACAF7AE0024D971 /* AddDeviceView.swift */; };
 		7D2FFC672AAD0A6900FFF97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D2FFC662AAD0A6900FFF97E /* Assets.xcassets */; };
 		7D2FFC6B2AAD2CCC00FFF97E /* Extension + View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FFC6A2AAD2CCC00FFF97E /* Extension + View.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		376C038C2C454DA10031FBE5 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		7D04290A2AAA1FB400C9048C /* Anywakey_MacOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anywakey_MacOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D04290D2AAA1FB400C9048C /* Anywakey_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anywakey_App.swift; sourceTree = "<group>"; };
 		7D0429142AAA1FB400C9048C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -31,8 +33,8 @@
 		7D04291C2AAA212800C9048C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7D04291E2AAA214900C9048C /* ButtonPressModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPressModifier.swift; sourceTree = "<group>"; };
 		7D0429202AAA219B00C9048C /* WakeUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpButton.swift; sourceTree = "<group>"; };
-		7D0429222AAA21AF00C9048C /* Computer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Computer.swift; sourceTree = "<group>"; };
-		7D0429242AAA21E100C9048C /* WakeUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUp.swift; sourceTree = "<group>"; };
+		7D0429222AAA21AF00C9048C /* DeviceDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataService.swift; sourceTree = "<group>"; };
+		7D0429242AAA21E100C9048C /* WakeOnLan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeOnLan.swift; sourceTree = "<group>"; };
 		7D25E1352ACAF7AE0024D971 /* AddDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceView.swift; sourceTree = "<group>"; };
 		7D2FFC662AAD0A6900FFF97E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D2FFC6A2AAD2CCC00FFF97E /* Extension + View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + View.swift"; sourceTree = "<group>"; };
@@ -53,6 +55,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		376C038E2C454DA90031FBE5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				376C038C2C454DA10031FBE5 /* Device.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		376C038F2C454E6A0031FBE5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7D04291C2AAA212800C9048C /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		376C03902C454E710031FBE5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				376C038F2C454E6A0031FBE5 /* Home */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		376C03912C454E970031FBE5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7D0429222AAA21AF00C9048C /* DeviceDataService.swift */,
+				376C03922C454EBA0031FBE5 /* Network */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		376C03922C454EBA0031FBE5 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7D0429242AAA21E100C9048C /* WakeOnLan.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		7D0429012AAA1FB300C9048C = {
 			isa = PBXGroup;
 			children = (
@@ -73,9 +116,9 @@
 			isa = PBXGroup;
 			children = (
 				7D04290D2AAA1FB400C9048C /* Anywakey_App.swift */,
-				7D04291C2AAA212800C9048C /* HomeView.swift */,
-				7D0429222AAA21AF00C9048C /* Computer.swift */,
-				7D0429242AAA21E100C9048C /* WakeUp.swift */,
+				376C03902C454E710031FBE5 /* Core */,
+				376C03912C454E970031FBE5 /* Services */,
+				376C038E2C454DA90031FBE5 /* Models */,
 				7D41E9EE2AB31927001357CE /* Ping.swift */,
 				7D2FFC992AAFD0E800FFF97E /* Custom Views */,
 				7D2FFC6E2AAD2E1800FFF97E /* Extensions */,
@@ -189,16 +232,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376C038D2C454DA10031FBE5 /* Device.swift in Sources */,
 				7D04290E2AAA1FB400C9048C /* Anywakey_App.swift in Sources */,
 				7D2FFC6D2AAD2D0D00FFF97E /* Extension + Scene.swift in Sources */,
 				7D04291D2AAA212800C9048C /* HomeView.swift in Sources */,
 				7DC26D712AE6EB6E00B52D02 /* DeviceList.swift in Sources */,
 				7D25E1362ACAF7AE0024D971 /* AddDeviceView.swift in Sources */,
-				7D0429232AAA21AF00C9048C /* Computer.swift in Sources */,
+				7D0429232AAA21AF00C9048C /* DeviceDataService.swift in Sources */,
 				7D41E9EF2AB31927001357CE /* Ping.swift in Sources */,
 				7D8B56EE2AAAA7980098467F /* BlurredEffect.swift in Sources */,
 				7D0429212AAA219B00C9048C /* WakeUpButton.swift in Sources */,
-				7D0429252AAA21E100C9048C /* WakeUp.swift in Sources */,
+				7D0429252AAA21E100C9048C /* WakeOnLan.swift in Sources */,
 				7D04291F2AAA214900C9048C /* ButtonPressModifier.swift in Sources */,
 				7D2FFC6B2AAD2CCC00FFF97E /* Extension + View.swift in Sources */,
 			);
