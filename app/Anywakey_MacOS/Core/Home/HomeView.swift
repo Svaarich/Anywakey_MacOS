@@ -172,11 +172,8 @@ struct HomeView: View {
     
     //MARK: WakeUp button
     var wakeUpButton: some View {
-        let wakeUpButton = WakeUpButton(device: computer.device) {
-            computer.target(device: computer.device)
-        }
+        WakeUpButton()
             .padding(.vertical, 8)
-        return wakeUpButton
     }
     
     var deviceListBackground: some View {
