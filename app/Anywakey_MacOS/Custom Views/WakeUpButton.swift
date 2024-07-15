@@ -4,11 +4,9 @@ struct WakeUpButton: View {
     @State private var isPressed: Bool = false
     @State private var isHover:Bool = false
     private var device: WakeUp.Device
-    private var action: () -> Error?
     
     init(device: WakeUp.Device, action: @escaping () -> Error?) {
         self.device = device
-        self.action = action
     }
     
     var body: some View {
@@ -28,7 +26,7 @@ struct WakeUpButton: View {
                         }
                     }
                     .onTapGesture {
-                        _ = action()
+                        _ = wol.target(device: dataService.displayedDevice)
                     }
                     .pressEvents { // Custom pressEvent modifier -> ButtonPressModifier
                         withAnimation(.easeInOut(duration: DrawingConstants.animationDuration)) {
