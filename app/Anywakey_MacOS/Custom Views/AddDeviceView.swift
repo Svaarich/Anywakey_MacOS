@@ -39,13 +39,12 @@ struct AddDeviceView: View {
                             .foregroundColor(.white)
                             .font(Font.system(size: DrawingConstants.addButtonSize))
                             .onTapGesture {
-                                let newDevice = WakeUp.Device(
+                                dataService.displayedDevice = Device(
                                     name: newDeviceName,
-                                    MAC: device.MAC,
-                                    BroadcastAddr: device.BroadcastAddr,
-                                    Port: device.Port
-                                )
-                                addAction(newDevice)
+                                    MAC: dataService.displayedDevice.MAC,
+                                    BroadcastAddr: dataService.displayedDevice.BroadcastAddr,
+                                    Port: dataService.displayedDevice.Port)
+                                dataService.add(newDevice: dataService.displayedDevice)
                                 withAnimation {
                                     isHoverAddButton.toggle()
                                     showSaveAlert.toggle()
