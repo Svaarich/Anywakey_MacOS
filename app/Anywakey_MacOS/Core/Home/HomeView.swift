@@ -73,6 +73,13 @@ struct HomeView: View {
                 Text(selectedDevice!.Port.isEmpty ? "No value" : selectedDevice!.Port)
                     .foregroundStyle(.secondary)
             }
+            VStack(alignment: .leading) {
+                Text("Status:")
+                    .fontWeight(.semibold)
+                Text("online")
+                    .foregroundStyle(.secondary)
+            }
+            WakeUpButton()
             Spacer(minLength: 0)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
