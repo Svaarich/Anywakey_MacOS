@@ -1,7 +1,11 @@
+
 import SwiftUI
 
 struct HomeView: View {
+    
     @ObservedObject var dataService: DeviceDataService
+    
+    @State private var columnVisibility = NavigationSplitViewVisibility.detailOnly
     
     @State private var isPresentedListOfDevices = false
     @State private var isHoverDeleteButton = false
@@ -11,56 +15,46 @@ struct HomeView: View {
     @State private var address: String = ""
     @State private var port: String = ""
     
+    @State private var selectedDevice: Device?
+    
     @State private var currentDevice: Device = Device(
         name: "", MAC: "",
         BroadcastAddr: "", Port: "")
     
+    @State var selected: Device? = nil
+    
     var body: some View {
-        VStack {
-            HStack {
-                deviceListView
-                Spacer()
-                addDeviceButton
+        HStack {
+            List(dataService.allDevices, selection: $selected) { device in
+                Text("Select \(device.name)")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(6)
+                    .padding(.horizontal, 6)
+                //                        .background(BlurredEffect())
+                    .background(selectedDevice == device ? .secondary.opacity(0.2) : Color.gray.opacity(0.00001))
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                    .onTapGesture {
+                        selectedDevice = device
+                    }
             }
-            .padding(.bottom)
-            addressField
-            macField
-            portField
-            wakeUpButton
+            .frame(width: 200)
+            .listStyle(SidebarListStyle())
+            
+            Spacer()
+            detailView
+            Spacer()
         }
-        .padding([.horizontal, .bottom])
-        .padding(.top, 8)
         .background(BlurredEffect().ignoresSafeArea())
-//        .onChange(of: dataService.listOfDevices) { _ in
-//            dataService.updateStatusList()
-//        }
-//        .onChange(of: dataService.device.BroadcastAddr) { _ in
-//            withAnimation {
-//                dataService.device.status = .Default
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                    dataService.currentDeviceStatus()
-//                }
-//            }
-//        }
-//        .onAppear {
-//            dataService.fetchUserDefaults()
-//            dataService.updateStatusList()
-//            if let device = dataService.listOfDevices.first {
-//                dataService.device = device
-//            }
-//        }
+        
     }
     
-//    private func getStatusColor() -> Color {
-//        switch dataService.device.status {
-//        case .Online:
-//            return DrawingConstants.statusColorOnline
-//        case .Offline:
-//            return DrawingConstants.statusColorOffline
-//        case .Default:
-//            return DrawingConstants.statusColorDefault
-//        }
-//    }
+    private var detailView: some View {
+        if selectedDevice == nil {
+            Text("Anywakey")
+        } else {
+            Text("\(selectedDevice!.name) is selected")
+        }
+    }
     
     //MARK: List of saved devices
     var deviceListView: some View {
@@ -79,7 +73,7 @@ struct HomeView: View {
                 HStack {
                     Text(" IP / Broadcast Address:")
                     Spacer()
-//                    status
+                    //                    status
                 }
                 TextField("Enter IP / Broadcast Address...", text: $address)
                     .textFieldStyle(.roundedBorder)
@@ -102,7 +96,7 @@ struct HomeView: View {
                 Spacer()
             }
             TextField("Enter MAC address...", text: $mac)
-            .textFieldStyle(.roundedBorder)
+                .textFieldStyle(.roundedBorder)
             HStack {
                 Text(" (e.g. 00:11:22:AA:BB:CC)")
                     .font(Font.system(size: DrawingConstants.instructionTextSize))
@@ -121,7 +115,7 @@ struct HomeView: View {
                 Spacer()
             }
             TextField("Enter port...", text: $port)
-            .textFieldStyle(.roundedBorder)
+                .textFieldStyle(.roundedBorder)
             HStack {
                 Text(" Typically sent to port 7 or 9")
                     .font(Font.system(size: DrawingConstants.instructionTextSize))
@@ -134,24 +128,24 @@ struct HomeView: View {
     }
     
     //MARK: Status indicator
-//    var status: some View {
-//        HStack {
-//            Text("Status:")
-//                .foregroundColor(DrawingConstants.statusTextColor)
-//                .opacity(DrawingConstants.statusTextOpacity)
-//            ZStack {
-//                Circle()
-//                    .strokeBorder(lineWidth: 1)
-//                    .foregroundColor(getStatusColor())
-//                Circle()
-//                    .fill()
-//                    .foregroundColor(getStatusColor())
-//                    .opacity(0.1)
-//            }
-//            .frame(width: DrawingConstants.statusDiameter)
-//            .padding(.trailing, 5)
-//        }
-//    }
+    //    var status: some View {
+    //        HStack {
+    //            Text("Status:")
+    //                .foregroundColor(DrawingConstants.statusTextColor)
+    //                .opacity(DrawingConstants.statusTextOpacity)
+    //            ZStack {
+    //                Circle()
+    //                    .strokeBorder(lineWidth: 1)
+    //                    .foregroundColor(getStatusColor())
+    //                Circle()
+    //                    .fill()
+    //                    .foregroundColor(getStatusColor())
+    //                    .opacity(0.1)
+    //            }
+    //            .frame(width: DrawingConstants.statusDiameter)
+    //            .padding(.trailing, 5)
+    //        }
+    //    }
     
     //MARK: Clear button
     var clearButton: some View {
