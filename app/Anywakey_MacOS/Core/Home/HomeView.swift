@@ -39,31 +39,51 @@ struct HomeView: View {
             }
             .frame(width: 200)
             .listStyle(SidebarListStyle())
+            VStack {
+                if selectedDevice == nil {
+                    Text("Anywakey 1.0")
+                } else {
+                    detailView
+                }
+            }
+            .padding(.horizontal)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             
-            Spacer()
-            detailView
-            Spacer()
         }
         .background(BlurredEffect().ignoresSafeArea())
+//        .frame(minWidth: 500)
         
     }
     
     private var detailView: some View {
-        if selectedDevice == nil {
-            Text("Anywakey")
-        } else {
-            Text("\(selectedDevice!.name) is selected")
+        VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading) {
+                Text("Name:")
+                    .fontWeight(.semibold)
+                Text(selectedDevice!.name.isEmpty ? "No value" : selectedDevice!.name)
+                    .foregroundStyle(.secondary)
+            }
+            VStack(alignment: .leading) {
+                Text("Address:")
+                    .fontWeight(.semibold)
+                Text(selectedDevice!.BroadcastAddr.isEmpty ? "No value" : selectedDevice!.BroadcastAddr)
+                    .foregroundStyle(.secondary)
+            }
+            VStack(alignment: .leading) {
+                Text("MAC:")
+                    .fontWeight(.semibold)
+                Text(selectedDevice!.MAC.isEmpty ? "No value" : selectedDevice!.MAC)
+                    .foregroundStyle(.secondary)
+            }
+            VStack(alignment: .leading) {
+                Text("Port:")
+                    .fontWeight(.semibold)
+                Text(selectedDevice!.Port.isEmpty ? "No value" : selectedDevice!.Port)
+                    .foregroundStyle(.secondary)
+            }
+            Spacer(minLength: 0)
         }
-    }
-    
-    //MARK: List of saved devices
-    var deviceListView: some View {
-        DeviceList()
-    }
-    
-    //MARK: Add Button
-    var addDeviceButton: some View {
-        AddDeviceView()
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
     }
     
     //MARK: Textfields
