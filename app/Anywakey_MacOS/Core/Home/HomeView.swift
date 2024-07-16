@@ -17,20 +17,13 @@ struct HomeView: View {
     
     @State private var selectedDevice: Device?
     
-    @State private var currentDevice: Device = Device(
-        name: "", MAC: "",
-        BroadcastAddr: "", Port: "")
-    
-    @State var selected: Device? = nil
-    
     var body: some View {
         HStack {
-            List(dataService.allDevices, selection: $selected) { device in
+            List(dataService.allDevices, selection: $selectedDevice) { device in
                 Text("Select \(device.name)")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(6)
                     .padding(.horizontal, 6)
-                //                        .background(BlurredEffect())
                     .background(selectedDevice == device ? .secondary.opacity(0.2) : Color.gray.opacity(0.00001))
                     .clipShape(RoundedRectangle(cornerRadius: 5))
                     .onTapGesture {
@@ -93,7 +86,6 @@ struct HomeView: View {
                 HStack {
                     Text(" IP / Broadcast Address:")
                     Spacer()
-                    //                    status
                 }
                 TextField("Enter IP / Broadcast Address...", text: $address)
                     .textFieldStyle(.roundedBorder)
