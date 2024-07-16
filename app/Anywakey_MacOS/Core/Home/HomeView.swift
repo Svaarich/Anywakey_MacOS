@@ -30,6 +30,25 @@ struct HomeView: View {
                         selectedDevice = device
                     }
             }
+            .safeAreaInset(edge: .bottom) {
+                HStack {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                    
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "minus")
+                    }
+                    Spacer()
+                }
+                .buttonStyle(.borderless)
+                .labelStyle(.iconOnly)
+                .padding(8)
+            }
             .frame(width: 200)
             .listStyle(SidebarListStyle())
             VStack {
