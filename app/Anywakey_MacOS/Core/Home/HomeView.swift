@@ -40,8 +40,8 @@ struct HomeView: View {
                 }
             }
             .padding(.horizontal)
-            .frame(width: 300)
-            .frame(maxWidth: 300, maxHeight: .infinity)
+            .frame(minWidth: 300, minHeight: 300)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             
         }
         .background(BlurredEffect().ignoresSafeArea())
