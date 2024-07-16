@@ -6,12 +6,12 @@ struct Anywakey_App: App {
     var body: some Scene {
         WindowGroup {
             HomeView(dataService: dataService)
-                .fixedSize(horizontal: false, vertical: true)
-                .frame(width: 380)
+//                .fixedSize(horizontal: false, vertical: true)
+//                .frame(width: 380)
                 .preferredColorScheme(.dark)
         }
         .windowStyle(.hiddenTitleBar)
-        .windowResizabilityContentSize()
+//        .windowResizabilityContentSize()
         .environmentObject(dataService)
     }
 }
