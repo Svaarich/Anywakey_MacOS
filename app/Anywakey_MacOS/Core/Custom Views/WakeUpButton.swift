@@ -20,15 +20,15 @@ struct WakeUpButton: View {
                     .scaleEffect(isPressed ? DrawingConstants.scaleEffectPressedButton : DrawingConstants.scaleEffectDefault)
                     .onHover { hover in
                         withAnimation {
-                            isHover = hover
-                        }
-                    }
-                    .onTapGesture {
-                        _ = wol.target(device: dataService.displayedDevice)
-                    }
-                    .pressEvents { // Custom pressEvent modifier -> ButtonPressModifier
-                        withAnimation(.easeInOut(duration: DrawingConstants.animationDuration)) {
-                            isPressed = true
+    
+    private func isValid() -> Bool {
+        if !device.BroadcastAddr.isValidAdress() ||
+            !device.MAC.isValidMAC() ||
+            !device.Port.isValidPort() {
+            return false
+        }
+        return true
+    }
     
     private var button: some View {
         Button {
