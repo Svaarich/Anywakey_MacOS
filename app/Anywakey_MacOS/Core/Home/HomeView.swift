@@ -5,8 +5,6 @@ struct HomeView: View {
     
     @ObservedObject var dataService: DeviceDataService
     
-    @State private var columnVisibility = NavigationSplitViewVisibility.detailOnly
-    
     @State private var isPresentedListOfDevices = false
     @State private var isHoverDeleteButton = false
     
