@@ -31,13 +31,14 @@ struct HomeView: View {
             .safeAreaInset(edge: .bottom) {
                 HStack {
                     Button {
-                        
+                        // open add window
                     } label: {
                         Image(systemName: "plus")
                     }
                     
                     Button {
-                        
+                        guard selectedDevice != nil else { return }
+                        dataService.delete(device: selectedDevice!)
                     } label: {
                         Image(systemName: "minus")
                     }
