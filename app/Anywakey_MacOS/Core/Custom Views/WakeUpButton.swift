@@ -2,8 +2,6 @@ import SwiftUI
 
 struct WakeUpButton: View {
     
-    @EnvironmentObject var dataService: DeviceDataService
-    
     @State private var isPressed: Bool = false
     @State private var isHover:Bool = false
     
