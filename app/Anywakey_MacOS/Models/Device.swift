@@ -4,7 +4,7 @@ import Foundation
 public struct Device: Hashable, Identifiable, Codable {
     
     init(name: String, MAC: String, BroadcastAddr: String, Port: String, isPinned: Bool = false, id: String = UUID().uuidString) {
-        self.name = name == "" ? "[No Name]" : name
+        self.name = name == "" ? "No value" : name
         self.MAC = MAC.uppercased()
         self.BroadcastAddr = BroadcastAddr
         self.Port = Port
