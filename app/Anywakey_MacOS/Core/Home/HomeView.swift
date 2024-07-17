@@ -5,7 +5,7 @@ struct HomeView: View {
     
     @ObservedObject var dataService: DeviceDataService
     
-    @State private var isPresentedListOfDevices = false
+    @State private var showAddView = false
     @State private var isHoverDeleteButton = false
     
     @State private var name: String = ""
@@ -31,7 +31,9 @@ struct HomeView: View {
             .safeAreaInset(edge: .bottom) {
                 HStack {
                     Button {
-                        // open add window
+                        withAnimation(.spring) {
+                            showAddView = true
+                        }
                     } label: {
                         Image(systemName: "plus")
                     }
