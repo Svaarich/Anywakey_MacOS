@@ -5,7 +5,7 @@ struct WakeUpButton: View {
     @State private var isPressed: Bool = false
     @State private var isHover:Bool = false
     
-    private var wol = WakeOnLAN()
+    let device: Device
     
     var body: some View {
         VStack {
@@ -29,30 +29,29 @@ struct WakeUpButton: View {
                     .pressEvents { // Custom pressEvent modifier -> ButtonPressModifier
                         withAnimation(.easeInOut(duration: DrawingConstants.animationDuration)) {
                             isPressed = true
-                        }
-                    } onRelease: {
-                        withAnimation {
-                            isPressed = false
-                        }
-                            
-                    }
+    
+    private var button: some View {
+        Button {
+            if isValid() {
+                _ = wol.target(device: device)
+                print(device)
+            }
+        } label: {
+            ZStack {
+                RoundedRectangle(cornerRadius: DrawingConstants.buttonCornerRadius)
+                    .frame(maxWidth: 500, maxHeight: 250)
+                    .opacity(0.2)
+                
+                RoundedRectangle(cornerRadius: DrawingConstants.buttonCornerRadius)
+                    .stroke(lineWidth: DrawingConstants.buttonStrokeWidth)
+                    .frame(maxWidth: 500, maxHeight: 250)
+                    .opacity(0.8)
+                
+                Text(isValid() ? "WAKE UP" : "WRONG INPUT")
+                    .font(Font.system(size: DrawingConstants.fontSIze))
             }
         }
-    }
-    
-    var button: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: DrawingConstants.buttonCornerRadius)
-                .frame(width: DrawingConstants.buttonWidth, height: DrawingConstants.buttonHeigh)
-                .opacity(isHover ? 0.2 : 0.1)
-            RoundedRectangle(cornerRadius: DrawingConstants.buttonCornerRadius)
-                .stroke(lineWidth: DrawingConstants.buttonStrokeWidth)
-                .frame(width: DrawingConstants.buttonWidth, height: DrawingConstants.buttonHeigh)
-                .opacity(isHover ? 0.8 : 0.6)
-            Text("WAKE UP")
-                .font(Font.system(size: DrawingConstants.fontSIze))
-                .opacity(isHover ? DrawingConstants.opacityActiveButton : 0.8)
-        }
+        
     }
     
     private struct DrawingConstants {
