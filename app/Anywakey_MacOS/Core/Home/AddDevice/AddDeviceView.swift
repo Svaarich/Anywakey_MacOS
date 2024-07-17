@@ -13,12 +13,14 @@ struct AddDeviceView: View {
     @State private var mac: String = ""
     @State private var port: String = ""
     
+    @FocusState private var isFocused: FocusedStates?
+    
     var body: some View {
         VStack(alignment: .leading) {
             
             // NAME
             TextField(text: $name, prompt: Text("Name")) {
-                Text(name)
+            .focused($isFocused, equals: .name)
             }
             .textFieldStyle(.plain)
             .padding(4)
@@ -28,12 +30,24 @@ struct AddDeviceView: View {
             
             // ADDRESS
             // TODO: dfdf
-            
+            .focused($isFocused, equals: .adress)
+            .focused($isFocused, equals: .mac)
+            .focused($isFocused, equals: .port)
             Spacer()
             
             addButton
         }
         .frame(maxWidth: .infinity)
+    }
+}
+
+extension AddDeviceView {
+    
+    private enum FocusedStates: Hashable {
+        case name
+        case adress
+        case mac
+        case port
     }
 }
 
