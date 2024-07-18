@@ -7,19 +7,21 @@ struct WakeUpButton: View {
     
     let device: Device
     
+    let wol = WakeOnLAN()
+    
     var body: some View {
         VStack {
-            // Inactive button if 1 of TextFields is empty
-            if dataService.displayedDevice.BroadcastAddr.isEmpty || dataService.displayedDevice.MAC.count != 17 || dataService.displayedDevice.Port.isEmpty {
-                button
-                    .opacity(DrawingConstants.opacityInactiveButton)
-            } else {
-                // Active button
-                button
-                    .scaleEffect(isHover ? 1.05 : 1)
-                    .scaleEffect(isPressed ? DrawingConstants.scaleEffectPressedButton : DrawingConstants.scaleEffectDefault)
-                    .onHover { hover in
-                        withAnimation {
+            button
+                .disabled(!isValid())
+                .buttonStyle(.plain)
+                .scaleEffect(!isValid() ? 1.0 : isHover ? 1.05 : 1.0)
+                .onHover { hover in
+                    withAnimation {
+                        isHover = hover
+                    }
+                }
+        }
+    }
     
     private func isValid() -> Bool {
         if !device.BroadcastAddr.isValidAdress() ||
