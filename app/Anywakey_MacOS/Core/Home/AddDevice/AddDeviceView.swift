@@ -21,18 +21,51 @@ struct AddDeviceView: View {
             // NAME
             TextField("Device Name", text: $name)
             .focused($isFocused, equals: .name)
-            }
             .textFieldStyle(.plain)
-            .padding(4)
-            .padding(.horizontal, 4)
-            .background(.secondary.opacity(0.2))
-            .clipShape(RoundedRectangle(cornerRadius: 5))
+            .padding(6)
+            .padding(.horizontal, 6)
+            
+            .background(
+                RoundedRectangle(cornerRadius: 5)
+                    .strokeBorder(lineWidth: 1)
+                    .foregroundStyle(.secondary.opacity(0.6))
+            )
             
             // ADDRESS
-            // TODO: dfdf
+            TextField("IP / Broadcast Address", text: $address)
             .focused($isFocused, equals: .adress)
+            .textFieldStyle(.plain)
+            .padding(6)
+            .padding(.horizontal, 6)
+            .background(
+                RoundedRectangle(cornerRadius: 5)
+                    .strokeBorder(lineWidth: 1)
+                    .foregroundStyle(.secondary.opacity(0.6))
+            )
+            
+            // MAC
+            TextField("MAC Address", text: $mac)
             .focused($isFocused, equals: .mac)
+            .textFieldStyle(.plain)
+            .padding(6)
+            .padding(.horizontal, 6)
+            .background(
+                RoundedRectangle(cornerRadius: 5)
+                    .strokeBorder(lineWidth: 1)
+                    .foregroundStyle(.secondary.opacity(0.6))
+            )
+            
+            // Port
+            TextField("Port", text: $port)
             .focused($isFocused, equals: .port)
+            .textFieldStyle(.plain)
+            .padding(6)
+            .padding(.horizontal, 6)
+            .background(
+                RoundedRectangle(cornerRadius: 5)
+                    .strokeBorder(lineWidth: 1)
+                    .foregroundStyle(.secondary.opacity(0.6))
+            )
             Spacer()
             
             addButton
