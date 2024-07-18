@@ -10,35 +10,7 @@ struct HomeView: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            VStack(spacing: 0) {
-                Rectangle()
-                    .frame(height: 1)
-                    .foregroundStyle(.clear)
-                List(dataService.allDevices, selection: $selectedDevice) { device in
-                    Text("\(device.name)")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(6)
-                        .padding(.horizontal, 6)
-                        .background(selectedDevice == device ? .secondary.opacity(0.2) : Color.gray.opacity(0.00001))
-                        .clipShape(RoundedRectangle(cornerRadius: 5))
-                        .onTapGesture {
-                            withAnimation(.spring(duration: 0.3)) {
-                                selectedDevice = device
-                                showAddView = false
-                            }
-                        }
-                }
-                .scrollIndicators(.never)
-                .scrollContentBackground(.hidden)
-                .listStyle(SidebarListStyle())
-                
-                HStack {
-                    addButton
-                    deleteButton
-                    Spacer()
-                }
-                .padding(8)
-            }
+            deviceList
             .frame(width: 200)
 
             VStack {
@@ -48,7 +20,7 @@ struct HomeView: View {
                     if selectedDevice == nil {
                         Text("Anywakey")
                     } else {
-                        detailView
+                        deviceInfo
                     }
                 }
             }
@@ -62,8 +34,52 @@ struct HomeView: View {
             selectedDevice = dataService.allDevices.isEmpty ? nil : dataService.allDevices[0]
         }
     }
+}
+
+#Preview {
+    let dataService = DeviceDataService()
+    return HomeView(dataService: dataService)
+}
+
+extension HomeView {
     
-    private var detailView: some View {
+    // MARK: PROPERTIES
+    
+    // Device List
+    private var deviceList: some View {
+        VStack(spacing: 0) {
+            Rectangle()
+                .frame(height: 1)
+                .foregroundStyle(.clear)
+            List(dataService.allDevices, selection: $selectedDevice) { device in
+                Text("\(device.name)")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(6)
+                    .padding(.horizontal, 6)
+                    .background(selectedDevice == device ? .secondary.opacity(0.2) : Color.gray.opacity(0.00001))
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                    .onTapGesture {
+                        withAnimation(.spring(duration: 0.3)) {
+                            selectedDevice = device
+                            showAddView = false
+                        }
+                    }
+            }
+            .scrollIndicators(.never)
+            .scrollContentBackground(.hidden)
+            .listStyle(SidebarListStyle())
+            
+            HStack {
+                addButton
+                deleteButton
+                Spacer()
+            }
+            .padding(8)
+        }
+    }
+    
+    // Device info view
+    private var deviceInfo: some View {
         VStack(alignment: .leading, spacing: 10) {
             VStack(alignment: .leading) {
                 Text("Name:")
@@ -114,20 +130,20 @@ struct HomeView: View {
                 VStack(alignment: .leading) {
                     Text("Status:")
                         .fontWeight(.semibold)
-                        Text("online")
-                            .foregroundStyle(.secondary)
-                            .overlay(alignment: .trailing) {
-                                Circle()
-                                    .foregroundStyle(.green.opacity(0.2))
-                                    .overlay {
-                                        Circle()
-                                            .strokeBorder(lineWidth: 1)
-                                            .foregroundStyle(.green)
-                                            
-                                    }
-                                    .frame(height: 11)
-                                    .offset(x: 15, y: 1)
-                            }
+                    Text("online")
+                        .foregroundStyle(.secondary)
+                        .overlay(alignment: .trailing) {
+                            Circle()
+                                .foregroundStyle(.green.opacity(0.2))
+                                .overlay {
+                                    Circle()
+                                        .strokeBorder(lineWidth: 1)
+                                        .foregroundStyle(.green)
+                                    
+                                }
+                                .frame(height: 11)
+                                .offset(x: 15, y: 1)
+                        }
                 }
                 .padding(8)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -148,7 +164,6 @@ struct HomeView: View {
                 
                 
             }
-    
             
             Spacer(minLength: 0)
             WakeUpButton(device: selectedDevice!)
@@ -159,16 +174,7 @@ struct HomeView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
     }
-}
-
-#Preview {
-    let dataService = DeviceDataService()
-    return HomeView(dataService: dataService)
-}
-
-extension HomeView {
     
-    // MARK: PROPERTIES
     
     // Add button
     private var addButton: some View {
