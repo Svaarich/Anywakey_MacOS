@@ -19,7 +19,7 @@ struct AddDeviceView: View {
         VStack(alignment: .leading) {
             
             // NAME
-            TextField(text: $name, prompt: Text("Name")) {
+            TextField("Device Name", text: $name)
             .focused($isFocused, equals: .name)
             }
             .textFieldStyle(.plain)
