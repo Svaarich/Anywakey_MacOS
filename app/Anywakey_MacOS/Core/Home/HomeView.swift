@@ -10,26 +10,17 @@ struct HomeView: View {
     
     var body: some View {
         HStack(spacing: 0) {
+            
+            // Device list
             deviceList
-            .frame(width: 200)
-
-            VStack {
-                if showAddView {
-                    AddDeviceView(showView: $showAddView, device: $selectedDevice)
-                } else {
-                    if selectedDevice == nil {
-                        Text("Anywakey")
-                    } else {
-                        deviceInfo
-                    }
-                }
-            }
-            .padding()
-            .frame(minWidth: 350, minHeight: 450)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(BlurredEffect(.fullScreenUI).ignoresSafeArea())
+            
+            // Information view
+            info
+            
         }
         .background(BlurredEffect(.fullScreenUI).opacity(0.6).ignoresSafeArea())
+        
+        // init selected device 
         .onAppear {
             selectedDevice = dataService.allDevices.isEmpty ? nil : dataService.allDevices[0]
         }
@@ -44,6 +35,25 @@ struct HomeView: View {
 extension HomeView {
     
     // MARK: PROPERTIES
+    
+    // InfoView
+    private var info: some View {
+        VStack {
+            if showAddView {
+                AddDeviceView(showView: $showAddView, device: $selectedDevice)
+            } else {
+                if selectedDevice == nil {
+                    Text("Anywakey")
+                } else {
+                    deviceInfo
+                }
+            }
+        }
+        .padding()
+        .frame(minWidth: 350, minHeight: 450)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(BlurredEffect(.fullScreenUI).ignoresSafeArea())
+    }
     
     // Device List
     private var deviceList: some View {
@@ -76,105 +86,91 @@ extension HomeView {
             }
             .padding(8)
         }
+        .frame(width: 200)
     }
     
     // Device info view
     private var deviceInfo: some View {
         VStack(alignment: .leading, spacing: 10) {
-            VStack(alignment: .leading) {
-                Text("Name:")
-                    .fontWeight(.semibold)
-                Text(selectedDevice!.name.isEmpty ? "No value" : selectedDevice!.name)
-                    .foregroundStyle(.secondary)
-            }
-            .padding(8)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(.secondary.opacity(0.1))
-            .clipShape(RoundedRectangle(cornerRadius: 10))
             
+            ParameterSection(
+                header: "Name:",
+                info: selectedDevice!.name.isEmpty ? "No Value" : selectedDevice!.name)
             
-            VStack(alignment: .leading) {
-                Text("Address:")
-                    .fontWeight(.semibold)
-                Text(selectedDevice!.BroadcastAddr.isEmpty ? "No value" : selectedDevice!.BroadcastAddr)
-                    .foregroundStyle(.secondary)
-            }
-            .padding(8)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(.secondary.opacity(0.1))
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+            ParameterSection(
+                header: "IP / Host Name:",
+                info: selectedDevice!.BroadcastAddr.isEmpty ? "No Value" : selectedDevice!.BroadcastAddr)
             
-            VStack(alignment: .leading) {
-                Text("MAC:")
-                    .fontWeight(.semibold)
-                Text(selectedDevice!.MAC.isEmpty ? "No value" : selectedDevice!.MAC)
-                    .foregroundStyle(.secondary)
-            }
-            .padding(8)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(.secondary.opacity(0.1))
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+            ParameterSection(
+                header: "MAC:",
+                info: selectedDevice!.MAC.isEmpty ? "No Value" : selectedDevice!.MAC)
             
-            VStack(alignment: .leading) {
-                Text("Port:")
-                    .fontWeight(.semibold)
-                Text(selectedDevice!.Port.isEmpty ? "No value" : selectedDevice!.Port)
-                    .foregroundStyle(.secondary)
-            }
-            .padding(8)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(.secondary.opacity(0.1))
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+            ParameterSection(
+                header: "Port:",
+                info: selectedDevice!.Port.isEmpty ? "No Value" : selectedDevice!.Port)
             
             HStack(spacing: 8) {
-                VStack(alignment: .leading) {
-                    Text("Status:")
-                        .fontWeight(.semibold)
-                    Text("online")
-                        .foregroundStyle(.secondary)
-                        .overlay(alignment: .trailing) {
-                            Circle()
-                                .foregroundStyle(.green.opacity(0.2))
-                                .overlay {
-                                    Circle()
-                                        .strokeBorder(lineWidth: 1)
-                                        .foregroundStyle(.green)
-                                    
-                                }
-                                .frame(height: 11)
-                                .offset(x: 15, y: 1)
-                        }
-                }
-                .padding(8)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(.secondary.opacity(0.1))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                
-                
-                VStack(alignment: .leading) {
-                    Text("Ping:")
-                        .fontWeight(.semibold)
-                    Text("123 ms")
-                        .foregroundStyle(.secondary)
-                }
-                .padding(8)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(.secondary.opacity(0.1))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                
-                
+                status
+                ping
             }
             
             Spacer(minLength: 0)
-            WakeUpButton(device: selectedDevice!)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(20)
-                .padding(.horizontal, 40)
+            
+            wolButton
+            
             Spacer(minLength: 0)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
     }
     
+    //
+    private var wolButton: some View {
+        WakeUpButton(device: selectedDevice!)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .padding(20)
+            .padding(.horizontal, 40)
+    }
+    
+    // Status section
+    
+    private var status: some View {
+        VStack(alignment: .leading) {
+            Text("Status:")
+                .fontWeight(.semibold)
+            Text("online")
+                .foregroundStyle(.secondary)
+                .overlay(alignment: .trailing) {
+                    Circle()
+                        .foregroundStyle(.green.opacity(0.2))
+                        .overlay {
+                            Circle()
+                                .strokeBorder(lineWidth: 1)
+                                .foregroundStyle(.green)
+                            
+                        }
+                        .frame(height: 11)
+                        .offset(x: 15, y: 1)
+                }
+        }
+        .padding(8)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(.secondary.opacity(0.1))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+    
+    // Ping section
+    private var ping: some View {
+        VStack(alignment: .leading) {
+            Text("Ping:")
+                .fontWeight(.semibold)
+            Text("123 ms")
+                .foregroundStyle(.secondary)
+        }
+        .padding(8)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(.secondary.opacity(0.1))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
     
     // Add button
     private var addButton: some View {
