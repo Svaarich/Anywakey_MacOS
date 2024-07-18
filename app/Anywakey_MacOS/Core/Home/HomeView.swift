@@ -189,12 +189,22 @@ extension HomeView {
     private var deleteButton: some View {
         Button {
             guard selectedDevice != nil else { return }
+            let index = dataService.allDevices.firstIndex(of: selectedDevice!)
             withAnimation(.spring(duration: 0.3)) {
                 dataService.delete(device: selectedDevice!)
-                if !dataService.allDevices.isEmpty {
-                    selectedDevice = dataService.allDevices.first!
-                } else {
+            }
+            if dataService.allDevices.isEmpty {
+                withAnimation(.spring(duration: 0.3)) {
                     selectedDevice = nil
+                }
+            } else {
+                if index == 0 {
+                    withAnimation(.spring(duration: 0.3)) {
+                        selectedDevice = dataService.allDevices[index!]
+                    }
+                } else {
+                    withAnimation(.spring(duration: 0.3)) {
+                        selectedDevice = dataService.allDevices[index! - 1]}
                 }
             }
         } label: {
