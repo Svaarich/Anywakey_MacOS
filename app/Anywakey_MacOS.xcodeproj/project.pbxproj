@@ -13,16 +13,13 @@
 		7D04290E2AAA1FB400C9048C /* Anywakey_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04290D2AAA1FB400C9048C /* Anywakey_App.swift */; };
 		7D0429152AAA1FB400C9048C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D0429142AAA1FB400C9048C /* Preview Assets.xcassets */; };
 		7D04291D2AAA212800C9048C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04291C2AAA212800C9048C /* HomeView.swift */; };
-		7D04291F2AAA214900C9048C /* ButtonPressModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04291E2AAA214900C9048C /* ButtonPressModifier.swift */; };
 		7D0429212AAA219B00C9048C /* WakeUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0429202AAA219B00C9048C /* WakeUpButton.swift */; };
 		7D0429232AAA21AF00C9048C /* DeviceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0429222AAA21AF00C9048C /* DeviceDataService.swift */; };
 		7D0429252AAA21E100C9048C /* WakeOnLan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0429242AAA21E100C9048C /* WakeOnLan.swift */; };
-		7D25E1362ACAF7AE0024D971 /* AddDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25E1352ACAF7AE0024D971 /* AddDeviceView.swift */; };
 		7D2FFC672AAD0A6900FFF97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D2FFC662AAD0A6900FFF97E /* Assets.xcassets */; };
 		7D2FFC6B2AAD2CCC00FFF97E /* Extension + View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FFC6A2AAD2CCC00FFF97E /* Extension + View.swift */; };
 		7D2FFC6D2AAD2D0D00FFF97E /* Extension + Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FFC6C2AAD2D0D00FFF97E /* Extension + Scene.swift */; };
 		7D8B56EE2AAAA7980098467F /* BlurredEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */; };
-		7DC26D712AE6EB6E00B52D02 /* DeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC26D702AE6EB6E00B52D02 /* DeviceList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,16 +31,13 @@
 		7D0429142AAA1FB400C9048C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7D0429162AAA1FB400C9048C /* Anywakey_MacOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Anywakey_MacOS.entitlements; sourceTree = "<group>"; };
 		7D04291C2AAA212800C9048C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		7D04291E2AAA214900C9048C /* ButtonPressModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPressModifier.swift; sourceTree = "<group>"; };
 		7D0429202AAA219B00C9048C /* WakeUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpButton.swift; sourceTree = "<group>"; };
 		7D0429222AAA21AF00C9048C /* DeviceDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataService.swift; sourceTree = "<group>"; };
 		7D0429242AAA21E100C9048C /* WakeOnLan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeOnLan.swift; sourceTree = "<group>"; };
-		7D25E1352ACAF7AE0024D971 /* AddDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceView.swift; sourceTree = "<group>"; };
 		7D2FFC662AAD0A6900FFF97E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D2FFC6A2AAD2CCC00FFF97E /* Extension + View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + View.swift"; sourceTree = "<group>"; };
 		7D2FFC6C2AAD2D0D00FFF97E /* Extension + Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Scene.swift"; sourceTree = "<group>"; };
 		7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredEffect.swift; sourceTree = "<group>"; };
-		7DC26D702AE6EB6E00B52D02 /* DeviceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				376C038F2C454E6A0031FBE5 /* Home */,
+				7D2FFC992AAFD0E800FFF97E /* Custom Views */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -122,7 +117,6 @@
 				376C03902C454E710031FBE5 /* Core */,
 				376C03912C454E970031FBE5 /* Services */,
 				376C038E2C454DA90031FBE5 /* Models */,
-				7D2FFC992AAFD0E800FFF97E /* Custom Views */,
 				7D2FFC6E2AAD2E1800FFF97E /* Extensions */,
 				7D0429162AAA1FB400C9048C /* Anywakey_MacOS.entitlements */,
 				7D2FFC662AAD0A6900FFF97E /* Assets.xcassets */,
@@ -152,10 +146,7 @@
 		7D2FFC992AAFD0E800FFF97E /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				7D25E1352ACAF7AE0024D971 /* AddDeviceView.swift */,
-				7DC26D702AE6EB6E00B52D02 /* DeviceList.swift */,
 				7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */,
-				7D04291E2AAA214900C9048C /* ButtonPressModifier.swift */,
 				7D0429202AAA219B00C9048C /* WakeUpButton.swift */,
 			);
 			path = "Custom Views";
@@ -239,13 +230,10 @@
 				7D04290E2AAA1FB400C9048C /* Anywakey_App.swift in Sources */,
 				7D2FFC6D2AAD2D0D00FFF97E /* Extension + Scene.swift in Sources */,
 				7D04291D2AAA212800C9048C /* HomeView.swift in Sources */,
-				7DC26D712AE6EB6E00B52D02 /* DeviceList.swift in Sources */,
-				7D25E1362ACAF7AE0024D971 /* AddDeviceView.swift in Sources */,
 				7D0429232AAA21AF00C9048C /* DeviceDataService.swift in Sources */,
 				7D8B56EE2AAAA7980098467F /* BlurredEffect.swift in Sources */,
 				7D0429212AAA219B00C9048C /* WakeUpButton.swift in Sources */,
 				7D0429252AAA21E100C9048C /* WakeOnLan.swift in Sources */,
-				7D04291F2AAA214900C9048C /* ButtonPressModifier.swift in Sources */,
 				376C03962C4579150031FBE5 /* String.swift in Sources */,
 				376C03942C4578F40031FBE5 /* Network.swift in Sources */,
 				7D2FFC6B2AAD2CCC00FFF97E /* Extension + View.swift in Sources */,

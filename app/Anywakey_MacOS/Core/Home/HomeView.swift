@@ -1,218 +1,208 @@
+
 import SwiftUI
 
 struct HomeView: View {
+    
     @ObservedObject var dataService: DeviceDataService
     
-    @State private var isPresentedListOfDevices = false
-    @State private var isHoverDeleteButton = false
-    
-    @State private var name: String = ""
-    @State private var mac: String = ""
-    @State private var address: String = ""
-    @State private var port: String = ""
-    
-    @State private var currentDevice: Device = Device(
-        name: "", MAC: "",
-        BroadcastAddr: "", Port: "")
+    @State private var showAddView = false
+    @State private var selectedDevice: Device?
     
     var body: some View {
-        VStack {
-            HStack {
-                deviceListView
-                Spacer()
-                addDeviceButton
+        HStack(spacing: 0) {
+            VStack(spacing: 0) {
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundStyle(.clear)
+                List(dataService.allDevices, selection: $selectedDevice) { device in
+                    Text("\(device.name)")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(6)
+                        .padding(.horizontal, 6)
+                        .background(selectedDevice == device ? .secondary.opacity(0.2) : Color.gray.opacity(0.00001))
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .onTapGesture {
+                            withAnimation(.spring(duration: 0.3)) {
+                                selectedDevice = device
+                                showAddView = false
+                            }
+                        }
+                }
+                .scrollIndicators(.never)
+                .scrollContentBackground(.hidden)
+                .listStyle(SidebarListStyle())
+                
+                HStack {
+                    addButton
+                    deleteButton
+                    Spacer()
+                }
+                .padding(8)
             }
-            .padding(.bottom)
-            addressField
-            macField
-            portField
-            wakeUpButton
-        }
-        .padding([.horizontal, .bottom])
-        .padding(.top, 8)
-        .background(BlurredEffect().ignoresSafeArea())
-//        .onChange(of: dataService.listOfDevices) { _ in
-//            dataService.updateStatusList()
-//        }
-//        .onChange(of: dataService.device.BroadcastAddr) { _ in
-//            withAnimation {
-//                dataService.device.status = .Default
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                    dataService.currentDeviceStatus()
-//                }
-//            }
-//        }
-//        .onAppear {
-//            dataService.fetchUserDefaults()
-//            dataService.updateStatusList()
-//            if let device = dataService.listOfDevices.first {
-//                dataService.device = device
-//            }
-//        }
-    }
-    
-//    private func getStatusColor() -> Color {
-//        switch dataService.device.status {
-//        case .Online:
-//            return DrawingConstants.statusColorOnline
-//        case .Offline:
-//            return DrawingConstants.statusColorOffline
-//        case .Default:
-//            return DrawingConstants.statusColorDefault
-//        }
-//    }
-    
-    //MARK: List of saved devices
-    var deviceListView: some View {
-        DeviceList()
-    }
-    
-    //MARK: Add Button
-    var addDeviceButton: some View {
-        AddDeviceView()
-    }
-    
-    //MARK: Textfields
-    var addressField: some View {
-        ZStack {
+            .frame(width: 200)
+
             VStack {
-                HStack {
-                    Text(" IP / Broadcast Address:")
-                    Spacer()
-//                    status
+                if showAddView {
+                    AddDeviceView(showView: $showAddView, device: $selectedDevice)
+                } else {
+                    if selectedDevice == nil {
+                        Text("Anywakey")
+                    } else {
+                        detailView
+                    }
                 }
-                TextField("Enter IP / Broadcast Address...", text: $address)
-                    .textFieldStyle(.roundedBorder)
-                HStack {
-                    Text(" IPv4(e.g. 192.168.0.123) or DNS name for the host.")
-                        .font(Font.system(size: DrawingConstants.instructionTextSize))
-                        .foregroundStyle(DrawingConstants.instructionTextColor)
-                        .opacity(DrawingConstants.instructionTextOpacity)
-                    Spacer()
-                }
-                .padding(.bottom, 8)
             }
+            .padding()
+            .frame(minWidth: 350, minHeight: 450)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(BlurredEffect(.fullScreenUI).ignoresSafeArea())
+        }
+        .background(BlurredEffect(.fullScreenUI).opacity(0.6).ignoresSafeArea())
+        .onAppear {
+            selectedDevice = dataService.allDevices.isEmpty ? nil : dataService.allDevices[0]
         }
     }
     
-    var macField: some View {
-        VStack {
-            HStack {
-                Text(" MAC Address:")
-                Spacer()
+    private var detailView: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading) {
+                Text("Name:")
+                    .fontWeight(.semibold)
+                Text(selectedDevice!.name.isEmpty ? "No value" : selectedDevice!.name)
+                    .foregroundStyle(.secondary)
             }
-            TextField("Enter MAC address...", text: $mac)
-            .textFieldStyle(.roundedBorder)
-            HStack {
-                Text(" (e.g. 00:11:22:AA:BB:CC)")
-                    .font(Font.system(size: DrawingConstants.instructionTextSize))
-                    .foregroundStyle(DrawingConstants.instructionTextColor)
-                    .opacity(DrawingConstants.instructionTextOpacity)
-                Spacer()
+            .padding(8)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(.secondary.opacity(0.1))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            
+            
+            VStack(alignment: .leading) {
+                Text("Address:")
+                    .fontWeight(.semibold)
+                Text(selectedDevice!.BroadcastAddr.isEmpty ? "No value" : selectedDevice!.BroadcastAddr)
+                    .foregroundStyle(.secondary)
             }
-            .padding(.bottom, 8)
-        }
-    }
-    
-    var portField: some View {
-        VStack {
-            HStack{
-                Text(" Port:")
-                Spacer()
+            .padding(8)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(.secondary.opacity(0.1))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            
+            VStack(alignment: .leading) {
+                Text("MAC:")
+                    .fontWeight(.semibold)
+                Text(selectedDevice!.MAC.isEmpty ? "No value" : selectedDevice!.MAC)
+                    .foregroundStyle(.secondary)
             }
-            TextField("Enter port...", text: $port)
-            .textFieldStyle(.roundedBorder)
-            HStack {
-                Text(" Typically sent to port 7 or 9")
-                    .font(Font.system(size: DrawingConstants.instructionTextSize))
-                    .foregroundStyle(DrawingConstants.instructionTextColor)
-                    .opacity(DrawingConstants.instructionTextOpacity)
-                Spacer()
-                clearButton
+            .padding(8)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(.secondary.opacity(0.1))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            
+            VStack(alignment: .leading) {
+                Text("Port:")
+                    .fontWeight(.semibold)
+                Text(selectedDevice!.Port.isEmpty ? "No value" : selectedDevice!.Port)
+                    .foregroundStyle(.secondary)
             }
-        }
-    }
-    
-    //MARK: Status indicator
-//    var status: some View {
-//        HStack {
-//            Text("Status:")
-//                .foregroundColor(DrawingConstants.statusTextColor)
-//                .opacity(DrawingConstants.statusTextOpacity)
-//            ZStack {
-//                Circle()
-//                    .strokeBorder(lineWidth: 1)
-//                    .foregroundColor(getStatusColor())
-//                Circle()
-//                    .fill()
-//                    .foregroundColor(getStatusColor())
-//                    .opacity(0.1)
-//            }
-//            .frame(width: DrawingConstants.statusDiameter)
-//            .padding(.trailing, 5)
-//        }
-//    }
-    
-    //MARK: Clear button
-    var clearButton: some View {
-        HStack {
-            if dataService.displayedDevice.BroadcastAddr.isEmpty && dataService.displayedDevice.MAC.isEmpty && dataService.displayedDevice.Port.isEmpty {
-                Button("Clear All") {
+            .padding(8)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(.secondary.opacity(0.1))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            
+            HStack(spacing: 8) {
+                VStack(alignment: .leading) {
+                    Text("Status:")
+                        .fontWeight(.semibold)
+                        Text("online")
+                            .foregroundStyle(.secondary)
+                            .overlay(alignment: .trailing) {
+                                Circle()
+                                    .foregroundStyle(.green.opacity(0.2))
+                                    .overlay {
+                                        Circle()
+                                            .strokeBorder(lineWidth: 1)
+                                            .foregroundStyle(.green)
+                                            
+                                    }
+                                    .frame(height: 11)
+                                    .offset(x: 15, y: 1)
+                            }
                 }
-                .opacity(DrawingConstants.clearButtonOpacity)
-            } else {
-                Button("Clear All") {
-                    dataService.displayedDevice = Device(name: "", MAC: "", BroadcastAddr: "", Port: "")
+                .padding(8)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(.secondary.opacity(0.1))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+                
+                VStack(alignment: .leading) {
+                    Text("Ping:")
+                        .fontWeight(.semibold)
+                    Text("123 ms")
+                        .foregroundStyle(.secondary)
                 }
+                .padding(8)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(.secondary.opacity(0.1))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+                
             }
+    
+            
+            Spacer(minLength: 0)
+            WakeUpButton(device: selectedDevice!)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(20)
+                .padding(.horizontal, 40)
+            Spacer(minLength: 0)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+    }
+}
+
+#Preview {
+    let dataService = DeviceDataService()
+    return HomeView(dataService: dataService)
+}
+
+extension HomeView {
+    
+    // MARK: PROPERTIES
+    
+    // Add button
+    private var addButton: some View {
+        Button {
+            withAnimation(.spring(duration: 0.3)) {
+                showAddView = true
+            }
+        } label: {
+            Image(systemName: "plus")
+                .frame(width: 30, height: 20)
+                .background(.secondary.opacity(0.2))
+                .clipShape(RoundedRectangle(cornerRadius: 5))
         }
         .buttonStyle(.borderless)
-        .padding(.trailing, 2)
     }
     
-    //MARK: WakeUp button
-    var wakeUpButton: some View {
-        WakeUpButton()
-            .padding(.vertical, 8)
-    }
-    
-    var deviceListBackground: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 7)
-                .stroke(lineWidth: 1)
-                .opacity(isPresentedListOfDevices ? 0.6 : 0.5)
-            RoundedRectangle(cornerRadius: 7)
-                .fill()
-                .opacity(isPresentedListOfDevices ? 0.3 : 0.1)
+    // Delete button
+    private var deleteButton: some View {
+        Button {
+            guard selectedDevice != nil else { return }
+            withAnimation(.spring(duration: 0.3)) {
+                dataService.delete(device: selectedDevice!)
+                if !dataService.allDevices.isEmpty {
+                    selectedDevice = dataService.allDevices.first!
+                } else {
+                    selectedDevice = nil
+                }
+            }
+        } label: {
+            Image(systemName: "minus")
+                .frame(width: 30, height: 20)
+                .background(.secondary.opacity(0.2))
+                .clipShape(RoundedRectangle(cornerRadius: 5))
         }
-        .foregroundColor(.secondary)
-    }
-    
-    //MARK: DrawingConstants
-    private struct DrawingConstants {
-        
-        static let deviceListWidth: CGFloat = 20
-        static let clearButtonOpacity: CGFloat = 0.5
-        
-        static let statusDiameter: CGFloat = 12
-        static let statusColorOnline: Color = .green
-        static let statusColorOffline: Color = .pink
-        static let statusColorDefault: Color = .white.opacity(0.5)
-        
-        static let statusTextOpacity: CGFloat = 0.6
-        static let statusTextColor: Color = .white
-        
-        static let onlineColor: Color = .green
-        static let offlineColor: Color = .secondary
-        
-        static let instructionTextSize: CGFloat = 11
-        static let instructionTextOpacity: CGFloat = 0.5
-        static let instructionTextColor: Color = .white
-        
-        static let addButtonColor: Color = .secondary
-        static let addButtonSize: CGFloat = 18
-        
-        static let menuAddDeteleWidth: CGFloat = 65
-        static let menuAddDeteleCornerRadius: CGFloat = 7
+        .buttonStyle(.borderless)
     }
 }
