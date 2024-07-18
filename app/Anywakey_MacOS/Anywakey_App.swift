@@ -9,7 +9,6 @@ struct Anywakey_App: App {
                 .preferredColorScheme(.dark)
         }
         .windowStyle(.hiddenTitleBar)
-        .windowResizabilityContentSize()
         .environmentObject(dataService)
     }
 }
