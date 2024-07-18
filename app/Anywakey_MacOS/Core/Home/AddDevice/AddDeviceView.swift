@@ -58,7 +58,7 @@ extension AddDeviceView {
     // Add Button
     private var addButton: some View {
         Button {
-            withAnimation(.spring) {
+            withAnimation(.spring(duration: 0.3)) {
                 showView = false
                 device = Device(name: name,
                                 MAC: mac,
