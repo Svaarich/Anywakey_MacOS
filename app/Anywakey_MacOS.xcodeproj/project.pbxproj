@@ -10,6 +10,8 @@
 		376C038D2C454DA10031FBE5 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C038C2C454DA10031FBE5 /* Device.swift */; };
 		376C03942C4578F40031FBE5 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C03932C4578F40031FBE5 /* Network.swift */; };
 		376C03962C4579150031FBE5 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C03952C4579150031FBE5 /* String.swift */; };
+		37A40BEF2C49522E003E76E3 /* ParameterSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40BEE2C49522E003E76E3 /* ParameterSection.swift */; };
+		37D874C52C494734008D7805 /* AddDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D874C42C494734008D7805 /* AddDeviceView.swift */; };
 		7D04290E2AAA1FB400C9048C /* Anywakey_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04290D2AAA1FB400C9048C /* Anywakey_App.swift */; };
 		7D0429152AAA1FB400C9048C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D0429142AAA1FB400C9048C /* Preview Assets.xcassets */; };
 		7D04291D2AAA212800C9048C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04291C2AAA212800C9048C /* HomeView.swift */; };
@@ -17,8 +19,6 @@
 		7D0429232AAA21AF00C9048C /* DeviceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0429222AAA21AF00C9048C /* DeviceDataService.swift */; };
 		7D0429252AAA21E100C9048C /* WakeOnLan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0429242AAA21E100C9048C /* WakeOnLan.swift */; };
 		7D2FFC672AAD0A6900FFF97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D2FFC662AAD0A6900FFF97E /* Assets.xcassets */; };
-		7D2FFC6B2AAD2CCC00FFF97E /* Extension + View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FFC6A2AAD2CCC00FFF97E /* Extension + View.swift */; };
-		7D2FFC6D2AAD2D0D00FFF97E /* Extension + Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FFC6C2AAD2D0D00FFF97E /* Extension + Scene.swift */; };
 		7D8B56EE2AAAA7980098467F /* BlurredEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +26,8 @@
 		376C038C2C454DA10031FBE5 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		376C03932C4578F40031FBE5 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		376C03952C4579150031FBE5 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		37A40BEE2C49522E003E76E3 /* ParameterSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterSection.swift; sourceTree = "<group>"; };
+		37D874C42C494734008D7805 /* AddDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceView.swift; sourceTree = "<group>"; };
 		7D04290A2AAA1FB400C9048C /* Anywakey_MacOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anywakey_MacOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D04290D2AAA1FB400C9048C /* Anywakey_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anywakey_App.swift; sourceTree = "<group>"; };
 		7D0429142AAA1FB400C9048C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -35,8 +37,6 @@
 		7D0429222AAA21AF00C9048C /* DeviceDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataService.swift; sourceTree = "<group>"; };
 		7D0429242AAA21E100C9048C /* WakeOnLan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeOnLan.swift; sourceTree = "<group>"; };
 		7D2FFC662AAD0A6900FFF97E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7D2FFC6A2AAD2CCC00FFF97E /* Extension + View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + View.swift"; sourceTree = "<group>"; };
-		7D2FFC6C2AAD2D0D00FFF97E /* Extension + Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Scene.swift"; sourceTree = "<group>"; };
 		7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredEffect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				7D04291C2AAA212800C9048C /* HomeView.swift */,
+				37A40BEC2C4951CA003E76E3 /* AddDevice */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -92,6 +93,14 @@
 				7D0429242AAA21E100C9048C /* WakeOnLan.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		37A40BEC2C4951CA003E76E3 /* AddDevice */ = {
+			isa = PBXGroup;
+			children = (
+				37D874C42C494734008D7805 /* AddDeviceView.swift */,
+			);
+			name = AddDevice;
 			sourceTree = "<group>";
 		};
 		7D0429012AAA1FB300C9048C = {
@@ -137,8 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				376C03952C4579150031FBE5 /* String.swift */,
-				7D2FFC6A2AAD2CCC00FFF97E /* Extension + View.swift */,
-				7D2FFC6C2AAD2D0D00FFF97E /* Extension + Scene.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -148,6 +155,7 @@
 			children = (
 				7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */,
 				7D0429202AAA219B00C9048C /* WakeUpButton.swift */,
+				37A40BEE2C49522E003E76E3 /* ParameterSection.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -228,15 +236,15 @@
 			files = (
 				376C038D2C454DA10031FBE5 /* Device.swift in Sources */,
 				7D04290E2AAA1FB400C9048C /* Anywakey_App.swift in Sources */,
-				7D2FFC6D2AAD2D0D00FFF97E /* Extension + Scene.swift in Sources */,
 				7D04291D2AAA212800C9048C /* HomeView.swift in Sources */,
 				7D0429232AAA21AF00C9048C /* DeviceDataService.swift in Sources */,
+				37A40BEF2C49522E003E76E3 /* ParameterSection.swift in Sources */,
 				7D8B56EE2AAAA7980098467F /* BlurredEffect.swift in Sources */,
+				37D874C52C494734008D7805 /* AddDeviceView.swift in Sources */,
 				7D0429212AAA219B00C9048C /* WakeUpButton.swift in Sources */,
 				7D0429252AAA21E100C9048C /* WakeOnLan.swift in Sources */,
 				376C03962C4579150031FBE5 /* String.swift in Sources */,
 				376C03942C4578F40031FBE5 /* Network.swift in Sources */,
-				7D2FFC6B2AAD2CCC00FFF97E /* Extension + View.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
