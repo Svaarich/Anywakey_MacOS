@@ -8,6 +8,11 @@ struct HomeView: View {
     @State private var showAddView = false
     @State private var selectedDevice: Device?
     
+    @State private var status: Bool = false
+    @State private var ping: Double = 0
+    
+    @State var timer: Timer?
+    
     var body: some View {
         HStack(spacing: 0) {
             
@@ -24,6 +29,18 @@ struct HomeView: View {
         .onAppear {
             selectedDevice = dataService.allDevices.isEmpty ? nil : dataService.allDevices[0]
         }
+        .onChange(of: selectedDevice) {
+            getStatus()
+            
+            // restart timer
+            timer?.invalidate()
+            
+            // if address is valid create timer
+            guard selectedDevice!.BroadcastAddr.isValidAddress() else { return }
+            timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+                getStatus()
+            }
+        }
     }
 }
 
@@ -33,6 +50,25 @@ struct HomeView: View {
 }
 
 extension HomeView {
+    
+    // MARK: FUNCTIONS
+    
+    private func getStatus() {
+        if selectedDevice?.BroadcastAddr != nil {
+            Network.instance.ping(address: selectedDevice!.BroadcastAddr) { ping, status in
+                withAnimation(.smooth(duration: 0.3)) {
+                    self.ping = ping
+                    self.status = status
+                }
+            }
+        } else {
+            withAnimation(.smooth(duration: 0.3)) {
+                self.ping = 0.0
+                self.status = false
+            }
+        }
+        print("pinging - \(String(describing: selectedDevice?.BroadcastAddr))")
+    }
     
     // MARK: PROPERTIES
     
@@ -110,8 +146,8 @@ extension HomeView {
                 info: selectedDevice!.Port.isEmpty ? "No Value" : selectedDevice!.Port)
             
             HStack(spacing: 8) {
-                status
-                ping
+                statusInfo
+                pingInfo
             }
             
             Spacer(minLength: 0)
@@ -133,23 +169,23 @@ extension HomeView {
     
     // Status section
     
-    private var status: some View {
+    private var statusInfo: some View {
         VStack(alignment: .leading) {
             Text("Status:")
                 .fontWeight(.semibold)
-            Text("online")
+            Text(status ? "online" : "offline")
                 .foregroundStyle(.secondary)
                 .overlay(alignment: .trailing) {
                     Circle()
-                        .foregroundStyle(.green.opacity(0.2))
+                        .foregroundStyle(status ? .green.opacity(0.2) : .red.opacity(0.2))
                         .overlay {
                             Circle()
                                 .strokeBorder(lineWidth: 1)
-                                .foregroundStyle(.green)
+                                .foregroundStyle(status ? .green : .red)
                             
                         }
                         .frame(height: 11)
-                        .offset(x: 15, y: 1)
+                        .offset(x: 17, y: 1)
                 }
         }
         .padding(8)
@@ -159,11 +195,12 @@ extension HomeView {
     }
     
     // Ping section
-    private var ping: some View {
+    private var pingInfo: some View {
         VStack(alignment: .leading) {
             Text("Ping:")
                 .fontWeight(.semibold)
-            Text("123 ms")
+            Text(ping.pingAsString())
+                .contentTransition(.numericText())
                 .foregroundStyle(.secondary)
         }
         .padding(8)
