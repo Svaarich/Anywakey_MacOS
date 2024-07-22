@@ -13,62 +13,34 @@ struct AddDeviceView: View {
     @State private var mac: String = ""
     @State private var port: String = ""
     
-    @FocusState private var isFocused: FocusedStates?
+    @State private var hoverAdd: Bool = false
+    @State private var hoverCancel: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
             
             // NAME
-            TextField("Device Name", text: $name)
-            .focused($isFocused, equals: .name)
-            .textFieldStyle(.plain)
-            .padding(6)
-            .padding(.horizontal, 6)
-            
-            .background(
-                RoundedRectangle(cornerRadius: 5)
-                    .strokeBorder(lineWidth: 1)
-                    .foregroundStyle(.secondary.opacity(0.6))
-            )
+            AddTextField(prompt: "Device Name", text: $name)
+            Text("Device Name")
             
             // ADDRESS
-            TextField("IP / Broadcast Address", text: $address)
-            .focused($isFocused, equals: .adress)
-            .textFieldStyle(.plain)
-            .padding(6)
-            .padding(.horizontal, 6)
-            .background(
-                RoundedRectangle(cornerRadius: 5)
-                    .strokeBorder(lineWidth: 1)
-                    .foregroundStyle(.secondary.opacity(0.6))
-            )
+            AddTextField(prompt: "IP / Broadcast Address", text: $address)
+            Text("IPv4(e.g. 192.168.0.123) or DNS name for the host.")
             
             // MAC
-            TextField("MAC Address", text: $mac)
-            .focused($isFocused, equals: .mac)
-            .textFieldStyle(.plain)
-            .padding(6)
-            .padding(.horizontal, 6)
-            .background(
-                RoundedRectangle(cornerRadius: 5)
-                    .strokeBorder(lineWidth: 1)
-                    .foregroundStyle(.secondary.opacity(0.6))
-            )
+            AddTextField(prompt: "MAC Address", text: $mac)
+            Text("(e.g. 00:11:22:AA:BB:CC)")
             
             // Port
-            TextField("Port", text: $port)
-            .focused($isFocused, equals: .port)
-            .textFieldStyle(.plain)
-            .padding(6)
-            .padding(.horizontal, 6)
-            .background(
-                RoundedRectangle(cornerRadius: 5)
-                    .strokeBorder(lineWidth: 1)
-                    .foregroundStyle(.secondary.opacity(0.6))
-            )
+            AddTextField(prompt: "Port", text: $port)
+            Text("Typically sent to port 7 or 9")
+            
             Spacer()
             
-            addButton
+            HStack {
+                addButton
+                cancelButton
+            }
         }
         .frame(maxWidth: .infinity)
     }
