@@ -11,7 +11,7 @@ public class Network {
     
     // Boot selected device
     func boot(device: Device) -> Error? {
-        guard device.BroadcastAddr.isValidAdress(),
+        guard device.BroadcastAddr.isValidAddress(),
               device.MAC.isValidMAC(),
               device.Port.isValidPort()
         else { return nil }

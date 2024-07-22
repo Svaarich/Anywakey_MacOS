@@ -24,7 +24,7 @@ struct WakeUpButton: View {
     }
     
     private func isValid() -> Bool {
-        if !device.BroadcastAddr.isValidAdress() ||
+        if !device.BroadcastAddr.isValidAddress() ||
             !device.MAC.isValidMAC() ||
             !device.Port.isValidPort() {
             return false

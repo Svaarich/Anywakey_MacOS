@@ -3,7 +3,7 @@ import SwiftUI
 extension String {
     
     // Broadcast address validator
-    func isValidAdress() -> Bool {
+    func isValidAddress() -> Bool {
         // IPv4 IPv6 validation
         var sin = sockaddr_in()
         var sin6 = sockaddr_in6()
