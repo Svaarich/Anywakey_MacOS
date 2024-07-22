@@ -16,7 +16,7 @@ struct WakeUpButton: View {
                 .buttonStyle(.plain)
                 .scaleEffect(!isValid() ? 1.0 : isHover ? 1.05 : 1.0)
                 .onHover { hover in
-                    withAnimation {
+                    withAnimation(.spring(duration: 0.3)) {
                         isHover = hover
                     }
                 }
@@ -24,7 +24,7 @@ struct WakeUpButton: View {
     }
     
     private func isValid() -> Bool {
-        if !device.BroadcastAddr.isValidAdress() ||
+        if !device.BroadcastAddr.isValidAddress() ||
             !device.MAC.isValidMAC() ||
             !device.Port.isValidPort() {
             return false
