@@ -72,8 +72,47 @@ extension AddDeviceView {
                 dataService.add(newDevice: device!)
             }
         } label: {
-            Image(systemName: "plus")
+            Text("save")
+                .foregroundStyle(.white)
+                .padding(4)
+                .padding(.horizontal, 4)
+                .background(.blue.opacity(hoverAdd ? 1.0 : 0.7))
+                .clipShape(RoundedRectangle(cornerRadius: 5))
+        }
+        .buttonStyle(.borderless)
+        .scaleEffect(hoverAdd ? 1.1 : 1.0)
+        
+        .onHover { hover in
+            withAnimation(.spring(duration: 0.3)) {
+                hoverAdd = hover
+            }
+        }
+    }
+    
+    // Cancel Button
+    private var cancelButton: some View {
+        Button {
+            withAnimation(.spring(duration: 0.3)) {
+                showView = false
+            }
+        } label: {
+            Text("cancel")
+                .foregroundStyle(hoverCancel ? .white : .secondary)
+                .padding(4)
+                .padding(.horizontal, 4)
+                .background(.gray.opacity(hoverCancel ? 0.6 : 0.4))
+                .clipShape(RoundedRectangle(cornerRadius: 5))
+        }
+        .buttonStyle(.borderless)
+        .scaleEffect(hoverCancel ? 1.1 : 1.0)
+        
+        .onHover { hover in
+            withAnimation(.spring(duration: 0.3)) {
+                hoverCancel = hover
+            }
         }
     }
 }
+
+
 
