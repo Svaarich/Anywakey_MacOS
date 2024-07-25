@@ -68,7 +68,7 @@
 		376C038F2C454E6A0031FBE5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				7D04291C2AAA212800C9048C /* HomeView.swift */,
+				37A40BF62C528E81003E76E3 /* HomeView */,
 				37A40BEC2C4951CA003E76E3 /* AddDevice */,
 			);
 			path = Home;
@@ -109,6 +109,16 @@
 				37A40BF42C4EAB1B003E76E3 /* AddTextField.swift */,
 			);
 			name = AddDevice;
+			sourceTree = "<group>";
+		};
+		37A40BF62C528E81003E76E3 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				7D04291C2AAA212800C9048C /* HomeView.swift */,
+				7D0429202AAA219B00C9048C /* WakeUpButton.swift */,
+				37A40BEE2C49522E003E76E3 /* ParameterSection.swift */,
+			);
+			name = HomeView;
 			sourceTree = "<group>";
 		};
 		7D0429012AAA1FB300C9048C = {
@@ -163,8 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */,
-				7D0429202AAA219B00C9048C /* WakeUpButton.swift */,
-				37A40BEE2C49522E003E76E3 /* ParameterSection.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
