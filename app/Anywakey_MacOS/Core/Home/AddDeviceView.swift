@@ -19,20 +19,38 @@ struct AddDeviceView: View {
     var body: some View {
         VStack(alignment: .leading) {
             
-            // NAME
-            AddTextField(prompt: "Device Name", text: $name)
+            Text("Add new device")
+                .font(.largeTitle)
+                .padding(.bottom, 6)
+            
+        // NAME
+            AddTextField(
+                prompt: "Device Name",
+                text: $name)
             Text("Device Name")
-            
-            // ADDRESS
-            AddTextField(prompt: "IP / Broadcast Address", text: $address)
+                .padding(.bottom, 6)
+        
+        // ADDRESS
+            AddTextField(
+                prompt: "IP / Broadcast Address",
+                text: $address,
+                isValid: address.isEmpty ? true : address.isValidAddress())
             Text("IPv4(e.g. 192.168.0.123) or DNS name for the host.")
-            
+                .padding(.bottom, 6)
+        
             // MAC
-            AddTextField(prompt: "MAC Address", text: $mac)
+            AddTextField(
+                prompt: "MAC Address",
+                text: $mac,
+                isValid: mac.isEmpty ? true : mac.isValidMAC())
             Text("(e.g. 00:11:22:AA:BB:CC)")
+                .padding(.bottom, 6)
             
             // Port
-            AddTextField(prompt: "Port", text: $port)
+            AddTextField(
+                prompt: "Port",
+                text: $port,
+                isValid: port.isEmpty ? true : port.isValidPort())
             Text("Typically sent to port 7 or 9")
             
             Spacer()
