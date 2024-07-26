@@ -3,10 +3,18 @@ import SwiftUI
 
 struct AddTextField: View {
     
+   
     let prompt: String
     @Binding var text: String
+    let isValid: Bool
     
     @FocusState private var isFocused
+    
+    init(prompt: String, text: Binding<String>, isValid: Bool = true) {
+        self.prompt = prompt
+        self._text = text
+        self.isValid = isValid
+    }
     
     var body: some View {
         
@@ -17,10 +25,16 @@ struct AddTextField: View {
         .padding(.horizontal, 6)
         
         .background(
-            RoundedRectangle(cornerRadius: 5)
-                .strokeBorder(lineWidth: isFocused ? 1.5 : 1)
-                .foregroundStyle(Color.secondary.opacity(isFocused ? 1.0 : 0.6))
-                .animation(.smooth(duration: 0.3), value: isFocused)
+            RoundedRectangle(cornerRadius: 10)
+                .foregroundStyle(Color.secondary.opacity(0.1))
+                .opacity(isFocused ? 1.0 : 0.6)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 10)
+                        .strokeBorder(lineWidth: 1)
+                        .foregroundStyle(isValid ? Color.secondary : Color.red)
+                        .opacity(!isValid ? 1 : (isFocused ? 1 : 0))
+                }
         )
+        .animation(.smooth(duration: 0.3), value: isFocused)
     }
 }
