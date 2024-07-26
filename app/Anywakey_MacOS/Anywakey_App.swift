@@ -8,6 +8,7 @@ struct Anywakey_App: App {
             HomeView(dataService: dataService)
                 .preferredColorScheme(.dark)
         }
+        .defaultSize(width: 0, height: 0)
         .windowStyle(.hiddenTitleBar)
         .environmentObject(dataService)
     }
