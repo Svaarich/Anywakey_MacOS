@@ -97,7 +97,9 @@ extension HomeView {
                 AddDeviceView(showView: $showAddView, device: $selectedDevice)
             } else {
                 if selectedDevice == nil {
-                    Text("Anywakey")
+                    Text("Anywakey MacOS App")
+                    Text("Version: \(Bundle.main.releaseVersionNumber ?? "")")
+                        .foregroundStyle(.secondary)
                 } else {
                     deviceInfo
                 }
