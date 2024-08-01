@@ -20,10 +20,30 @@ struct HomeView: View {
     @State var timer: Timer?
     
     var body: some View {
+        
         HStack(spacing: 0) {
-            
             // Device list
-            deviceList
+            if dataService.allDevices.isEmpty {
+                VStack {
+                    Text("No devices")
+                    Button {
+                        withAnimation(.spring(duration: 0.3)) {
+                            showAddView = true
+                        }
+                    } label: {
+                        Text("Add device")
+                            .foregroundStyle(.white)
+                            .padding(6)
+                            .padding(.horizontal, 6)
+                            .background(.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                    .buttonStyle(.plain)
+                }
+                .frame(maxWidth: .infinity)
+            } else {
+                deviceList
+            }
             
             // Information view
             info
@@ -89,6 +109,16 @@ extension HomeView {
     }
     
     // MARK: PROPERTIES
+    
+//    private var leftColunm: some View {
+//        if dataService.allDevices.isEmpty {
+//            VStack {
+////                Text("No devices")
+//            }
+//        } else {
+//            deviceList
+//        }
+//    }
     
     // InfoView
     private var info: some View {
