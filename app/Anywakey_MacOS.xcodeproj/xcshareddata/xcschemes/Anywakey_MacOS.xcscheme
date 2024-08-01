@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7D0429092AAA1FB400C9048C"
-               BuildableName = "Anywakey_MacOS.app"
+               BuildableName = "Anywakey.app"
                BlueprintName = "Anywakey_MacOS"
                ReferencedContainer = "container:Anywakey_MacOS.xcodeproj">
             </BuildableReference>
@@ -44,7 +44,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7D0429092AAA1FB400C9048C"
-            BuildableName = "Anywakey_MacOS.app"
+            BuildableName = "Anywakey.app"
             BlueprintName = "Anywakey_MacOS"
             ReferencedContainer = "container:Anywakey_MacOS.xcodeproj">
          </BuildableReference>
@@ -61,7 +61,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7D0429092AAA1FB400C9048C"
-            BuildableName = "Anywakey_MacOS.app"
+            BuildableName = "Anywakey.app"
             BlueprintName = "Anywakey_MacOS"
             ReferencedContainer = "container:Anywakey_MacOS.xcodeproj">
          </BuildableReference>
