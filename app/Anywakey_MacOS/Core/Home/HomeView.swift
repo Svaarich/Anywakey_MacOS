@@ -24,23 +24,7 @@ struct HomeView: View {
         HStack(spacing: 0) {
             // Device list
             if dataService.allDevices.isEmpty {
-                VStack {
-                    Text("No devices")
-                    Button {
-                        withAnimation(.spring(duration: 0.3)) {
-                            showAddView = true
-                        }
-                    } label: {
-                        Text("Add device")
-                            .foregroundStyle(.white)
-                            .padding(6)
-                            .padding(.horizontal, 6)
-                            .background(.blue)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                    }
-                    .buttonStyle(.plain)
-                }
-                .frame(maxWidth: .infinity)
+                emptyListView
             } else {
                 deviceList
             }
@@ -110,15 +94,25 @@ extension HomeView {
     
     // MARK: PROPERTIES
     
-//    private var leftColunm: some View {
-//        if dataService.allDevices.isEmpty {
-//            VStack {
-////                Text("No devices")
-//            }
-//        } else {
-//            deviceList
-//        }
-//    }
+    private var emptyListView: some View {
+        VStack {
+            Text("No devices")
+            Button {
+                withAnimation(.spring(duration: 0.3)) {
+                    showAddView = true
+                }
+            } label: {
+                Text("Add device")
+                    .foregroundStyle(.white)
+                    .padding(6)
+                    .padding(.horizontal, 6)
+                    .background(.blue)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            }
+            .buttonStyle(.plain)
+        }
+        .frame(width: 200)
+    }
     
     // InfoView
     private var info: some View {
@@ -127,6 +121,7 @@ extension HomeView {
                 AddDeviceView(showView: $showAddView, device: $selectedDevice)
             } else {
                 if selectedDevice == nil {
+                    Spacer()
                     Text("Anywakey MacOS App")
                     Text("Version: \(Bundle.main.releaseVersionNumber ?? "")")
                         .foregroundStyle(.secondary)
