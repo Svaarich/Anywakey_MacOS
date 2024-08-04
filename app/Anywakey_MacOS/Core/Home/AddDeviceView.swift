@@ -15,6 +15,7 @@ struct AddDeviceView: View {
     
     @State private var hoverAdd: Bool = false
     @State private var hoverCancel: Bool = false
+    @State private var showFileImporter: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -61,6 +62,21 @@ struct AddDeviceView: View {
             }
         }
         .frame(maxWidth: .infinity)
+        
+        
+        .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [.text]) { result in
+            do {
+                let fileUrl = try result.get()
+                if fileUrl.startAccessingSecurityScopedResource() {
+                    dataService.importConfig(from: fileUrl)
+                    showView = false
+                    print("success")
+                }
+                fileUrl.stopAccessingSecurityScopedResource()
+            } catch {
+                print("Error file reading. \(error)")
+            }
+        }
     }
 }
 
