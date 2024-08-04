@@ -15,6 +15,9 @@ struct AddDeviceView: View {
     
     @State private var hoverAdd: Bool = false
     @State private var hoverCancel: Bool = false
+    @State private var hoverImport: Bool = false
+    
+    @State private var showFileImporter: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -58,9 +61,26 @@ struct AddDeviceView: View {
             HStack {
                 addButton
                 cancelButton
+                Spacer()
+                ImportButton
             }
         }
         .frame(maxWidth: .infinity)
+        
+        
+        .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [.text]) { result in
+            do {
+                let fileUrl = try result.get()
+                if fileUrl.startAccessingSecurityScopedResource() {
+                    dataService.importConfig(from: fileUrl)
+                    showView = false
+                    print("success")
+                }
+                fileUrl.stopAccessingSecurityScopedResource()
+            } catch {
+                print("Error file reading. \(error)")
+            }
+        }
     }
 }
 
@@ -127,6 +147,30 @@ extension AddDeviceView {
         .onHover { hover in
             withAnimation(.spring(duration: 0.3)) {
                 hoverCancel = hover
+            }
+        }
+    }
+    
+    // Import Button
+    private var ImportButton: some View {
+        Button {
+            withAnimation(.spring(duration: 0.3)) {
+                showFileImporter = true
+            }
+        } label: {
+            Text("import")
+                .foregroundStyle(hoverImport ? .white : .secondary)
+                .padding(4)
+                .padding(.horizontal, 4)
+                .background(.gray.opacity(hoverImport ? 0.6 : 0.4))
+                .clipShape(RoundedRectangle(cornerRadius: 5))
+        }
+        .buttonStyle(.borderless)
+        .scaleEffect(hoverImport ? 1.1 : 1.0)
+        
+        .onHover { hover in
+            withAnimation(.spring(duration: 0.3)) {
+                hoverImport = hover
             }
         }
     }
