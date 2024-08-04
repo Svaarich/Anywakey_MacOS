@@ -15,6 +15,8 @@ struct AddDeviceView: View {
     
     @State private var hoverAdd: Bool = false
     @State private var hoverCancel: Bool = false
+    @State private var hoverImport: Bool = false
+    
     @State private var showFileImporter: Bool = false
     
     var body: some View {
@@ -59,6 +61,8 @@ struct AddDeviceView: View {
             HStack {
                 addButton
                 cancelButton
+                Spacer()
+                ImportButton
             }
         }
         .frame(maxWidth: .infinity)
