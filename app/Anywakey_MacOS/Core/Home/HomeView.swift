@@ -167,6 +167,9 @@ extension HomeView {
                         .transition(.move(edge: .leading).combined(with: .opacity))
                 }
                 Spacer()
+                if !showDeleteConfirm {
+                    appInfoButton
+                }
             }
             .padding(8)
         }
