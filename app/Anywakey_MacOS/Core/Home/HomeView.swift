@@ -6,6 +6,7 @@ struct HomeView: View {
     @ObservedObject var dataService: DeviceDataService
     
     @State private var showAddView = false
+    @State private var showAppinfo: Bool = false
     @State private var selectedDevice: Device?
     
     @State private var status: Bool = false
@@ -14,6 +15,7 @@ struct HomeView: View {
     @State private var hoverAdd: Bool = false
     @State private var hoverDelete: Bool = false
     @State private var hoverCancel: Bool = false
+    @State private var hoverAppInfo: Bool = false
     
     @State private var showDeleteConfirm: Bool = false
     
@@ -26,7 +28,19 @@ struct HomeView: View {
             if dataService.allDevices.isEmpty {
                 emptyListView
             } else {
-                deviceList
+                if showAppinfo {
+                    AppInfoView(showView: $showAppinfo)
+                        .transition(.asymmetric(
+                            insertion: .move(edge: .leading),
+                            removal: .opacity)
+                                .combined(with: .opacity))
+                } else {
+                    deviceList
+                        .transition(.asymmetric(
+                            insertion: .move(edge: .leading),
+                            removal: .opacity)
+                                .combined(with: .opacity))
+                }
             }
             
             // Information view
