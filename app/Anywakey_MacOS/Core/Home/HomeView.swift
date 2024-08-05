@@ -258,6 +258,30 @@ extension HomeView {
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
     
+    // App info button
+    
+    private var appInfoButton: some View {
+        Button {
+            withAnimation(.spring(duration: 0.3)) {
+                showAppinfo = true
+            }
+        } label: {
+            Image(systemName: "list.dash")
+                .foregroundStyle(hoverAppInfo ? .white : .secondary)
+                .padding(.horizontal, 8)
+                .frame(height: 20)
+                .background(Color.gray.opacity(hoverAppInfo ? 0.4 : 0.2))
+                .clipShape(RoundedRectangle(cornerRadius: 5))
+        }
+        .buttonStyle(.borderless)
+        .scaleEffect(hoverAppInfo ? 1.1 : 1.0)
+        .onHover { hover in
+            withAnimation(.spring(duration: 0.3)) {
+                hoverAppInfo = hover
+            }
+        }
+    }
+    
     // Add button
     private var addButton: some View {
         Button {
