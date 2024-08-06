@@ -44,7 +44,7 @@ struct HomeView: View {
             }
             
             // Information view
-            info
+            trailingSection
             
         }
         .background(BlurredEffect(.fullScreenUI).opacity(0.6).ignoresSafeArea())
@@ -128,8 +128,33 @@ extension HomeView {
         .frame(width: 200)
     }
     
+    private func handleDeletion() {
+        guard selectedDevice != nil else { return }
+        let index = dataService.allDevices.firstIndex(of: selectedDevice!)
+        withAnimation(.spring(duration: 0.3)) {
+            showDeleteConfirm.toggle()
+            if !showDeleteConfirm {
+                dataService.delete(device: selectedDevice!)
+                if dataService.allDevices.isEmpty {
+                    withAnimation(.spring(duration: 0.3)) {
+                        selectedDevice = nil
+                    }
+                } else {
+                    if index == 0 {
+                        withAnimation(.spring(duration: 0.3)) {
+                            selectedDevice = dataService.allDevices[index!]
+                        }
+                    } else {
+                        withAnimation(.spring(duration: 0.3)) {
+                            selectedDevice = dataService.allDevices[index! - 1]}
+                    }
+                }
+            }
+        }
+    }
+    
     // InfoView
-    private var info: some View {
+    private var trailingSection: some View {
         VStack {
             if showAddView {
                 AddDeviceView(showView: $showAddView, device: $selectedDevice)
@@ -278,126 +303,45 @@ extension HomeView {
     // App info button
     
     private var appInfoButton: some View {
-        Button {
-            withAnimation(.spring(duration: 0.3)) {
-                showAppinfo = true
-            }
+        BubbleButton {
+            showAppinfo = true
         } label: {
             Image(systemName: "list.dash")
-                .foregroundStyle(hoverAppInfo ? .white : .secondary)
-                .padding(.horizontal, 8)
-                .frame(height: 20)
-                .background(Color.gray.opacity(hoverAppInfo ? 0.4 : 0.2))
-                .clipShape(RoundedRectangle(cornerRadius: 5))
         }
-        .buttonStyle(.borderless)
-        .scaleEffect(hoverAppInfo ? 1.1 : 1.0)
-        .onHover { hover in
-            withAnimation(.spring(duration: 0.3)) {
-                hoverAppInfo = hover
-            }
-        }
+
     }
     
     // Add button
     private var addButton: some View {
-        Button {
-            withAnimation(.spring(duration: 0.3)) {
-                showDeleteConfirm = false
-                showAddView = true
-            }
+        BubbleButton {
+            showDeleteConfirm = false
+            showAddView = true
         } label: {
             Image(systemName: "plus")
-                .foregroundStyle(hoverAdd ? .white : .secondary)
-                .padding(.horizontal, 8)
-                .frame(height: 20)
-                .background(Color.gray.opacity(hoverAdd ? 0.4 : 0.2))
-                .clipShape(RoundedRectangle(cornerRadius: 5))
-        }
-        .buttonStyle(.borderless)
-        .scaleEffect(hoverAdd ? 1.1 : 1.0)
-        .onHover { hover in
-            withAnimation(.spring(duration: 0.3)) {
-                hoverAdd = hover
-            }
         }
     }
     
     // Delete button
     private var deleteButton: some View {
-        Button {
-            guard selectedDevice != nil else { return }
-            let index = dataService.allDevices.firstIndex(of: selectedDevice!)
-            withAnimation(.spring(duration: 0.3)) {
-                showDeleteConfirm.toggle()
-                if !showDeleteConfirm {
-                    dataService.delete(device: selectedDevice!)
-                    if dataService.allDevices.isEmpty {
-                        withAnimation(.spring(duration: 0.3)) {
-                            selectedDevice = nil
-                        }
-                    } else {
-                        if index == 0 {
-                            withAnimation(.spring(duration: 0.3)) {
-                                selectedDevice = dataService.allDevices[index!]
-                            }
-                        } else {
-                            withAnimation(.spring(duration: 0.3)) {
-                                selectedDevice = dataService.allDevices[index! - 1]}
-                        }
-                    }
-                }
-            }
-            
+        BubbleButton {
+            handleDeletion()
         } label: {
             HStack {
                 if showDeleteConfirm {
                     Text("delete")
-                        .foregroundStyle(hoverDelete ? .white : .secondary)
-                        .contentTransition(.numericText())
-//                        .transition(.move(edge: .leading).combined(with: .opacity))
-                        .frame(width: 60 ,height: 20)
-                        .background(.red.opacity(hoverDelete ? 0.4 : 0.2))
-                    
-                    
+                        .frame(width: 44)
                 } else {
                     Image(systemName: "minus")
-                        .foregroundStyle(hoverDelete ? .white : .secondary)
-//                        .transition(.move(edge: .leading).combined(with: .opacity))
-                        .frame(width: 30, height: 20)
-                        .background(.gray.opacity(hoverDelete ? 0.4 : 0.2))
                 }
-            }
-            
-            .clipShape(RoundedRectangle(cornerRadius: 5))
-        }
-        .buttonStyle(.borderless)
-        .scaleEffect(hoverDelete ? 1.1 : 1.0)
-        .onHover { hover in
-            withAnimation(.spring(duration: 0.3)) {
-                hoverDelete = hover
             }
         }
     }
     
     private var cancelButton: some View {
-        Button {
-            withAnimation(.spring(duration: 0.3)) {
-                showDeleteConfirm = false
-            }
+        BubbleButton {
+            showDeleteConfirm = false
         } label: {
             Text("cancel")
-                .foregroundStyle(hoverCancel ? .white : .secondary)
-                .frame(width: 60 ,height: 20)
-                .background(.blue.opacity(hoverCancel ? 0.4 : 0.2))
-                .clipShape(RoundedRectangle(cornerRadius: 5))
-        }
-        .buttonStyle(.borderless)
-        .scaleEffect(hoverCancel ? 1.1 : 1.0)
-        .onHover { hover in
-            withAnimation(.spring(duration: 0.3)) {
-                hoverCancel = hover
-            }
         }
     }
 }
