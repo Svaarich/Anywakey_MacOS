@@ -15,6 +15,8 @@
 		37A40BF32C4D7FBC003E76E3 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40BF22C4D7FBC003E76E3 /* Double.swift */; };
 		37A40BF52C4EAB1B003E76E3 /* AddTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40BF42C4EAB1B003E76E3 /* AddTextField.swift */; };
 		37A40C172C5BB3CE003E76E3 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40C162C5BB3CE003E76E3 /* Bundle.swift */; };
+		37A40C192C6126DF003E76E3 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40C182C6126DF003E76E3 /* AppInfoView.swift */; };
+		37A40C1B2C6240F7003E76E3 /* BubbleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40C1A2C6240F7003E76E3 /* BubbleButton.swift */; };
 		37D874C52C494734008D7805 /* AddDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D874C42C494734008D7805 /* AddDeviceView.swift */; };
 		7D04290E2AAA1FB400C9048C /* Anywakey_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04290D2AAA1FB400C9048C /* Anywakey_App.swift */; };
 		7D0429152AAA1FB400C9048C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D0429142AAA1FB400C9048C /* Preview Assets.xcassets */; };
@@ -35,6 +37,8 @@
 		37A40BF22C4D7FBC003E76E3 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		37A40BF42C4EAB1B003E76E3 /* AddTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTextField.swift; sourceTree = "<group>"; };
 		37A40C162C5BB3CE003E76E3 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		37A40C182C6126DF003E76E3 /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
+		37A40C1A2C6240F7003E76E3 /* BubbleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleButton.swift; sourceTree = "<group>"; };
 		37D874C42C494734008D7805 /* AddDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceView.swift; sourceTree = "<group>"; };
 		7D04290A2AAA1FB400C9048C /* Anywakey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anywakey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D04290D2AAA1FB400C9048C /* Anywakey_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anywakey_App.swift; sourceTree = "<group>"; };
@@ -79,8 +83,9 @@
 		376C03902C454E710031FBE5 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				37A40C182C6126DF003E76E3 /* AppInfoView.swift */,
 				376C038F2C454E6A0031FBE5 /* Home */,
-				7D2FFC992AAFD0E800FFF97E /* Custom Views */,
+				7D2FFC992AAFD0E800FFF97E /* Components */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -172,12 +177,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		7D2FFC992AAFD0E800FFF97E /* Custom Views */ = {
+		7D2FFC992AAFD0E800FFF97E /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				7D8B56ED2AAAA7980098467F /* BlurredEffect.swift */,
+				37A40C1A2C6240F7003E76E3 /* BubbleButton.swift */,
 			);
-			path = "Custom Views";
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,9 +261,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				376C038D2C454DA10031FBE5 /* Device.swift in Sources */,
+				37A40C1B2C6240F7003E76E3 /* BubbleButton.swift in Sources */,
 				7D04290E2AAA1FB400C9048C /* Anywakey_App.swift in Sources */,
 				7D04291D2AAA212800C9048C /* HomeView.swift in Sources */,
 				37A40BF12C4D748F003E76E3 /* SwiftyPing.swift in Sources */,
+				37A40C192C6126DF003E76E3 /* AppInfoView.swift in Sources */,
 				37A40BF32C4D7FBC003E76E3 /* Double.swift in Sources */,
 				7D0429232AAA21AF00C9048C /* DeviceDataService.swift in Sources */,
 				37A40BEF2C49522E003E76E3 /* ParameterSection.swift in Sources */,
