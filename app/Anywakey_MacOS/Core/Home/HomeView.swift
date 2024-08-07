@@ -25,24 +25,21 @@ struct HomeView: View {
         
         HStack(spacing: 0) {
             // Device list
-            if dataService.allDevices.isEmpty {
+            if showAppinfo {
+                AppInfoView(showView: $showAppinfo)
+                    .animateTransition()
+            } else if dataService.allDevices.isEmpty {
                 emptyListView
+                    .animateTransition()
             } else {
-                if showAppinfo {
-                    AppInfoView(showView: $showAppinfo)
-                        .transition(.asymmetric(
-                            insertion: .move(edge: .leading),
-                            removal: .opacity)
-                                .combined(with: .opacity))
-                } else {
-                    deviceList
-                        .transition(.asymmetric(
-                            insertion: .move(edge: .leading),
-                            removal: .opacity)
-                                .combined(with: .opacity))
-                }
+                deviceList
+                    .animateTransition()
+                    .onAppear {
+                        withAnimation(.spring(duration: 0.3)) {
+                            selectedDevice = dataService.allDevices.isEmpty ? nil : dataService.allDevices[0]
+                        }
+                    }
             }
-            
             // Information view
             trailingSection
             
@@ -106,28 +103,6 @@ extension HomeView {
         print("pinging - \(String(describing: selectedDevice?.BroadcastAddr))")
     }
     
-    // MARK: PROPERTIES
-    
-    private var emptyListView: some View {
-        VStack {
-            Text("No devices")
-            Button {
-                withAnimation(.spring(duration: 0.3)) {
-                    showAddView = true
-                }
-            } label: {
-                Text("Add device")
-                    .foregroundStyle(.white)
-                    .padding(6)
-                    .padding(.horizontal, 6)
-                    .background(.blue)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-            }
-            .buttonStyle(.plain)
-        }
-        .frame(width: 200)
-    }
-    
     private func handleDeletion() {
         guard selectedDevice != nil else { return }
         let index = dataService.allDevices.firstIndex(of: selectedDevice!)
@@ -151,6 +126,23 @@ extension HomeView {
                 }
             }
         }
+    }
+    
+    // MARK: PROPERTIES
+    
+    private var emptyListView: some View {
+        VStack {
+            Text("No devices")
+            HStack {
+                BubbleButton {
+                    showAddView = true
+                } label: {
+                    Text("Add device")
+                }
+                appInfoButton
+            }
+        }
+        .frame(width: 200)
     }
     
     // InfoView
@@ -304,6 +296,7 @@ extension HomeView {
     
     private var appInfoButton: some View {
         BubbleButton {
+            selectedDevice = nil
             showAppinfo = true
         } label: {
             Image(systemName: "list.dash")
