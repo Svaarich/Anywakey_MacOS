@@ -17,6 +17,9 @@
 		37A40C172C5BB3CE003E76E3 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40C162C5BB3CE003E76E3 /* Bundle.swift */; };
 		37A40C192C6126DF003E76E3 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40C182C6126DF003E76E3 /* AppInfoView.swift */; };
 		37A40C1B2C6240F7003E76E3 /* BubbleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40C1A2C6240F7003E76E3 /* BubbleButton.swift */; };
+		37A40C1E2C637DDA003E76E3 /* Buttonifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40C1D2C637DDA003E76E3 /* Buttonifier.swift */; };
+		37A40C202C637E43003E76E3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40C1F2C637E43003E76E3 /* View.swift */; };
+		37A40C222C63AE39003E76E3 /* MenuTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40C212C63AE39003E76E3 /* MenuTransition.swift */; };
 		37D874C52C494734008D7805 /* AddDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D874C42C494734008D7805 /* AddDeviceView.swift */; };
 		7D04290E2AAA1FB400C9048C /* Anywakey_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04290D2AAA1FB400C9048C /* Anywakey_App.swift */; };
 		7D0429152AAA1FB400C9048C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D0429142AAA1FB400C9048C /* Preview Assets.xcassets */; };
@@ -39,6 +42,9 @@
 		37A40C162C5BB3CE003E76E3 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		37A40C182C6126DF003E76E3 /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		37A40C1A2C6240F7003E76E3 /* BubbleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleButton.swift; sourceTree = "<group>"; };
+		37A40C1D2C637DDA003E76E3 /* Buttonifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttonifier.swift; sourceTree = "<group>"; };
+		37A40C1F2C637E43003E76E3 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		37A40C212C63AE39003E76E3 /* MenuTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTransition.swift; sourceTree = "<group>"; };
 		37D874C42C494734008D7805 /* AddDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceView.swift; sourceTree = "<group>"; };
 		7D04290A2AAA1FB400C9048C /* Anywakey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anywakey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D04290D2AAA1FB400C9048C /* Anywakey_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anywakey_App.swift; sourceTree = "<group>"; };
@@ -128,6 +134,15 @@
 			name = HomeView;
 			sourceTree = "<group>";
 		};
+		37A40C1C2C637DAD003E76E3 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				37A40C1D2C637DDA003E76E3 /* Buttonifier.swift */,
+				37A40C212C63AE39003E76E3 /* MenuTransition.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 		7D0429012AAA1FB300C9048C = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +167,7 @@
 				376C03912C454E970031FBE5 /* Services */,
 				376C038E2C454DA90031FBE5 /* Models */,
 				7D2FFC6E2AAD2E1800FFF97E /* Extensions */,
+				37A40C1C2C637DAD003E76E3 /* Modifiers */,
 				7D0429162AAA1FB400C9048C /* Anywakey_MacOS.entitlements */,
 				7D2FFC662AAD0A6900FFF97E /* Assets.xcassets */,
 				7D0429132AAA1FB400C9048C /* Preview Content */,
@@ -173,6 +189,7 @@
 				376C03952C4579150031FBE5 /* String.swift */,
 				37A40BF22C4D7FBC003E76E3 /* Double.swift */,
 				37A40C162C5BB3CE003E76E3 /* Bundle.swift */,
+				37A40C1F2C637E43003E76E3 /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -266,7 +283,9 @@
 				7D04291D2AAA212800C9048C /* HomeView.swift in Sources */,
 				37A40BF12C4D748F003E76E3 /* SwiftyPing.swift in Sources */,
 				37A40C192C6126DF003E76E3 /* AppInfoView.swift in Sources */,
+				37A40C202C637E43003E76E3 /* View.swift in Sources */,
 				37A40BF32C4D7FBC003E76E3 /* Double.swift in Sources */,
+				37A40C1E2C637DDA003E76E3 /* Buttonifier.swift in Sources */,
 				7D0429232AAA21AF00C9048C /* DeviceDataService.swift in Sources */,
 				37A40BEF2C49522E003E76E3 /* ParameterSection.swift in Sources */,
 				7D8B56EE2AAAA7980098467F /* BlurredEffect.swift in Sources */,
@@ -277,6 +296,7 @@
 				376C03962C4579150031FBE5 /* String.swift in Sources */,
 				37A40C172C5BB3CE003E76E3 /* Bundle.swift in Sources */,
 				376C03942C4578F40031FBE5 /* Network.swift in Sources */,
+				37A40C222C63AE39003E76E3 /* MenuTransition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
