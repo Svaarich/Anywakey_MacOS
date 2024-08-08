@@ -39,6 +39,7 @@ struct AppInfoView: View {
                 VStack(spacing: 6) {
                     
                     importButton
+                    shareButton
                 }
             }
             .buttonStyle(.plain)
@@ -135,6 +136,18 @@ extension AppInfoView {
             HStack {
                 Image(systemName: "square.and.arrow.down")
                 Text("Import config")
+            }
+            .buttonify()
+        }
+    }
+    
+    private var shareButton: some View {
+        Button {
+            ShareManager.instance.saveConfig(config: dataService.getConfig())
+        } label: {
+            HStack {
+                Image(systemName: "square.and.arrow.up.fill")
+                Text("Export config")
             }
             .buttonify()
         }
