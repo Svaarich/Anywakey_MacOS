@@ -8,6 +8,6 @@ struct Buttonifier: ViewModifier {
             .padding(6)
             .padding(.horizontal, 3)
             .background(.secondary.opacity(0.2))
-            .clipShape(RoundedRectangle(cornerRadius: 5))
+//            .clipShape(RoundedRectangle(cornerRadius: 5))
     }
 }

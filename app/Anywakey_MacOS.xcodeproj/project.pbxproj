@@ -20,6 +20,7 @@
 		37A40C1E2C637DDA003E76E3 /* Buttonifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40C1D2C637DDA003E76E3 /* Buttonifier.swift */; };
 		37A40C202C637E43003E76E3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40C1F2C637E43003E76E3 /* View.swift */; };
 		37A40C222C63AE39003E76E3 /* MenuTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40C212C63AE39003E76E3 /* MenuTransition.swift */; };
+		37A40C242C64E3D6003E76E3 /* ShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40C232C64E3D6003E76E3 /* ShareManager.swift */; };
 		37D874C52C494734008D7805 /* AddDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D874C42C494734008D7805 /* AddDeviceView.swift */; };
 		7D04290E2AAA1FB400C9048C /* Anywakey_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04290D2AAA1FB400C9048C /* Anywakey_App.swift */; };
 		7D0429152AAA1FB400C9048C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D0429142AAA1FB400C9048C /* Preview Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		37A40C1D2C637DDA003E76E3 /* Buttonifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttonifier.swift; sourceTree = "<group>"; };
 		37A40C1F2C637E43003E76E3 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		37A40C212C63AE39003E76E3 /* MenuTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTransition.swift; sourceTree = "<group>"; };
+		37A40C232C64E3D6003E76E3 /* ShareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareManager.swift; sourceTree = "<group>"; };
 		37D874C42C494734008D7805 /* AddDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceView.swift; sourceTree = "<group>"; };
 		7D04290A2AAA1FB400C9048C /* Anywakey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anywakey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D04290D2AAA1FB400C9048C /* Anywakey_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anywakey_App.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				7D0429222AAA21AF00C9048C /* DeviceDataService.swift */,
+				37A40C232C64E3D6003E76E3 /* ShareManager.swift */,
 				376C03922C454EBA0031FBE5 /* Network */,
 			);
 			path = Services;
@@ -293,6 +296,7 @@
 				37A40BF52C4EAB1B003E76E3 /* AddTextField.swift in Sources */,
 				7D0429212AAA219B00C9048C /* WakeUpButton.swift in Sources */,
 				7D0429252AAA21E100C9048C /* WakeOnLan.swift in Sources */,
+				37A40C242C64E3D6003E76E3 /* ShareManager.swift in Sources */,
 				376C03962C4579150031FBE5 /* String.swift in Sources */,
 				37A40C172C5BB3CE003E76E3 /* Bundle.swift in Sources */,
 				376C03942C4578F40031FBE5 /* Network.swift in Sources */,
