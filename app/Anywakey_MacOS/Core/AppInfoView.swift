@@ -22,25 +22,38 @@ struct AppInfoView: View {
                     .fontWeight(.semibold)
                     .padding(.leading, 8)
                 
-                VStack(spacing: 6) {
+                VStack(spacing: 0) {
                     
                     githubButton
                     
+                    divider
+                    
                     repoButton
                     
+                    divider
+                    
                     linktreeButton
+                    
                 }
+                .clipShape(RoundedRectangle(cornerRadius: 5))
                 
-                VStack(spacing: 6) {
+                VStack(spacing: 0) {
                     
                     bugButton
+                    
                 }
+                .clipShape(RoundedRectangle(cornerRadius: 5))
                 
-                VStack(spacing: 6) {
+                VStack(spacing: 0) {
                     
                     importButton
+                    
+                    divider
+                    
                     shareButton
+                    
                 }
+                .clipShape(RoundedRectangle(cornerRadius: 5))
             }
             .buttonStyle(.plain)
             .padding(8)
@@ -73,6 +86,7 @@ struct AppInfoView: View {
 }
 
 extension AppInfoView {
+    
     
     // MARK: PROPERTIES
     
@@ -109,9 +123,10 @@ extension AppInfoView {
     private var linktreeButton: some View {
         Link(destination: URL(string: linkTreeURL)!) {
             HStack {
-                Image(systemName: "tree.fill")
-                    .offset(x: -2)
-                Text("Linktree").offset(x: -4)
+                Image(systemName: "tree.circle")
+//                    .offset(x: -2)
+                Text("Linktree")
+//                    .offset(x: -4)
                 
             }
             .buttonify()
@@ -134,7 +149,7 @@ extension AppInfoView {
             showFileImporter = true
         } label: {
             HStack {
-                Image(systemName: "square.and.arrow.down")
+                Image(systemName: "square.and.arrow.down.fill")
                 Text("Import config")
             }
             .buttonify()
